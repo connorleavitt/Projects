@@ -95,11 +95,17 @@ function updateScore() {
 
 function checkWinner() {
     if (playerScore === 5 || computerScore === 5) {
+        const playerWins = `After ${gameRound} rounds, you won!`;
+        const compWins = `After ${gameRound} rounds, you lost!`;
+        const winningMessage = document.getElementById('winningMessage');
         const winner = 
             playerScore === 5 
-            ? `After ${gameRound} rounds, you won!`
-            : `After ${gameRound} rounds, you lost!`;
-        document.getElementById("winningMessage").textContent = winner;
+            ? playerWins
+            : compWins;
+        winningMessage.textContent = winner;
+        if (winner == compWins) {
+            winningMessage.style.color = 'red';
+        }
         document.getElementById("rockButton").disabled = true; 
         document.getElementById("paperButton").disabled = true; 
         document.getElementById("scissorsButton").disabled = true; 
