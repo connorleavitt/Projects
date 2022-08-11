@@ -8,7 +8,29 @@
     <script type="text/javascript" src="../js/sketch.js" defer></script>
 </head>
 <body>
-    <div id="container"></div>
+    <div class="main">
+        <h1>Sketch!</h2>
+        <input type="range" min="1" max="36" id="grid-size" name="grid-size"> 
+            <div id="gridSizeValue" class="grid-size-value">16 x 16</div>
+        <input id="penColor" type="color" name="penColor" value="#6a0dad">
+            <label for="penColor" id="penColorLabel">Pen Color</label>
+        <div id="container"></div>
+    </div>
+
+    <button id="clear-grid">Clear</button>
     
+    <footer class="footer">
+        <p>
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+          connorleavitt
+        </p>
+        <a href="https://github.com/connorleavitt" target="_blank">
+          <i class="fab fa-github"></i
+        ></a>
+      </footer>
+
 </body>
 </html>
