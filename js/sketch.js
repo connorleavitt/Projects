@@ -1,4 +1,4 @@
-const DEFAULT_PEN_COLOR = '#6a0dad';
+const DEFAULT_PEN_COLOR = 'black';
 const DEFAULT_MODE = 'color';
 const DEFAULT_SIZE = 16;
 
@@ -13,7 +13,8 @@ function setCurrentPenColor(newPenColor) {
   }
   
 function setCurrentMode(newMode) {
-      currentMode = newMode;
+    buttonSettings(newMode);  
+    currentMode = newMode;
   }
 
 function setCurrentSize(newSize) {
@@ -113,16 +114,25 @@ function gridLineToggle () {
 
 
 
-// function buttonSettings(newMode) {
-//     if (currentMode === 'color')
-//     if (currentMode === 'color')
-//     if (currentMode === 'color')
+function buttonSettings(newMode) {
+    if (currentMode === 'color') {
+        colorButton.classList.remove('button-on')
+    } else if (currentMode === 'rainbow') {
+        rainbowButton.classList.remove('button-on')
+    } else if (currentMode === 'eraser') {
+        eraserButton.classList.remove('button-on')
+    }
 
-//     if (currentMode === 'color')
-//     if (currentMode === 'color')
-//     if (currentMode === 'color')
-// }
+    if (newMode === 'color') {
+        colorButton.classList.add('button-on')
+    } else if (newMode === 'rainbow') {
+        rainbowButton.classList.add('button-on')
+    } else if (newMode === 'eraser') {
+        eraserButton.classList.add('button-on')
+    }
+}
 
 window.onload = () => {
     generateGrid(DEFAULT_SIZE)
+    buttonSettings(DEFAULT_MODE);
   }
