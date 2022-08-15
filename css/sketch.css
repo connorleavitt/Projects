@@ -3,14 +3,40 @@
     --grid-rows: 1;
   }
   
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+body {
+  background-color: white;
+}
+
+button {
+  font-size: large;
+}
+
+.main {
+}
+
+.buttonSettings {
+  display: grid;
+  max-width: 300px;
+  border: 2px solid black;
+}
+
   #container {
     display: grid;
+    background-color: white;
     gap: 0px;
     max-width: 500px;
     max-height: 500px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    border: 1px solid black;
+    border: 3px solid black;
   }
 
 #grid-size {
@@ -20,7 +46,10 @@
   .grid-item {
     padding: auto;
     margin: 0px;
-    border: 0.1px solid rgb(200, 200, 200);
+    border: 0;
     aspect-ratio: 1;
   }
 
+.grid-lines {
+  border: 0.1px solid rgb(200, 200, 200);
+}

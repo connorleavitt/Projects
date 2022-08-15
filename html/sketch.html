@@ -8,14 +8,22 @@
     <script type="text/javascript" src="../js/sketch.js" defer></script>
 </head>
 <body>
-    <div class="main">
         <h1>Sketch!</h2>
-        <input type="range" min="1" max="36" id="grid-size" name="grid-size"> 
-            <div id="gridSizeValue" class="grid-size-value">16 x 16</div>
-        <input id="penColor" type="color" name="penColor" value="#6a0dad">
+          <div class="main">
+          <div class="buttonSettings">
+            <button id="colorButton">Color Toggle</button>
+            <button id="rainbowButton">Rainbow Toggle</button>
+            <button id="eraserButton">Eraser Toggle</button>
+            <button id="gridLineButton">Grid Line Toggle</button>
+            
+            <input id="penColor" type="color" name="penColor" value="#6a0dad">
             <label for="penColor" id="penColorLabel">Pen Color</label>
-        <div id="container"></div>
-    </div>
+            
+            <input type="range" min="1" max="30" id="grid-size" name="grid-size"> 
+                <div id="gridSizeValue" class="grid-size-value">Grid Size: 16 x 16</div>
+          </div>
+          <div id="container"></div>
+        </div>
 
     <button id="clear-grid">Clear</button>
     
