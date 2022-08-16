@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 192, 174);
+    font-family: sans-serif;
+    min-height: 100vh;
+  }
+
+.calculatorBody {
+    display: grid;
+    justify-content: center;
+}
+
+.content {
+  border: 2px solid black;
+  width: 200px;
+  height: 50px;
+}
+
+.mainTop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  .mainBody {
+    display: grid;
+    grid-template-areas: /* figure this out a bit more */
+        "7 8 9 x";
+        /* "4 5 6 -"
+        "1 2 3 +"
+        "0 0 = ÷"; */
+    gap: 10px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+
+  .footer {
+    height: 72px;
+    background: #eee;
+    color: black;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+  }
