@@ -80,6 +80,8 @@ document.querySelector('.calculatorBody').onclick = () => displayValue();
 let displayValue = function() {
     if (input === "+" || input === "-" || input === "*" || input === "÷") {
         lowerDisplayValueBox.textContent = input;
+    } else {
+        lowerDisplayValueBox.textContent = input;
     }
     
 }
