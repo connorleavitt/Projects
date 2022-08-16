@@ -11,10 +11,22 @@ body {
     justify-content: center;
 }
 
-.content {
+.contentBox {
+  display: flex;
+  flex-direction: column;
   border: 2px solid black;
   width: 200px;
-  height: 50px;
+  height: 70px;
+}
+
+.upperDisplayValueBox {
+    flex: 1;
+    border: 2px solid red;
+}
+
+.lowerDisplayValueBox {
+    flex: 3;
+    border: 2px solid blue;
 }
 
 .mainTop {
