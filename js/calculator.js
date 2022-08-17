@@ -64,16 +64,15 @@ getDisplayNumber(number) {
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
-    let integerDisplay = ''
-    console.log(integerDigits);
+    let integerDisplay
     if(isNaN(integerDigits)) {
-        integerDisplay = '';
+        integerDisplay = ''
     } else {
         integerDisplay = integerDigits.toLocaleString('en', {
             maximumFractionDigits: 0})
     }
     if (decimalDigits != null) {
-        return `${integerDigits}.${decimalDigits}`
+        return `${integerDisplay}.${decimalDigits}`
     } else {
         return integerDisplay
     }
@@ -85,9 +84,10 @@ updateDisplay() {
     if (this.operation != null) {
         this.previousOperandTextElem.innerText = 
             `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+        this.previousOperandTextElem.innerText = ''
     }
 }
-
 }
 
 
