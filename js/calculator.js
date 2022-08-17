@@ -42,12 +42,12 @@ operate() {
         case '-':
             computation = prev - current
             break
-        case 'x':
+        case '*':
             computation = prev * current
             break
         case '÷':
             if (current === 0) {
-                computation = "to infinity... and beyond!"
+                computation = 'LOL NOPE!';
             } else {
                 computation = prev / current
             }
@@ -65,7 +65,10 @@ getDisplayNumber(number) {
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
     let integerDisplay
-    if(isNaN(integerDigits)) {
+    if (stringNumber === 'LOL NOPE!') {
+        integerDisplay = 'LOL NOPE!'
+        this.clear()
+    } else if (isNaN(integerDigits)) {
         integerDisplay = ''
     } else {
         integerDisplay = integerDigits.toLocaleString('en', {
@@ -88,8 +91,8 @@ updateDisplay() {
         this.previousOperandTextElem.innerText = ''
     }
 }
-}
 
+}
 
 
 const numberButtons = document.querySelectorAll('[data-number]')
@@ -134,25 +137,13 @@ deleteButton.addEventListener('click', button => {
 })
 
 
-// add
-const simpleAdd = function(a, b) {
-    return a + b;
-}
+/*
 
-// subtract
-const simpleSubtract = function(a,b) {
-    return a - b;
-}
+1. Need to fix decimal point issues
+    -> can just do "." currently and it allows it but doesn't compute anything
+    -> should start with zero if press "." at beginning 
 
-// multiply
-const simpleMultiply = function(a, b) {
-    return a * b;
-}
+2. Need to show full equation in top bar?
+3. Update to include keyboard support / button presses
 
-//divide
-const simpleDivide = function(a, b) {
-    if (b === 0) {
-        alert('no!');
-    }
-    return a / b;
-}
+*/
