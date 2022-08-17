@@ -15,20 +15,13 @@ const simpleMultiply = function(a, b) {
 
 //divide
 const simpleDivide = function(a, b) {
+    if (b === 0) {
+        alert('no!');
+    }
     return a / b;
 }
 
-const operate = function(num1, operator, num2) {
-    if (operator === "+") return simpleAdd(num1,num2);
-    else if (operator === "-") return simpleSubtract(num1,num2);
-    else if (operator === "*") return simpleMultiply(num1,num2);
-    else if (operator === "÷") return simpleDivide(num1,num2);
-    else return
-}
-// console.log(operate(2,"+",3));
-// console.log(operate(10,"-",3));
-// console.log(operate(2,"*",3));
-// console.log(operate(6,"÷",3));
+
 
 const zero = document.querySelector('#zero')
 const one = document.querySelector('#one')
@@ -51,9 +44,8 @@ const deleteButton = document.querySelector('#delete')
 const upperDisplayValueBox = document.querySelector('.upperDisplayValueBox')
 const lowerDisplayValueBox = document.querySelector('.lowerDisplayValueBox')
 const contentBox = document.querySelector('.contentBox')
+const mainBody = document.querySelector('.mainBody')
 
-let storedValue = 0;
-let currentValue = 0;
 let input = 0;
 
 zero.onclick = () => input = 0;
@@ -73,18 +65,90 @@ subtract.onclick = () => input = "-";
 multiply.onclick = () => input = "*";
 divide.onclick = () => input = "÷";
 
-equals.onclick = () => operate(); // need to figure out the value 1 and 2
+// clearButton.onclick = () => storeValue(0);
+// deleteButton.onclick = () => displayValue(0);
+// equals.onclick = () => operate(); // need to figure out the value 1 and 2
 
-document.querySelector('.calculatorBody').onclick = () => displayValue();
+let value = '';
+let storedValue1 = '';
+let storedValue2 = '';
+let storedOperator = '';
 
-let displayValue = function() {
-    if (input === "+" || input === "-" || input === "*" || input === "÷") {
-        lowerDisplayValueBox.textContent = input;
-    } else {
-        lowerDisplayValueBox.textContent = input;
-    }
-    
+
+const storedValue = {
+    firstValue: 0,
+    secondValue: 0,
+    operator: '',
 }
+
+mainBody.addEventListener('click', (e) => {
+    const isButton = e.target.nodeName === 'BUTTON';
+    if (!isButton) return;
+    value = e.target.textContent;
+    
+    return console.log(value);
+})
+
+const storeValue = function(value) {
+    if (input === "+" || input === "-" || input === "*" || input === "÷") {
+        storeSecondValue(value);
+    } else {
+        storedValue1 = storedValue1 + value;
+        storedValue.firstValue = storedValue1;
+    }
+}
+
+const storeFirstValue = function() {
+    if (input === "+" || input === "-" || input === "*" || input === "÷") {
+        storedValue.operator = input;
+        displayValue(input);
+        return;
+    } else {
+        storedValue1 = storedValue1 + input;
+        storedValue.firstValue = storedValue1;
+        displayValue(storedValue1);
+        console.log(`Value 1: ${storedValue1}`);
+    }
+}
+
+const storeSecondValue = function() {
+    if (input === "+" || input === "-" || input === "*" || input === "÷") {
+        storedValue.operator = input;
+        displayValue(input);
+        return;
+    } else {
+        storedValue2 = storedValue2 + input;
+        storedValue.secondValue = storedValue2;
+        displayValue(storedValue1);
+        console.log(`Value 2: ${storedValue2}`);
+    }
+}
+
+
+let displayValue = function(value) {
+    if (input === "+" || input === "-" || input === "*" || input === "÷") {
+        upperDisplayValueBox.textContent = value;
+    } else {
+        lowerDisplayValueBox.textContent = value;
+    }   
+}
+
+
+
+const operate = function({firstValue, operator, secondValue}) {
+    if (operator === "+") return simpleAdd(firstValue,secondValue);
+    else if (operator === "-") return simpleSubtract(firstValue,secondValue);
+    else if (operator === "*") return simpleMultiply(firstValue,secondValue);
+    else if (operator === "÷") return simpleDivide(firstValue,secondValue);
+    else return
+}
+
+
+
+// console.log(operate(2,"+",3));
+// console.log(operate(10,"-",3));
+// console.log(operate(2,"*",3));
+// console.log(operate(6,"÷",3));
 
 // get user input for num1, operator, and num2
 // store num1 in displayValue
