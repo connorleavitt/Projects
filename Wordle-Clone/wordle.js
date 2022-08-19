@@ -15387,7 +15387,7 @@ function submitGuess() {
 
     stopInteraction()
     activeTiles.forEach((...params) => flipTile(...params, guess))
-
+    temp = '';
 }
 
 function flipTile(tile, index, array, guess) {
@@ -15397,18 +15397,28 @@ function flipTile(tile, index, array, guess) {
     tile.classList.add("flip")
   }, (index * FLIP_ANIMATION_DURATION) / 2)
 
-  tile.addEventListener("transitionend", () => {
-    tile.classList.remove("flip")
-    if(targetWord[index] === letter) {
-      tile.dataset.state = "correct"
-      key.classList.add("correct")
-    } else if (targetWord.includes(letter)) {
-      tile.dataset.state = "wrong-location"
-      key.classList.add("wrong-location")
-    } else {
-      tile.dataset.state = "wrong"
-      key.classList.add("wrong")
-    }
+  tile.addEventListener(
+    "transitionend", 
+    () => {
+      tile.classList.remove("flip");
+      if (targetWord[index] == letter) {
+        temp += letter;
+        console.log(temp);
+        tile.dataset.state = "correct";
+        key.classList.add("correct");
+      } else if (targetWord.includes(letter)) {
+        if (temp.split(letter).length < targetWord.split(letter).length) {
+          tile.dataset.state = "wrong-location";
+          key.classList.add("wrong-location");
+          temp += letter;
+        } else {
+          tile.dataset.state = "wrong";
+          key.classList.add("wrong");
+        }
+      } else {
+        tile.dataset.state = "wrong";
+        key.classList.add("wrong");
+      }
 
     if (index === array.length - 1) {
       tile.addEventListener("transitionend", () => {
