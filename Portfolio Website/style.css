@@ -7,15 +7,17 @@
 /* Custom Properties & Variables */
 
 :root {
-    --ff-primary: 'Source Sans Pro', sans-serif;
-    --ff-secondary: 'Source Code Pro', monospace;
+    --ff-primary: 'Inter', sans-serif;
+    --ff-secondary: 'Ubuntu Mono', monospace;
 
     --fw-reg: 300;
     --fw-bold: 900;
 
     --clr-light: #fff;
     --clr-dark: #303030;
-    --clr-accent: #16e0bd;
+    --clr-accent: #66cc66;
+    --clr-accent-2: #C3B1E1;
+    
 
     --fs-h1: 3rem;
     --fs-h2: 2.25rem;
@@ -120,7 +122,7 @@ h3 { font-size: var(--fs-h3); }
 
 .section__subtitle--intro,
 .section__subtitle--about {
-    background: var(--clr-accent);
+    background: var(--clr-accent-2);
     padding: .25em 1em;
     font-family: var(--ff-secondary);
     margin-bottom: 1em;
@@ -139,16 +141,20 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    position: sticky;
+    top: 0;
+    background: var(--clr-accent);
+    z-index: 500;
 }
 
 .logo {
-    max-width: 50px;
+    max-width: 25px;
 }
 
 .nav {
     position: fixed;
-    background: var(--clr-dark);
-    color: var(--clr-light);
+    background: var(--clr-light);
+    color: var(--clr-dark);
     top: 0;
     bottom: 0;
     left: 0;
@@ -220,7 +226,7 @@ header {
 .hamburger,
 .hamburger::before,
 .hamburger::after {
-    background: var(--clr-accent);
+    background: var(--clr-dark);
     width: 2.5em;
     height: 3px;
     border-radius: 1em;
@@ -424,7 +430,7 @@ header {
 
 .footer {
     background: #111;
-    color: var(--clr-accent);
+    color: var(--clr-accent-2);
     text-align: center;
     padding: 1.5em 0;
     font-size: var(--fs-h3);
@@ -462,4 +468,18 @@ header {
 
 .social-list__link {
     padding: .5em;
+}
+
+/* INDIVIDUAL PORTFOLIO ITEM STYLES */
+
+.portfolio-item-individual {
+    padding: 0 2em 2em;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.portfolio-item-individual p {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
