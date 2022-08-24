@@ -5,28 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Connor Leavitt</title>
         <script></script>
-        <link rel="stylesheet" href="https://cdns.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-        <link rel="stylesheet" href="https://cdns.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+        <link rel="stylesheet" 
+            href="https://cdns.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <script src="https://kit.fontawesome.com/e07d1d767e.js" crossorigin="anonymous"></script>
+        
+        <!-- update with my own font, change numbers if you want to dif weight -->
+        <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap">
+        
         <link rel="stylesheet" href="./style.css">
+        <script src="./script.js" defer></script>
     </head>
 
     <!-- name__subname === association or subsection of name, where as name--mod  === modifier -->
 
     <body>
         <header>
-            <div class="logo">
-                <p>LOGO</p>
-                <!-- <img src="./img/FILLER.png" alt=""> need to input a logo image -->
-            </div>
+            <!-- <div class="logo"> -->
+                <img class="logo" src="./img/copyright-solid.svg" alt="">
+            <!-- </div> -->
             <button class="nav-toggle" aria-label="toggle navigation">
                 <span class="hamburger"></span>
             </button>
             <nav class="nav">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link"></a>Home</li>
-                    <li class="nav__item"><a href="#services" class="nav__link"></a>My Services</li>
-                    <li class="nav__item"><a href="#about" class="nav__link"></a>About Me</li>
-                    <li class="nav__item"><a href="#work" class="nav__link"></a>My Work</li>
+                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">My Services</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link">My Work</a></li>
                 </ul>
             </nav>
         </header>
@@ -37,8 +43,8 @@
             <h1 class="section__title section__title--intro">
                 Hi, I am <strong>Connor Leavitt</strong>
             </h1>
-                <p class="section__subtitle section__subtitle-intro">front-end dev</p>
-                <img src="./img/FILLER.png" alt="a picture of Connor Leavitt smiling"> <!-- need to input a picture of ME -->
+                <p class="section__subtitle section__subtitle--intro">front-end dev</p>
+                <img src="./img/connor_leavitt_main_photo.jpeg" alt="a picture of Connor Leavitt smiling" class="intro__img"> <!-- need to input a picture of ME -->
         </section>
 
         <!-- MY SERVICES -->
@@ -76,9 +82,8 @@
 
         <!-- ABOUT ME -->
         <section class="about-me" id="about">
-            <header>
             <h2 class="section__title section__title--about">Who I am</h2>
-            <p class="section__subtitle section__subtitle--about"></p>
+            <p class="section__subtitle section__subtitle--about">Frontend Web Dev w/ Ops exp in SF</p>
             <div class="about-me__body">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                     Est, nostrum odio perferendis optio nisi sapiente error quidem 
@@ -89,29 +94,42 @@
                     architecto deleniti accusantium. Quo, cum?</p>
             </div>
 
-            <img src="" alt="another image of Connor"> <!-- find image of CL -->
+            <img src="./img/connor_antarctica.jpg" 
+                alt="another image of Connor" 
+                class="about-me__img">
 
         </section>
     
 
         <!-- MY WORK -->
         <section class="my-work" id="work">
-            <h2 class="section-title">My Work</h2>
-            <p class="section__subtitle"></p>
+            <h2 class="section__title section__title--work">My Work</h2>
+            <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
             
             <div class="portfolio">
                 <!-- Portfolio Item 1 -->
                 <a href="#" class="portfolio__item">
-                    <img src="" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
+                    <img src="./img/connor_leavitt_smiling.jpeg" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
                 </a>
+
                 <!-- Portfolio Item 2 -->
                 <a href="#" class="portfolio__item">
-                    <img src="" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
+                    <img src="./img/connor_hawaii.jpg" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
                 </a>
 
                 <!-- Portfolio Item 3 -->
                 <a href="#" class="portfolio__item">
-                    <img src="" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
+                    <img src="./img/connor_sequoia.jpg" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
+                </a>
+
+                <!-- Portfolio Item 4 -->
+                <a href="#" class="portfolio__item">
+                    <img src="./img/connor_snowboarding.jpg" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
+                </a>
+                
+                <!-- Portfolio Item 5 -->
+                <a href="#" class="portfolio__item">
+                    <img src="./img/connor_warehouse.jpg" alt="" class="portfolio__img"> <!-- find image of portfolio items -->
                 </a>
 
             </div>
@@ -119,15 +137,23 @@
         </section>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="footer">
             <a href="mailto:connorleavitt@gmail.com" class="footer__link">connorleavitt@gmail.com</a>
             <ul class="social-list">
-                <li class="social-list__item"><a href="https://linkedin.com/in/connorleavitt/" class="social-list__link">LinkedIN</a></li> <!-- LinkedIN -->
-                <li class="social-list__item"><a href="https://github.com/connorleavitt" class="social-list__link">Github</a></li> <!-- Github -->
+                <li class="social-list__items">
+                    <a href="https://linkedin.com/in/connorleavitt/" 
+                    class="social-list__link">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                </li> <!-- LinkedIN -->
+                <li class="social-list__items">
+                    <a href="https://github.com/connorleavitt" 
+                    class="social-list__link">
+                    <i class="fa-brands fa-square-github"></i>
+                </a>
+                </li> <!-- Github -->
             </ul>
         </footer>
-
-
 
     </body>
 </html>
