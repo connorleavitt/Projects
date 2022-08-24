@@ -158,12 +158,14 @@ header {
     padding: 1em;
     position: sticky;
     top: 0;
-    background: var(--clr-accent);
+    /* background: var(--clr-accent); */
     z-index: 500;
 }
 
 .logo {
     max-width: 25px;
+    padding: 0;
+    margin: 0;
 }
 
 .nav {
@@ -203,7 +205,7 @@ header {
 }
 
 .nav-toggle {
-    padding: 1em;
+    padding: 0.55em;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -242,7 +244,7 @@ header {
 .hamburger::before,
 .hamburger::after {
     background: var(--clr-dark);
-    width: 2.5em;
+    width: 2em;
     height: 3px;
     border-radius: 1em;
     transition: transform 250ms ease-in-out;
