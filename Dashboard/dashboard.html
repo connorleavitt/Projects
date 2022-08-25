@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    
+    <script src="https://kit.fontawesome.com/e07d1d767e.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Inter:400,900|Ubuntu+Mono:300,900&display=swap">
+
+    
+    <title>Dashboard</title>
+</head>
+<body>
+    <style>
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        /* Custom Variables */
+        :root {
+            --ff-primary: 'Inter', sans-serif;
+            --ff-secondary: 'Ubuntu Mono', monospace;
+
+            --fw-reg: 300;
+            --fw-bold: 900;
+
+            --clr-light: #f5f5f5;
+            --clr-mid: rgb(196, 196, 196);
+            --clr-dark: #365943;
+            --clr-accent: #c1aec0;
+            --clr-call-to-action: #eea144;
+            --clr-text: #161314;
+            
+            --fs-h1: 3rem;
+            --fs-h2: 2rem;
+            --fs-h3: 1.25rem;
+            --fs-body: 1rem;
+
+            --bs: 0.25em 0.25em 0.75em rgba(0,0,0,0.25),
+                0.125em 0.125em 0.25em rgba(0,0,0,0.15);
+        }
+
+        /* General Styles */
+
+        body {
+            background: var(--clr-accent);
+            color: var(--clr-dark);
+            margin: 0;
+            font-family: var(--ff-primary);
+            font-size: var(--fs-body);
+            line-height: 1.6;
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+        }
+
+
+
+        .btn {
+            padding: 0.5em 1em;
+            border-radius: 25px;
+            box-shadow: none;
+            border: 0;
+            background-color: var(--clr-dark);
+            color: var(--clr-light);
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        i {
+            width: auto;
+            height: 1em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fa-chart-line {
+            font-size: 2em;
+            margin-top: -0.5em;
+            margin-right: 0.25em;
+        }
+
+        .fa-circle-user {
+            font-size: 2.5em;
+            color: var(--clr-text);
+        }
+
+        /* SIDEBAR */
+
+        .section__sidebar {
+            background: var(--clr-dark);
+            color: var(--clr-light);
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .section__sidebar--logo {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .section__sidebar--title {
+            margin: 0.5em;
+        }
+
+        .section__sidebar--list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            font-size: var(--fs-h3);
+            overflow: hidden;
+        }
+
+        .section__sidebar--list-name {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1em;
+            list-style: none;
+            padding: 0.25em;
+        }
+
+
+
+        /* INFO BAR */
+
+        .section__info {
+            display: grid;
+            grid-template-areas: 
+            "upper"
+            "lower";
+            background-color: var(--clr-light);
+            margin: 0;
+            padding: 0;
+            /* width: 100%; */
+            color: var(--clr-text);
+        }
+
+        .section__info--upper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-area: upper;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section__info--searchbar {
+            margin: 0 2.25em;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .section__info--searchbar-input {
+            height: 1.5em;
+            max-width: 650px;
+            width: 100%;
+            border-radius: 20px;
+            margin: 0;
+            border: 0;
+            background-color: var(--clr-mid);
+            padding: 0.5em;
+        }
+
+        .section__info--name {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1em;
+            margin-right: 3em;
+        }
+
+        .section__info--name p {
+            font-size: 1.25em;
+            min-width: max-content;
+            /* color: var(--clr-text); */
+        }
+
+
+        .section__info--upper .fa-bell {
+            font-size: 1.5em;
+        }
+
+        .section__info--lower {
+            /* background-color: azure; */
+            grid-area: lower;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            padding-bottom: 1em;
+        }
+
+        .section__info--lower .fa-circle-user {
+            font-size: 3em;
+        }
+
+        .section__info--lower-title {
+            display: flex;
+            padding: 0 0 0 2em;
+            align-items: center;
+        }
+
+        .section__info--lower-subtitle {
+            display: block;
+            padding: 0 1em;
+            margin: 0;
+            /* color: var(--clr-text); */
+        }
+
+        .section__info--lower-subtitle p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .section__info--lower-subtitle h1 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .section__info--title {
+            font-size: 24px;
+        }
+
+        .section__info--action-buttons {
+            margin: 1em 0.5em 1em 0;
+            display: flex;
+            align-self: center; 
+            justify-content: flex-end;
+            gap: 1em;
+            padding-right: 2em;
+        }
+
+
+
+        /* WIDGETS */
+
+        .section__widgets {
+            background: var(--clr-mid);
+            display: grid;
+            grid-template-columns: 2fr 250px;
+            gap: 2em;
+            padding: 1.5em 2em 1em 1.5em;
+            color: var(--clr-text);
+        }
+        .section__widgets--project,
+        .section__widgets--announcement,
+        .section__widgets--trending {
+            background-color: var(--clr-light);
+        }
+
+        .section__widgets--projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
+        
+        .section__widgets--project {
+            border-radius: 10px;
+            padding: 1em 2em 1em 2em;
+            min-width: 250px;
+            border-left: 1em solid var(--clr-call-to-action);
+        }
+        
+        .section__widgets--project i {
+            font-size: 1.5em;
+        }
+        
+        .section__widgets--title {
+            margin: 0;
+            padding: 0 0 .25em 0;
+            font-size: var(--fs-h3);
+        }
+        
+        .section__widgets--subtitle {
+            margin: 0;
+            padding: 0;
+            /* font-size: 1em; */
+        }
+        
+        .section__widgets p {
+            margin: 0;
+            font-size: 0.8em;
+        }
+        
+        .section__widgets--project-icons {
+            margin: 1em 0.5em 0.5em 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1em;
+        }
+        
+        
+        .section__widgets--side-info {
+            display: flex;
+            flex-direction: column;
+            
+            
+            /* display: grid;
+            grid-template-columns: 1fr; */
+            max-width: 250px;
+        }
+
+        .section__widgets--subtitle2 {
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+        }
+        
+        .section__widgets--announcement {
+            margin: 0 0 2em 0;
+            padding: 2em;
+            border-radius: 10px;
+        }
+
+        .test::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            margin: 0 auto;
+            background: var(--clr-text);
+            opacity: 0.3;
+            margin: 1em 0;
+        }
+
+        .section__widgets--trending {
+            border-radius: 10px;
+            padding: 1em;
+        }
+
+        .section__widgets--trending li {
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0.5em;
+        }
+
+        .section__widgets--trending i {
+            font-size: 2.5em;
+            padding-right: 0.5em;
+        }
+
+        .section__widgets--trending p {
+            font-size: var(--fs-h3);
+        }
+
+        @media (max-width: 1150px) {
+            body {
+                display: grid;
+                grid-template-columns: 1fr;
+                /* overflow: scroll; */
+                min-width: 0px;
+            }
+
+            .section__sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .section__widgets--projects {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1em;
+            }
+
+            .section__widgets {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            /* .section__widgets--side-info {
+                display: flex;
+                flex-direction: column;
+                max-width: 250px;
+            } */
+        }
+
+        @media (max-width: 600px) {
+
+            .section__widgets {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                max-width: 100%;
+            }
+
+            .section__info--action-buttons {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-self: flex-end; 
+                justify-content: center;
+                gap: 0.25em;
+                width: 5em;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .section__widgets {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .section__widgets--side-info {
+                max-width: 100%;
+            }
+
+            .section__info--lower {
+                margin: 0;
+                padding-right: 1em;
+                display: flex;
+                align-self: flex-end; 
+                justify-content: center;
+            }
+
+            div.section__info--name p {
+                font-size: 1em;
+            }
+            
+            .section__info--upper .fa-circle-user {
+                font-size: 1.5em;
+            }
+
+            .section__info--title {
+             font-size: var(--fs-h3);   
+            }
+
+            .section__info--lower .fa-circle-user {
+                font-size: 3em;
+            }
+
+        }
+
+    </style>
+
+
+<script>
+
+
+</script>
+
+<!-- SIDEBAR -->
+
+<section class="section__sidebar">
+    <div class="section__sidebar--logo">
+        <i class="fa-solid fa-chart-line"></i>
+        <h1 class="section__sidebar--title">Dashboard</h1>
+    </div>
+    <div class="section__sidebar--list">
+        <div class="section__sidebar--list-main">
+            <ul>
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </li>
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </li>
+                
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-message"></i>
+                    Messages
+                </li>
+                
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    History
+                </li>
+                
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-list-check"></i>
+                    Tasks
+                </li>
+                
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-users"></i>
+                    Communities
+                </li>
+            </ul>
+        </div>
+        <div class="section__sidebar--list-extra">
+            <ul>
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </li>
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-circle-question"></i>
+                    Support
+                </li>
+                <li class="section__sidebar--list-name">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Privacy
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<main>
+<!-- INFO BAR -->
+
+    <section class="section__info">
+        <div class="section__info--upper">
+            <div class="section__info--searchbar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="section__info--searchbar-input">
+            </div>
+            <div class="section__info--name">
+                <i class="fa-solid fa-bell"></i>            
+                <i class="fa-solid fa-circle-user"></i>
+                <p>Connor Leavitt</p>
+            </div>
+        </div>
+        <div class="section__info--lower">
+            <div class="section__info--lower-title">
+                <i class="fa-solid fa-circle-user"></i>
+                <div class="section__info--lower-subtitle">
+                    <p>Hi there,</p>
+                    <h1 class="section__info--title">Connor Leavitt (@connorleavitt)</h1>
+                </div>
+            </div>
+            <div class="section__info--action-buttons">
+                <button class="btn">New</button>
+                <button class="btn">Upload</button>
+                <button class="btn">Share</button>
+            </div>
+        </div>
+    </section>
+
+<!-- WIDGETS -->
+
+    <section class="section__widgets">
+        <div class="section__widgets--projects-main">
+            <h2 class="section__widgets--title">Your Projects</h2>
+            <div class="section__widgets--projects">
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 2</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 3</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 4</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 5</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+                <div class="section__widgets--project">
+                    <h3 class="section__widgets--subtitle">Project 6</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis itaque illum iure veniam sit assumenda reprehenderit minus explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+                    <div class="section__widgets--project-icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section__widgets--side-info">
+            <h2 class="section__widgets--title">Announcements</h2>
+            <div class="section__widgets--announcement">
+                <h4 class="section__widgets--subtitle2">Site Maintenance</h4>
+                <p class="test">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h4 class="section__widgets--subtitle2">Community Share Day</h4>
+                <p class="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo, ducimus quibusdam eaque officiis.</p>
+                <h4 class="section__widgets--subtitle2">Updated Privacy Policy</h4>
+                <p>Molestiae illo, ducimus quibusdam eaque officiis explicabo sapiente modi quod incidunt quisquam ea sequi!</p>
+            </div>
+
+            <h2 class="section__widgets--title">Trending</h2>
+            <div class="section__widgets--trending">
+                <ul>
+                    <li class="section__widgets--trending-item">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <p>@random1</p>
+                    </li>
+                    <li class="section__widgets--trending-item">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <p>@random2</p>
+                    </li>
+                    <li class="section__widgets--trending-item">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <p>@random3</p>
+                    </li>
+                    <li class="section__widgets--trending-item">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <p>@random4</p>
+                    </li>
+                </ul>
+            </div>
+       </div>
+
+    </section>
+
+</main>
+
+
+</body>
+</html>
