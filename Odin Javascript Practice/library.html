@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./library.css">
+    <script src="./library.js" defer></script>
+    
+    <title>Library</title>
+
+</head>
+<body>
+    <h1>Library</h1>
+    <h2>Current Library</h2>
+    <p>Current Titles: <span class="titles"></span></p>
+    <p>Current Authors: <span class="authors"></span></p>
+    <p>Current Pages: <span class="pages"></span></p>
+
+    <form action="">
+        <h3>Add a new Book:</h3>
+        <label for="title">Title: </label>
+            <input required type="text" name="title" id="title" placeholder="new title">
+
+        <label for="author">Author: </label>
+            <input required type="text" name="author" id="author" placeholder="new author">
+
+        <label for="page">Pages: </label>
+            <input required type="number" name="page" id="page" placeholder="# of pages">
+
+        <button class="btn" type="submit">Submit</button>
+    </form>
+</body>
+</html>
