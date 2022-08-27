@@ -46,16 +46,27 @@ class Library {
         newBookCard.append(removeBtn)
     }
     
-    removeBookFromLibrary(newBook) {
-        this.books.pop(newBook)
-        this.newBook.remove()
+    removeBookFromLibrary(book) {
+        this.books.splice(book, 1);
+        let bookDataIndex = document.querySelectorAll("[data-book-index]")
+        for (let i = 0; i < bookDataIndex.length; i++) {
+            if (book === bookDataIndex[i].dataset.bookIndex) {
+                bookDataIndex[i].remove()
+            }
+        }
+    }
+}
+document.addEventListener('click', listener)
+const removeBtnAction = document.querySelector('.removeBtn')
+function listener(e) {
+    let element = e.target.className
+    if (element === "removeBtn") {
+        let parentIndex = e.target.parentElement.getAttribute('data-book-index')
+        console.log(`This book's index is ${parentIndex}`);
+        newLibrary.removeBookFromLibrary(parentIndex)
     }
 }
 
-// const removeBtnAction = document.querySelector('.removeBtn')
-// removeBtnAction.addEventListener('click', () => {
-//     newLibrary.removeBookFromLibrary()
-// })
 
 
 const newLibrary = new Library();
