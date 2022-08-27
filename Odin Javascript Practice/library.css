@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+table {
+    border: 2px solid black;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+.bookCards {
+    background-color: red;
+    border: 5px black;
+}
+
+.bookCard {
+    background-color: blue;
+}

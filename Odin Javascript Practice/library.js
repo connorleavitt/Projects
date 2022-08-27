@@ -23,7 +23,7 @@ class Library {
 }
 
 const newLibrary = new Library();
-console.table(newLibrary.books);
+// console.table(newLibrary.books);
 
 const newBook1 = new Book("Book 1", "Author 1", "101", "true")
 const newBook2 = new Book("Book 2", "Author 2", "102", "false")
@@ -33,7 +33,7 @@ newLibrary.addBookToLibrary(newBook1);
 newLibrary.addBookToLibrary(newBook2);
 newLibrary.addBookToLibrary(newBook3);
 
-console.log(newLibrary.books);
+// console.log(newLibrary.books);
 
 
 const form = document.querySelector('form')
@@ -49,9 +49,8 @@ function getNewBook() {
         const newBook = new Book(newTitle, newAuthor, newPage, "true")
         
         newLibrary.addBookToLibrary(newBook);
+        createNewBookCard()
         form.reset()
-        displayBookInfo()
-        console.table(newLibrary.books);
         return
     })
 }
@@ -60,34 +59,54 @@ getNewBook();
 
 
 
+const bookCards = document.querySelector('.bookCards')
 
-function displayBookInfo() {
-    const displayTitle = document.querySelector(".titles")
-    const displayAuthor = document.querySelector(".authors")
-    const displayPages = document.querySelector(".pages")
 
-    displayTitle.innerHTML = '';
-    displayAuthor.innerHTML = '';
-    displayPages.innerHTML = '';
-    
+function createNewBookCard() {
+    // const displayTitle = document.querySelector("[data-title]")
+    // const displayAuthor = document.querySelector("[data-author]")
+    // const displayPages = document.querySelector("[data-page]")
+
+
+
     newLibrary.books.forEach(book => {
+        console.log('book object');
+        
+        let newBookCard = document.createElement('div')
+        bookCards.appendChild(newBookCard)
+        let newBookTitle = document.createElement('p')
+        let newBookAuthor = document.createElement('p')
+        let newBookPage = document.createElement('p')
+        
         for (let key in book) {
-            console.log(book[key]);
             if(key === "title") {
-                displayTitle.innerHTML += `${book[key]}, `
+                newBookTitle = `Title: ${book[key]}`
+                newBookCard.append(newBookTitle)
+                console.log('title');
             } else if(key === "author") {
-                displayAuthor.innerHTML += `${book[key]}, `
+                newBookAuthor = `Author: ${book[key]}`
+                newBookCard.append(newBookAuthor)
+                console.log('author');
             } else if (key === "pages") {
-                displayPages.innerHTML += `${book[key]}, `
+                newBookPage = `Pages: ${book[key]}`
+                newBookCard.append(newBookPage)
+                console.log('page');
             } else {
                 return
             }
         }
         
+        // bookCards.appendChild(newBookCard)
+
+
     })
+
 }
+
+// displayCurrentBooks()
+
 
 window.onload = () => {
     form.reset()
-    displayBookInfo()
+    // displayCurrentBooks()
   }
