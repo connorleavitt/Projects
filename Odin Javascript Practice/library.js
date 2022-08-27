@@ -17,25 +17,49 @@ class Library {
         return this.books.push(newBook)
     }
 
+    createNewBookCard(newBook) {
+        const bookCards = document.querySelector('.bookCards')
+        let newBookCard = document.createElement('div')
+        bookCards.appendChild(newBookCard)
+        newBookCard.classList.add("bookCard")
+
+        for (let i = 0; i <= this.books.length; i++) {
+            newBookCard.dataset.bookIndex = `${i-1}`
+        }
+        
+        let newBookTitle = document.createElement('p')
+        let newBookAuthor = document.createElement('p')
+        let newBookPage = document.createElement('p')
+        
+        newBookTitle.innerText = `Title: ${newBook.title}`
+        newBookCard.append(newBookTitle)
+        
+        newBookAuthor.innerText = `Author: ${newBook.author}`
+        newBookCard.append(newBookAuthor)
+        
+        newBookPage.innerText = `Pages: ${newBook.pages}`
+        newBookCard.append(newBookPage)
+
+        const removeBtn = document.createElement('button')
+        removeBtn.innerText = "Remove Book"
+        removeBtn.classList.add("removeBtn")
+        newBookCard.append(removeBtn)
+    }
+    
     removeBookFromLibrary(newBook) {
-        return this.books.pop(newBook)
+        this.books.pop(newBook)
+        this.newBook.remove()
     }
 }
 
+// const removeBtnAction = document.querySelector('.removeBtn')
+// removeBtnAction.addEventListener('click', () => {
+//     newLibrary.removeBookFromLibrary()
+// })
+
+
 const newLibrary = new Library();
-// console.table(newLibrary.books);
-
-const newBook1 = new Book("Book 1", "Author 1", "101", "true")
-const newBook2 = new Book("Book 2", "Author 2", "102", "false")
-const newBook3 = new Book("Book 3", "Author 3", "103")
-
-newLibrary.addBookToLibrary(newBook1);
-newLibrary.addBookToLibrary(newBook2);
-newLibrary.addBookToLibrary(newBook3);
-
-// console.log(newLibrary.books);
-
-
+// const newBook1 = new Book("Dummy Book 1", "Dummy Author 1", "Dummy Pages 101", "true")
 const form = document.querySelector('form')
 
 function getNewBook() {
@@ -48,65 +72,14 @@ function getNewBook() {
 
         const newBook = new Book(newTitle, newAuthor, newPage, "true")
         
-        newLibrary.addBookToLibrary(newBook);
-        createNewBookCard()
+        newLibrary.addBookToLibrary(newBook)
+        newLibrary.createNewBookCard(newBook)
         form.reset()
         return
     })
 }
 
-getNewBook();
-
-
-
-const bookCards = document.querySelector('.bookCards')
-
-
-function createNewBookCard() {
-    // const displayTitle = document.querySelector("[data-title]")
-    // const displayAuthor = document.querySelector("[data-author]")
-    // const displayPages = document.querySelector("[data-page]")
-
-
-
-    newLibrary.books.forEach(book => {
-        console.log('book object');
-        
-        let newBookCard = document.createElement('div')
-        bookCards.appendChild(newBookCard)
-        let newBookTitle = document.createElement('p')
-        let newBookAuthor = document.createElement('p')
-        let newBookPage = document.createElement('p')
-        
-        for (let key in book) {
-            if(key === "title") {
-                newBookTitle = `Title: ${book[key]}`
-                newBookCard.append(newBookTitle)
-                console.log('title');
-            } else if(key === "author") {
-                newBookAuthor = `Author: ${book[key]}`
-                newBookCard.append(newBookAuthor)
-                console.log('author');
-            } else if (key === "pages") {
-                newBookPage = `Pages: ${book[key]}`
-                newBookCard.append(newBookPage)
-                console.log('page');
-            } else {
-                return
-            }
-        }
-        
-        // bookCards.appendChild(newBookCard)
-
-
-    })
-
-}
-
-// displayCurrentBooks()
-
-
 window.onload = () => {
     form.reset()
-    // displayCurrentBooks()
+    getNewBook()
   }
