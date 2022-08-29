@@ -198,10 +198,20 @@ svg {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* background-color: red; */
 }
 
 
-.removeBtn {
+.newBookButtonsDiv {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* background-color: red; */
+}
+
+
+.removeBtn, 
+.editBtn {
     padding: 1em;
     /* width: 50px; */
     border: 0;

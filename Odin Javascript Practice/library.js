@@ -31,6 +31,7 @@ class Library {
         let newBookAuthorDiv = document.createElement('div')
         let newBookPageDiv = document.createElement('div')
         let newBookIsReadDiv = document.createElement('div')
+        let newBookButtonsDiv = document.createElement('div')
 
         let newBookTitleHeader = document.createElement('h3')
         let newBookAuthorHeader = document.createElement('h3')
@@ -84,10 +85,18 @@ class Library {
         newBookIsReadDiv.append(newBookIsReadContent)
         newBookCard.append(newBookIsReadDiv)
 
+        newBookButtonsDiv.classList.add("newBookButtonsDiv")
+
+        const editBtn = document.createElement('button')
+        editBtn.innerHTML = 'EDIT'
+        editBtn.classList.add("editBtn")
+        newBookButtonsDiv.append(editBtn)
+
         const removeBtn = document.createElement('button')
         removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
         removeBtn.classList.add("removeBtn")
-        newBookCard.append(removeBtn)
+        newBookButtonsDiv.append(removeBtn)
+        newBookCard.append(newBookButtonsDiv)
 
         //check if current library is empty
         checkCurrentLibrary()
@@ -95,6 +104,7 @@ class Library {
     }
     
     removeBookFromLibrary(book) {
+        console.log('remove button pressed');
         console.log(book);
         this.books.splice(book, 1);
         console.log(this.books);
@@ -111,16 +121,35 @@ class Library {
 
         checkCurrentLibrary()
     }
+
+    editLibrary(book) {
+        console.log('edit button pressed');
+        //enable checkbox button in card
+        // find which book === index of array, then update class newBookIsReadContent.disable to false
+        // const newBookIsReadContent = document.querySelector('.newBookIsReadContent')
+        // newBookIsReadContent.disabled = false;
+        // let bookDataIndex = document.querySelectorAll("[data-book-index]")
+        // for (let i = 0; i < bookDataIndex.length; i++) {
+        //     if (book === bookDataIndex[i].dataset.bookIndex) {
+        //     }
+        // }
+        //update array object key value switch of true || false
+    }
 }
 
 document.addEventListener('click', listener)
-const removeBtnAction = document.querySelector('.removeBtn')
+
 function listener(e) {
     let element = e.target.className
     if (element === "removeBtn") {
-        let parentIndex = e.target.parentElement.getAttribute('data-book-index')
+        // const buttonDiv = document.querySelector()
+        let parentIndex = e.target.parentElement.parentElement.getAttribute('data-book-index')
         newLibrary.removeBookFromLibrary(parentIndex)
-    }
+    } 
+    // else if (element === "editBtn") {
+    //     let parentIndex = e.target.parentElement.getAttribute('data-book-index')
+    //     newLibrary.editLibrary(parentIndex)
+    // } else return
 }
 
 
