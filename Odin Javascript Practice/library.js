@@ -30,14 +30,18 @@ class Library {
         let newBookTitleDiv = document.createElement('div')
         let newBookAuthorDiv = document.createElement('div')
         let newBookPageDiv = document.createElement('div')
+        let newBookIsReadDiv = document.createElement('div')
 
         let newBookTitleHeader = document.createElement('h3')
         let newBookAuthorHeader = document.createElement('h3')
         let newBookPageHeader = document.createElement('h3')
+        let newBookIsReadHeader = document.createElement('h3')
 
         let newBookTitleContent = document.createElement('p')
         let newBookAuthorContent = document.createElement('p')
         let newBookPageContent = document.createElement('p')
+        let newBookIsReadContent = document.createElement('INPUT')
+            newBookIsReadContent.setAttribute("type", "checkbox")
         
         newBookTitleDiv.classList.add("newBookTitleDiv")
         newBookTitleHeader.classList.add("newBookTitleHeader")
@@ -65,6 +69,20 @@ class Library {
         newBookPageDiv.append(newBookPageHeader)
         newBookPageDiv.append(newBookPageContent)
         newBookCard.append(newBookPageDiv)
+
+        newBookIsReadDiv.classList.add("newBookIsReadDiv")
+        newBookIsReadHeader.classList.add("newBookIsReadHeader")
+        newBookIsReadHeader.innerText = `Read?`
+        newBookIsReadContent.classList.add("newBookIsReadContent")
+        if (newBook.isRead === true) {
+            newBookIsReadContent.checked = true
+        } else {
+            newBookIsReadContent.checked = false
+        }
+        newBookIsReadContent.disabled = true
+        newBookIsReadDiv.append(newBookIsReadHeader)
+        newBookIsReadDiv.append(newBookIsReadContent)
+        newBookCard.append(newBookIsReadDiv)
 
         const removeBtn = document.createElement('button')
         removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
@@ -116,8 +134,9 @@ function getNewBook() {
         const newTitle = document.querySelector("#title").value
         const newAuthor = document.querySelector("#author").value
         const newPage = document.querySelector("#page").value
+        const newIsRead = document.querySelector("#isRead").checked
 
-        const newBook = new Book(newTitle, newAuthor, newPage)
+        const newBook = new Book(newTitle, newAuthor, newPage, newIsRead)
         
         newLibrary.addBookToLibrary(newBook)
         newLibrary.createNewBookCard(newBook)

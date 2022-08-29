@@ -169,7 +169,8 @@ svg {
 
 .newBookTitleHeader,
 .newBookAuthorHeader,
-.newBookPageHeader {
+.newBookPageHeader,
+.newBookIsReadHeader {
     font-weight: var(--fw-bold);
     font-size: var(--fs-h3);
 }
@@ -182,11 +183,18 @@ svg {
 
 .newBookTitleContent,
 .newBookAuthorContent,
-.newBookPageContent {
+.newBookPageContent,
+.newBookIsReadContent {
     font-size: var(--fs-h3);
 }
 
 .newBookPageDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newBookIsReadDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
