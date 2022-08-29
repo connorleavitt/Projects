@@ -26,51 +26,87 @@ class Library {
         for (let i = 0; i <= this.books.length; i++) {
             newBookCard.dataset.bookIndex = `${i-1}`
         }
+
+        let newBookTitleDiv = document.createElement('div')
+        let newBookAuthorDiv = document.createElement('div')
+        let newBookPageDiv = document.createElement('div')
+
+        let newBookTitleHeader = document.createElement('h3')
+        let newBookAuthorHeader = document.createElement('h3')
+        let newBookPageHeader = document.createElement('h3')
+
+        let newBookTitleContent = document.createElement('p')
+        let newBookAuthorContent = document.createElement('p')
+        let newBookPageContent = document.createElement('p')
         
-        let newBookTitle = document.createElement('p')
-        let newBookAuthor = document.createElement('p')
-        let newBookPage = document.createElement('p')
+        newBookTitleDiv.classList.add("newBookTitleDiv")
+        newBookTitleHeader.classList.add("newBookTitleHeader")
+        newBookTitleHeader.innerText = `Title:`
+        newBookTitleContent.classList.add("newBookTitleContent")
+        newBookTitleContent.innerText = `${newBook.title}`
+        newBookTitleDiv.append(newBookTitleHeader)
+        newBookTitleDiv.append(newBookTitleContent)
+        newBookCard.append(newBookTitleDiv)
         
-        newBookTitle.innerText = `Title: ${newBook.title}`
-        newBookCard.append(newBookTitle)
-        
-        newBookAuthor.innerText = `Author: ${newBook.author}`
-        newBookCard.append(newBookAuthor)
-        
-        newBookPage.innerText = `Pages: ${newBook.pages}`
-        newBookCard.append(newBookPage)
+        newBookAuthorDiv.classList.add("newBookAuthorDiv")
+        newBookAuthorHeader.classList.add("newBookAuthorHeader")
+        newBookAuthorHeader.innerText = `Author:`
+        newBookAuthorContent.classList.add("newBookAuthorContent")
+        newBookAuthorContent.innerText = `${newBook.author}`
+        newBookAuthorDiv.append(newBookAuthorHeader)
+        newBookAuthorDiv.append(newBookAuthorContent)
+        newBookCard.append(newBookAuthorDiv)
+
+        newBookPageDiv.classList.add("newBookPageDiv")
+        newBookPageHeader.classList.add("newBookPageHeader")
+        newBookPageHeader.innerText = `Pages:`
+        newBookPageContent.classList.add("newBookPageContent")
+        newBookPageContent.innerText = `${newBook.pages}`
+        newBookPageDiv.append(newBookPageHeader)
+        newBookPageDiv.append(newBookPageContent)
+        newBookCard.append(newBookPageDiv)
 
         const removeBtn = document.createElement('button')
-        removeBtn.innerText = "Remove Book"
+        removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
         removeBtn.classList.add("removeBtn")
         newBookCard.append(removeBtn)
+
+        //check if current library is empty
+        checkCurrentLibrary()
+        console.log(this.books);
     }
     
     removeBookFromLibrary(book) {
+        console.log(book);
         this.books.splice(book, 1);
+        console.log(this.books);
         let bookDataIndex = document.querySelectorAll("[data-book-index]")
         for (let i = 0; i < bookDataIndex.length; i++) {
             if (book === bookDataIndex[i].dataset.bookIndex) {
                 bookDataIndex[i].remove()
             }
         }
+        //dynamically update data att to reflect current index
+        for (let i = book; i <= this.books.length; i++) {
+            bookDataIndex[i].dataset.bookIndex = `${i-1}`
+        }
+
+        checkCurrentLibrary()
     }
 }
+
 document.addEventListener('click', listener)
 const removeBtnAction = document.querySelector('.removeBtn')
 function listener(e) {
     let element = e.target.className
     if (element === "removeBtn") {
         let parentIndex = e.target.parentElement.getAttribute('data-book-index')
-        console.log(`This book's index is ${parentIndex}`);
         newLibrary.removeBookFromLibrary(parentIndex)
     }
 }
 
 
-
 const newLibrary = new Library();
-// const newBook1 = new Book("Dummy Book 1", "Dummy Author 1", "Dummy Pages 101", "true")
 const form = document.querySelector('form')
 
 function getNewBook() {
@@ -81,7 +117,7 @@ function getNewBook() {
         const newAuthor = document.querySelector("#author").value
         const newPage = document.querySelector("#page").value
 
-        const newBook = new Book(newTitle, newAuthor, newPage, "true")
+        const newBook = new Book(newTitle, newAuthor, newPage)
         
         newLibrary.addBookToLibrary(newBook)
         newLibrary.createNewBookCard(newBook)
@@ -90,7 +126,27 @@ function getNewBook() {
     })
 }
 
+function checkCurrentLibrary() {
+    const currentLibrary = document.querySelector('.section__current-library')
+    if (newLibrary.books.length === 0) {
+        const emptyLibMsg = document.createElement('p')
+        emptyLibMsg.innerText = 'There are no current books in your library! Add some books above.'
+        emptyLibMsg.classList.add('section__current-library-content-when-empty')
+        currentLibrary.append(emptyLibMsg)
+    } else if (newLibrary.books.length > 0) {
+        const emptyLibMsgCheck = document.querySelector('.section__current-library-content-when-empty')
+        if (emptyLibMsgCheck === null) {
+            return;
+        } else {
+            emptyLibMsgCheck.remove() 
+        }
+    } else {
+        return
+    }
+}
+
 window.onload = () => {
     form.reset()
     getNewBook()
+    checkCurrentLibrary()
   }

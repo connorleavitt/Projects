@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./library.css">
     <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    
+    <script src="https://kit.fontawesome.com/e07d1d767e.js" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Inter:400,900|Ubuntu+Mono:300,900&display=swap"> -->
 
     <script src="./library.js" defer></script>
     
@@ -12,24 +19,62 @@
 
 </head>
 <body>
-    <h1>Library</h1>
-    
-    <form action="">
-        <h3>Add a new Book:</h3>
-        <label for="title">Title: </label>
-        <input required type="text" name="title" id="title" placeholder="new title">
-        
-        <label for="author">Author: </label>
-        <input type="text" name="author" id="author" placeholder="new author">
-        
-        <label for="page">Pages: </label>
-        <input type="number" name="page" id="page" placeholder="# of pages">
-        
-        <button class="btn" type="submit">Submit</button>
-    </form>
+    <header class="header">
+        <h1 class="header--title">Library</h1>
+    </header>
 
-    <h2>Current Library</h2>
-    <div class="bookCards">
+    <div class="main">
+        <div class="section__form">
+            <h3 class="section__form--title">Add Book:</h3>
+            <div class="section__form--content">
+                <form action="">
+                    <div class="section__form--input">
+                        <label for="title">Title: </label>
+                        <input required type="text" name="title" id="title" placeholder="new title">
+                    </div>
+
+                    <div class="section__form--input">
+                        <label for="author">Author: </label>
+                        <input type="text" name="author" id="author" placeholder="new author">
+                    </div>
+
+                    <div class="section__form--input">
+                        <label for="page">Pages: </label>
+                        <input type="number" name="page" id="page" placeholder="# of pages">
+                    </div>
+
+                    <!-- <div class="section__form--input">
+                        <label for="isRead">Have you read this title?</label>
+                        <input type="checkbox" name="isRead" id="isRead">
+                    </div> -->
+                    
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="section__current-library">
+            <h2 class="section__current-library--title">Current Library</h2>
+            <div class="bookCards">
+            </div>
+        </div>
     </div>
+    <footer class="footer">
+        <a href="mailto:connorleavitt@gmail.com" class="footer__link">connorleavitt@gmail.com</a>
+        <ul class="social-list">
+            <li class="social-list__items">
+                <a href="https://linkedin.com/in/connorleavitt/" 
+                class="social-list__link">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            </li> <!-- LinkedIN -->
+            <li class="social-list__items">
+                <a href="https://github.com/connorleavitt" 
+                class="social-list__link">
+                <i class="fa-brands fa-square-github"></i>
+            </a>
+            </li> <!-- Github -->
+        </ul>
+    </footer>
+
 </body>
 </html>
