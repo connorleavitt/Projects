@@ -160,12 +160,18 @@ svg {
     border-radius: 5px;
 }
 
+.editInput{
+    width: 100px;
+    border: 0;
+    background-color: #c1aec0;
+}
 
 .newBookTitleDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .newBookTitleHeader,
 .newBookAuthorHeader,
@@ -218,6 +224,16 @@ svg {
     border-radius: 5px;
     font-weight: var(--fw-bold);
     background-color: var(--clr-call-to-action);
+    cursor: pointer;
+}
+
+.confirmBtn {
+    padding: 1em;
+    /* width: 50px; */
+    border: 0;
+    border-radius: 5px;
+    font-weight: var(--fw-bold);
+    background-color: var(--clr-accent);
     cursor: pointer;
 }
 

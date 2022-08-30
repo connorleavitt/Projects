@@ -7,7 +7,6 @@ class Book {
     }
 }
 
-
 class Library {
     constructor() {
         this.books = []
@@ -118,43 +117,86 @@ class Library {
         for (let i = book; i <= this.books.length; i++) {
             bookDataIndex[i].dataset.bookIndex = `${i-1}`
         }
-
+        
         checkCurrentLibrary()
     }
 
     editLibrary(book) {
-        console.log('edit button pressed');
-        //enable checkbox button in card
+        console.log('edit/confirm button pressed');
+        console.log(book);
         // find which book === index of array, then update class newBookIsReadContent.disable to false
-        // const newBookIsReadContent = document.querySelector('.newBookIsReadContent')
-        // newBookIsReadContent.disabled = false;
-        // let bookDataIndex = document.querySelectorAll("[data-book-index]")
-        // for (let i = 0; i < bookDataIndex.length; i++) {
-        //     if (book === bookDataIndex[i].dataset.bookIndex) {
-        //     }
-        // }
-        //update array object key value switch of true || false
+        let bookDataIndex = document.querySelectorAll("[data-book-index]")
+        
+        
+        let checkOpenConfirm = document.querySelectorAll('.confirmBtn')
+            if (checkOpenConfirm.length === 0) {
+                
+                // update "edit" button to "confirm?"
+                const toggleEditButton = bookDataIndex[book].querySelector(".editBtn")
+                toggleEditButton.style.display = 'none'
+                
+                const confirmBtn = document.createElement('button')
+                confirmBtn.innerHTML = 'Confirm?'
+                confirmBtn.classList.add("confirmBtn")
+                const newBookButtonsDiv = bookDataIndex[book].querySelector(".newBookButtonsDiv")
+                const removeBtn = bookDataIndex[book].querySelector(".removeBtn")
+                newBookButtonsDiv.insertBefore(confirmBtn, removeBtn)
+
+
+                // if user clicks on title text content, allow edit
+                const titleTextArea = bookDataIndex[book].querySelector(".newBookTitleDiv")    
+                titleTextArea.addEventListener('click', () => {
+                    const titleTextContent = titleTextArea.querySelector(".newBookTitleContent") 
+                    const input = document.createElement('input')
+                    input.type = 'text',
+                    input.classList.add("editInput")
+                    input.value = titleTextContent.textContent
+                    titleTextArea.insertBefore(input, titleTextContent)
+                    titleTextContent.style.display = 'none'
+                }, {once : true});
+                
+                // enable checkbox button in card
+                const newBookIsReadContent = bookDataIndex[book].querySelector('.newBookIsReadContent')
+                newBookIsReadContent.disabled = false;
+                
+                // update array object key value switch of true || false
+                // add event listener for confirm button
+                // switch button text back to edit
+                let editConfirmButton = bookDataIndex[book].querySelector('.confirmBtn')
+                editConfirmButton.addEventListener('click', () => {
+
+
+                    titleTextContent.style.display = '' //toggle title content back
+                    titleAuthorContent.style.display = '' //toggle author content back
+                    titlePageContent.style.display = '' //toggle page content back
+
+                    toggleEditButton.style.display = '' //toggle edit button back
+                    editConfirmButton.remove() //delete confirm button
+
+                }, {once : true});
+        } else {
+            alert("You can only edit one at a time!")
+        }
     }
 }
+
+
+const newLibrary = new Library();
+const form = document.querySelector('form')
 
 document.addEventListener('click', listener)
 
 function listener(e) {
     let element = e.target.className
     if (element === "removeBtn") {
-        // const buttonDiv = document.querySelector()
         let parentIndex = e.target.parentElement.parentElement.getAttribute('data-book-index')
         newLibrary.removeBookFromLibrary(parentIndex)
-    } 
-    // else if (element === "editBtn") {
-    //     let parentIndex = e.target.parentElement.getAttribute('data-book-index')
-    //     newLibrary.editLibrary(parentIndex)
-    // } else return
+    } else if (element === "editBtn") {
+        console.log('edit button pressed');
+        let parentIndex = e.target.parentElement.parentElement.getAttribute('data-book-index')
+        newLibrary.editLibrary(parentIndex)
+    } else return
 }
-
-
-const newLibrary = new Library();
-const form = document.querySelector('form')
 
 function getNewBook() {
     form.addEventListener('submit', (e) => {
