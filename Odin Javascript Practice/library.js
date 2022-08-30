@@ -126,7 +126,7 @@ class Library {
         
         let checkOpenConfirm = document.querySelectorAll('.confirmBtn')
             if (checkOpenConfirm.length === 0) {
-                
+
                 // update "edit" button to "confirm?"
                 const toggleEditButton = bookDataIndex[book].querySelector(".editBtn")
                 toggleEditButton.style.display = 'none'
@@ -138,76 +138,118 @@ class Library {
                 const removeBtn = bookDataIndex[book].querySelector(".removeBtn")
                 newBookButtonsDiv.insertBefore(confirmBtn, removeBtn)
 
-
+                const once = {once : true};
+                
                 // if user clicks on title text content, allow edit
                 const titleTextArea = bookDataIndex[book].querySelector(".newBookTitleDiv")    
                 const titleTextContent = titleTextArea.querySelector(".newBookTitleContent") 
-                const titleInput = document.createElement('input')
-                titleInput.type = 'text'
-                titleInput.classList.add("editInput")
-                titleInput.placeholder = titleTextContent.innerText
-                titleTextArea.insertBefore(titleInput, titleTextContent)
-                titleTextContent.style.display = 'none'
+                
+                let createTitleInput = function() {
+                    const titleInput = document.createElement('input')
+                    titleInput.type = 'text'
+                    titleInput.classList.add("editInput")
+                    titleInput.placeholder = titleTextContent.innerText
+                    titleTextArea.insertBefore(titleInput, titleTextContent)
+                    titleTextContent.style.display = 'none'
+                    
+                }
+                titleTextArea.addEventListener('click', createTitleInput, once)
+                
 
                 // if user clicks on Author text content, allow edit
                 const authorTextArea = bookDataIndex[book].querySelector(".newBookAuthorDiv")    
                 const authorTextContent = authorTextArea.querySelector(".newBookAuthorContent") 
-                const authorInput = document.createElement('input')
-                authorInput.type = 'text'
-                authorInput.classList.add("editInput")
-                authorInput.placeholder = authorTextContent.innerText
-                authorTextArea.insertBefore(authorInput, authorTextContent)
-                authorTextContent.style.display = 'none'
-
                 
+                let createAuthorInput = function() {
+                    const authorInput = document.createElement('input')
+                    authorInput.type = 'text'
+                    authorInput.classList.add("editInput")
+                    authorInput.placeholder = authorTextContent.innerText
+                    authorTextArea.insertBefore(authorInput, authorTextContent)
+                    authorTextContent.style.display = 'none'
+                }
+                authorTextArea.addEventListener('click', createAuthorInput, once)
 
+                // if user clicks on pages text content, allow edit
+                const pageTextArea = bookDataIndex[book].querySelector(".newBookPageDiv")    
+                const pageTextContent = pageTextArea.querySelector(".newBookPageContent") 
                 
+                let createPageInput = function() {
+                    const pageInput = document.createElement('input')
+                    pageInput.type = 'text'
+                    pageInput.classList.add("editInput")
+                    pageInput.placeholder = pageTextContent.innerText
+                    pageTextArea.insertBefore(pageInput, pageTextContent)
+                    pageTextContent.style.display = 'none'
+                    
+                }
+                pageTextArea.addEventListener('click', createPageInput, once)
+
                 
                 // enable checkbox button in card
                 const newBookIsReadContent = bookDataIndex[book].querySelector('.newBookIsReadContent')
-                newBookIsReadContent.disabled = false;
-                
-                
+                const newBookIsReadValue = newBookIsReadContent.value
+                console.log(newBookIsReadValue);
+                newBookIsReadContent.disabled = false;                
                 
                 let editConfirmButton = bookDataIndex[book].querySelector('.confirmBtn')
                 editConfirmButton.addEventListener('click', () => {
-
-
-                    let newTitleOutput = titleTextArea.querySelector('input').value
-                    let newAuthorOutput = authorTextArea.querySelector('input').value
-                    // let newPageOutput = pageTextArea.querySelector('input').value
                     
                     // title updates
-                    if (newTitleOutput === '') {
-                        this.books[book].title = titleTextContent.innerText
+                    if (titleTextArea.querySelector('input') !== null) {
+                        let newTitleOutput = titleTextArea.querySelector('input').value
+                        
+                        if (newTitleOutput === '') {
+                            this.books[book].title = titleTextContent.innerText
+                        } else {
+                            titleTextContent.innerText = newTitleOutput
+                            this.books[book].title = newTitleOutput
+                        }
+                        titleTextArea.querySelector('input').remove() // removes input field
+                        titleTextContent.style.display = '' //toggle title content back
+                        
+                    } // author updates 
+                    if (authorTextArea.querySelector('input') !== null) {
+                        let newAuthorOutput = authorTextArea.querySelector('input').value
+                        
+                        if (newAuthorOutput === '') {
+                            this.books[book].author = authorTextContent.innerText
+                        } else {
+                            authorTextContent.innerText = newAuthorOutput
+                            this.books[book].author = newAuthorOutput
+                        }
+                        authorTextArea.querySelector('input').remove() // removes input field
+                        authorTextContent.style.display = '' //toggle author content back
+                
+                    } // page updates
+                    if (pageTextArea.querySelector('input') !== null) {
+                        let newPageOutput = pageTextArea.querySelector('input').value
+
+                        if (newPageOutput === '') {
+                            this.books[book].pages = pageTextContent.innerText
+                        } else {
+                            pageTextContent.innerText = newPageOutput
+                            this.books[book].pages = newPageOutput
+                        }
+                        pageTextArea.querySelector('input').remove() // removes input field
+                        pageTextContent.style.display = '' //toggle author content back
+                        
+                    } // isRead updates
+                    if (newBookIsReadContent.checked === true) {
+                        console.log(this.books[book].isRead.value);
                     } else {
-                        titleTextContent.innerText = newTitleOutput
-                        this.books[book].title = newTitleOutput
+                        console.log(this.books[book].isRead.value);
                     }
-                    titleTextArea.querySelector('input').remove() // removes input field
-                    titleTextContent.style.display = '' //toggle title content back
+                    newBookIsReadContent.disabled = true
                     
                     
-                    
-                    // author updates
-                    if (newAuthorOutput === '') {
-                        this.books[book].author = authorTextContent.innerText
-                    } else {
-                        authorTextContent.innerText = newAuthorOutput
-                        this.books[book].author = newAuthorOutput
-                    }
-                    authorTextArea.querySelector('input').remove() // removes input field
-                    authorTextContent.style.display = '' //toggle author content back
-                    
-                    
-                    
-                    // titlePageContent.style.display = '' //toggle page content back
 
-
-
+                    titleTextArea.removeEventListener('click', createTitleInput);
+                    authorTextArea.removeEventListener('click', createAuthorInput);
+                    pageTextArea.removeEventListener('click', createPageInput);
                     confirmBtn.remove() //delete confirm button
                     toggleEditButton.style.display = '' //toggle edit button back
-                }, {once : true});
+                    }, {once : true});
                 
                 // update array object key value switch of true || false
                 // add event listener for confirm button
