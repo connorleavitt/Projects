@@ -188,8 +188,6 @@ class Library {
                 
                 // enable checkbox button in card
                 const newBookIsReadContent = bookDataIndex[book].querySelector('.newBookIsReadContent')
-                const newBookIsReadValue = newBookIsReadContent.value
-                console.log(newBookIsReadValue);
                 newBookIsReadContent.disabled = false;                
                 
                 let editConfirmButton = bookDataIndex[book].querySelector('.confirmBtn')
@@ -235,14 +233,8 @@ class Library {
                         pageTextContent.style.display = '' //toggle author content back
                         
                     } // isRead updates
-                    if (newBookIsReadContent.checked === true) {
-                        console.log(this.books[book].isRead.value);
-                    } else {
-                        console.log(this.books[book].isRead.value);
-                    }
+                    this.books[book].isRead = newBookIsReadContent.checked
                     newBookIsReadContent.disabled = true
-                    
-                    
 
                     titleTextArea.removeEventListener('click', createTitleInput);
                     authorTextArea.removeEventListener('click', createAuthorInput);
