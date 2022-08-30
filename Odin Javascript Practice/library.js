@@ -103,8 +103,6 @@ class Library {
     }
     
     removeBookFromLibrary(book) {
-        console.log('remove button pressed');
-        console.log(book);
         this.books.splice(book, 1);
         console.log(this.books);
         let bookDataIndex = document.querySelectorAll("[data-book-index]")
@@ -122,8 +120,6 @@ class Library {
     }
 
     editLibrary(book) {
-        console.log('edit/confirm button pressed');
-        console.log(book);
         // find which book === index of array, then update class newBookIsReadContent.disable to false
         let bookDataIndex = document.querySelectorAll("[data-book-index]")
         
@@ -145,35 +141,78 @@ class Library {
 
                 // if user clicks on title text content, allow edit
                 const titleTextArea = bookDataIndex[book].querySelector(".newBookTitleDiv")    
-                titleTextArea.addEventListener('click', () => {
-                    const titleTextContent = titleTextArea.querySelector(".newBookTitleContent") 
-                    const input = document.createElement('input')
-                    input.type = 'text',
-                    input.classList.add("editInput")
-                    input.value = titleTextContent.textContent
-                    titleTextArea.insertBefore(input, titleTextContent)
-                    titleTextContent.style.display = 'none'
-                }, {once : true});
+                const titleTextContent = titleTextArea.querySelector(".newBookTitleContent") 
+                const titleInput = document.createElement('input')
+                titleInput.type = 'text'
+                titleInput.classList.add("editInput")
+                titleInput.placeholder = titleTextContent.innerText
+                titleTextArea.insertBefore(titleInput, titleTextContent)
+                titleTextContent.style.display = 'none'
+
+                // if user clicks on Author text content, allow edit
+                const authorTextArea = bookDataIndex[book].querySelector(".newBookAuthorDiv")    
+                const authorTextContent = authorTextArea.querySelector(".newBookAuthorContent") 
+                const authorInput = document.createElement('input')
+                authorInput.type = 'text'
+                authorInput.classList.add("editInput")
+                authorInput.placeholder = authorTextContent.innerText
+                authorTextArea.insertBefore(authorInput, authorTextContent)
+                authorTextContent.style.display = 'none'
+
+                
+
+                
                 
                 // enable checkbox button in card
                 const newBookIsReadContent = bookDataIndex[book].querySelector('.newBookIsReadContent')
                 newBookIsReadContent.disabled = false;
                 
-                // update array object key value switch of true || false
-                // add event listener for confirm button
-                // switch button text back to edit
+                
+                
                 let editConfirmButton = bookDataIndex[book].querySelector('.confirmBtn')
                 editConfirmButton.addEventListener('click', () => {
 
 
+                    let newTitleOutput = titleTextArea.querySelector('input').value
+                    let newAuthorOutput = authorTextArea.querySelector('input').value
+                    // let newPageOutput = pageTextArea.querySelector('input').value
+                    
+                    // title updates
+                    if (newTitleOutput === '') {
+                        this.books[book].title = titleTextContent.innerText
+                    } else {
+                        titleTextContent.innerText = newTitleOutput
+                        this.books[book].title = newTitleOutput
+                    }
+                    titleTextArea.querySelector('input').remove() // removes input field
                     titleTextContent.style.display = '' //toggle title content back
-                    titleAuthorContent.style.display = '' //toggle author content back
-                    titlePageContent.style.display = '' //toggle page content back
+                    
+                    
+                    
+                    // author updates
+                    if (newAuthorOutput === '') {
+                        this.books[book].author = authorTextContent.innerText
+                    } else {
+                        authorTextContent.innerText = newAuthorOutput
+                        this.books[book].author = newAuthorOutput
+                    }
+                    authorTextArea.querySelector('input').remove() // removes input field
+                    authorTextContent.style.display = '' //toggle author content back
+                    
+                    
+                    
+                    // titlePageContent.style.display = '' //toggle page content back
 
+
+
+                    confirmBtn.remove() //delete confirm button
                     toggleEditButton.style.display = '' //toggle edit button back
-                    editConfirmButton.remove() //delete confirm button
-
                 }, {once : true});
+                
+                // update array object key value switch of true || false
+                // add event listener for confirm button
+                // switch button text back to edit
+
         } else {
             alert("You can only edit one at a time!")
         }
@@ -192,7 +231,6 @@ function listener(e) {
         let parentIndex = e.target.parentElement.parentElement.getAttribute('data-book-index')
         newLibrary.removeBookFromLibrary(parentIndex)
     } else if (element === "editBtn") {
-        console.log('edit button pressed');
         let parentIndex = e.target.parentElement.parentElement.getAttribute('data-book-index')
         newLibrary.editLibrary(parentIndex)
     } else return
