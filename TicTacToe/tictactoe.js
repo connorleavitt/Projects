@@ -1,7 +1,9 @@
 const Player = (character) => {
     this.character = character
     const getCharacter = () => character
-    return {getCharacter};
+    return {
+        getCharacter
+    };
 }
 
 const gameBoard = (() => {
@@ -14,58 +16,98 @@ const gameBoard = (() => {
 
 
 const displayController = (() => {
+    const X_CLASS = "x"
+    const CIRCLE_CLASS = "circle"
+
+    const board = document.getElementById('board')
     const boardCells = document.querySelectorAll("[data-cell]")
     const boardCellContent = document.querySelectorAll(".displayCell")
     const displayMsg = document.querySelector('.displayMsg')
     const resetBtn = document.querySelector('.resetBtn')
     
-    boardCellContent.forEach((cell) => {
-        cell.addEventListener('click', (e) => {
-            if (gameController.getIsGameOver() || e.target.textContent !== "") return;
-            let parentIndex = e.target.parentElement.getAttribute('data-cell')
-            gameController.playRound(parentIndex);
-            updateGameboardDisplay();
-        })
-    })
+    let circleTurn = false;
     
-    const updateGameboardDisplay = () => {
-        for (let i = 0; i < boardCellContent.length; i++) {
-            boardCellContent[i].innerText = gameBoard.board[i]
-        }
+    function startGame() {
+        setBoardHoverClass()
+        boardCells.forEach((cell) => {
+            cell.addEventListener('click', handleClick)})
+    }
+        
+    function handleClick(e) {
+        const currentBoardClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+        let parentIndex = e.target.getAttribute('data-cell')
+        
+        if (gameController.getIsGameOver() || (e.target.classList.contains("x") || e.target.classList.contains("circle"))) return;
+        console.log(gameController.currentPlayerCharacter());
+        placeMark(parentIndex);
+        gameController.playRound(parentIndex);
+        swapTurns()
+        setBoardHoverClass()
+    }
+
+    const placeMark = (index) => {
+        return [...boardCells][index].classList.add(gameController.currentPlayerCharacter())
     } 
+
+    function swapTurns() {
+        circleTurn = !circleTurn
+    }
+
+    function setBoardHoverClass() {
+        board.classList.remove(X_CLASS)
+        board.classList.remove(CIRCLE_CLASS)
+        if (circleTurn) {
+            board.classList.add(CIRCLE_CLASS)
+        } else {
+            board.classList.add(X_CLASS)
+        }
+    }
 
     const updateDisplayMsg = (msg) => {
         displayMsg.innerText = msg
     }
 
+
+
     return {
-        updateGameboardDisplay,
+        startGame,
+        placeMark,
         updateDisplayMsg
     }
 
     //MVP: 
         // 1) listen for cell clicks > update displayCell
-        // 2) 
-        // 3) show reset button
+        // 2) show reset button
     //Later: add AI or player 2, select first or second starting position (or X/O)
 })();
 
+displayController.startGame()
 
 
 const gameController = (() => {
-    const playerX = Player("X") // calls Player function and assigns X
-    const playerO = Player("O") // calls Player function and assigns O
+    const playerX = Player("x") // calls Player function and assigns X
+    const playerO = Player("circle") // calls Player function and assigns circle
 
     let round = 1;
     let gameOver = false;
 
+    const winScenarios = [
+        [0, 1, 2], // row1
+        [3, 4, 5], // row2
+        [6, 7, 8], // row3
+        [0, 3, 6], // col1
+        [1, 4, 7], // col2
+        [2, 5, 8], // col3
+        [0, 4, 8], // diag1
+        [2, 4, 6] // diag2
+    ];
     
     const playRound = (index) => {
         
         gameBoard.board[index] = currentPlayerCharacter()
-        // if (checkWinner) {
-        //     return displayController.updateDisplayMsg(`game over`)
-        // }
+        if (checkWinner(currentPlayerCharacter())) {
+            return displayController.updateDisplayMsg(`game over`)
+        }
         if (round === 9) {
             gameOver = true;
             return displayController.updateDisplayMsg(`game over`)
@@ -79,26 +121,14 @@ const gameController = (() => {
     }
     
     displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
-
-    //controls validation?
-    const validation = (cell) => {
-        console.log(cell);
-    }
     
-    const checkWinner = (index) => {
-        const winScenarios = [
-            [0, 1, 2] // col1
-            [3, 4, 5] // col2
-            [6, 7, 8] // col3
-            [0, 3, 6] // row1
-            [1, 4, 7] // row2
-            [2, 5, 8] // row3
-            [0, 4, 8] // diag1
-            [2, 4, 6] // diag2
-        ];
-
-        return winScenarios
-        /*
+    const checkWinner = (currentPlayerCharacter) => {
+        return winScenarios.some(combination => {
+            return combination.every(index => {
+                return gameBoard.board[index].includes(currentPlayerCharacter);
+            })
+        });
+        /* IDEAS for checking winner:
             .filter for checking if array 1 matches array 2, 
                 use like const intersection = array1.filter(element => array2.includes(element));
 
@@ -110,9 +140,8 @@ const gameController = (() => {
             .every to make sure the player char is same when .some-ing?
         */
     }
-    
 
-    //monitors end of game sequence?
+    //monitors end of game sequence or draw
     const getIsGameOver = () => {
         return gameOver;
       };
@@ -122,16 +151,10 @@ const gameController = (() => {
         getIsGameOver,
         playRound,
         currentPlayerCharacter,
-        validation,
         checkWinner
     }
 })();
 
-
-
-// console.log(Player());
-// console.log(gameBoard.board);
-// displayController.fillBoard();
 
 /*
 players 
