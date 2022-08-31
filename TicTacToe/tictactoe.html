@@ -20,13 +20,25 @@
     </header>
     <section class="main">
 
-        <div class="displayController">
-            <p class="displayMsg"></p>
-            <p class="displayMsgRound"></p>
-            <button type="button" class="resetBtn">Reset Board</button>
+        <div class="board" id="board">
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
+            <div class="cell" data-cell=""></div>
         </div>
 
-        <div class="gameBoardContainer">
+        <div class="winning-msg" id="winningMsg">
+            <div data-winning-msg-text>Player X wins!</div>
+            <button type="button" id="resetBtn" class="reset-button">Reset Board</button>
+        </div>
+
+        <!-- <div class="gameBoardContainer">
+
 
             <div class="row1">
                 <div class="col1" data-cell="0">
@@ -61,7 +73,7 @@
                     <p class="displayCell"></p>
                 </div>
             </div>
-        </div>
+        </div> -->
         
     </section>
 

@@ -17,7 +17,6 @@ const displayController = (() => {
     const boardCells = document.querySelectorAll("[data-cell]")
     const boardCellContent = document.querySelectorAll(".displayCell")
     const displayMsg = document.querySelector('.displayMsg')
-    const displayMsgRound = document.querySelector('.displayMsgRound')
     const resetBtn = document.querySelector('.resetBtn')
     
     boardCellContent.forEach((cell) => {
@@ -39,14 +38,9 @@ const displayController = (() => {
         displayMsg.innerText = msg
     }
 
-    const updateDisplayMsgRound = (msg) => {
-        displayMsgRound.innerText = msg
-    }
-
     return {
         updateGameboardDisplay,
-        updateDisplayMsg,
-        updateDisplayMsgRound
+        updateDisplayMsg
     }
 
     //MVP: 
@@ -69,13 +63,14 @@ const gameController = (() => {
     const playRound = (index) => {
         
         gameBoard.board[index] = currentPlayerCharacter()
-        
+        // if (checkWinner) {
+        //     return displayController.updateDisplayMsg(`game over`)
+        // }
         if (round === 9) {
             gameOver = true;
-            return
+            return displayController.updateDisplayMsg(`game over`)
         }
         round++
-        displayController.updateDisplayMsgRound(`Round: ${round}`);
         displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
     }
     
@@ -84,7 +79,6 @@ const gameController = (() => {
     }
     
     displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
-    displayController.updateDisplayMsgRound(`Round ${round}`)
 
     //controls validation?
     const validation = (cell) => {
@@ -104,9 +98,18 @@ const gameController = (() => {
         ];
 
         return winScenarios
+        /*
+            .filter for checking if array 1 matches array 2, 
+                use like const intersection = array1.filter(element => array2.includes(element));
 
+            but also need to check that its the same playerChar not just != ""...
+            .sort out player charator then filter?
+
+            .some() to check if any of the win conditions are true
+
+            .every to make sure the player char is same when .some-ing?
+        */
     }
-
     
 
     //monitors end of game sequence?
@@ -119,7 +122,8 @@ const gameController = (() => {
         getIsGameOver,
         playRound,
         currentPlayerCharacter,
-        validation
+        validation,
+        checkWinner
     }
 })();
 
