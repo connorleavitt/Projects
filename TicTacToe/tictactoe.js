@@ -38,7 +38,6 @@ const displayController = (() => {
         let parentIndex = e.target.getAttribute('data-cell')
         
         if (gameController.getIsGameOver() || (e.target.classList.contains("x") || e.target.classList.contains("circle"))) return;
-        console.log(gameController.currentPlayerCharacter());
         placeMark(parentIndex);
         gameController.playRound(parentIndex);
         swapTurns()
@@ -72,7 +71,8 @@ const displayController = (() => {
     return {
         startGame,
         placeMark,
-        updateDisplayMsg
+        updateDisplayMsg,
+        setBoardHoverClass
     }
 
     //MVP: 
@@ -87,9 +87,14 @@ displayController.startGame()
 const gameController = (() => {
     const playerX = Player("x") // calls Player function and assigns X
     const playerO = Player("circle") // calls Player function and assigns circle
+    const board = document.getElementById('board')
+    
+    const winningMsgElement = document.querySelector('.winning-msg')
+    const winningMsgTextElement = document.querySelector('[data-winning-msg-text]')
 
     let round = 1;
     let gameOver = false;
+    let isDraw = false;
 
     const winScenarios = [
         [0, 1, 2], // row1
@@ -106,11 +111,17 @@ const gameController = (() => {
         
         gameBoard.board[index] = currentPlayerCharacter()
         if (checkWinner(currentPlayerCharacter())) {
-            return displayController.updateDisplayMsg(`game over`)
+            gameOver = true;
+            // board.classList.remove(currentPlayerCharacter())
+            // board.classList.remove(CIRCLE_CLASS)
+            displayController.updateDisplayMsg(``)
+            return endGame()
         }
         if (round === 9) {
+            isDraw = true;
             gameOver = true;
-            return displayController.updateDisplayMsg(`game over`)
+            displayController.updateDisplayMsg(``)
+            return endGame()
         }
         round++
         displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
@@ -141,10 +152,27 @@ const gameController = (() => {
         */
     }
 
+    // function checkDraw() {
+  
+    // }
+
     //monitors end of game sequence or draw
     const getIsGameOver = () => {
         return gameOver;
       };
+
+    function endGame() {
+        const winner = currentPlayerCharacter()
+        // const O = 'O';
+
+        if(isDraw) {
+            console.log('we got here / draw');
+            winningMsgTextElement.innerText = `It's a draw!`
+        } else {
+            winningMsgTextElement.innerText = `${winner === 'x' ? "Player 1 wins!" : "Player 2 wins!"}`
+        }
+        winningMsgElement.classList.add('show')
+    }
 
 
     return {
