@@ -210,3 +210,13 @@ body {
 .displayMsg {
     margin-top: 2em;
 }
+
+.opponent-choice {
+    display: flex;
+    flex-direction: column;
+}
+
+.opponent-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
