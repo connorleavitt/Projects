@@ -40,6 +40,7 @@ body {
 
 .header {
     text-align: center;
+    font-size: var(--fs-h2);
 }
 
 
@@ -191,4 +192,21 @@ body {
 
 .winning-msg.show {
     display: flex;
+}
+
+.playerList {
+    /* display: flex; */
+}
+
+.player {
+    margin-bottom: 1em;
+    /* background-color: #365943; */
+}
+
+.player:first-child {
+    padding-right: 1em;
+}
+
+.displayMsg {
+    margin-top: 2em;
 }

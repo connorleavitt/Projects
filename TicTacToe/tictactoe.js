@@ -9,8 +9,15 @@ const Player = (character) => {
 const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
 
+    const reset = () => {
+        for (let i = 0; i < board.length; i++) {
+          board[i] = "";
+        }
+      };
+
     return {
-        board
+        board,
+        reset
     }
   })();
 
@@ -23,14 +30,31 @@ const displayController = (() => {
     const boardCells = document.querySelectorAll("[data-cell]")
     const boardCellContent = document.querySelectorAll(".displayCell")
     const displayMsg = document.querySelector('.displayMsg')
-    const resetBtn = document.querySelector('.resetBtn')
+    const resetBtn = document.getElementById('resetBtn')
+    const winningMsgElement = document.querySelector('.winning-msg')
     
     let circleTurn = false;
     
+    startGame()
+
+    resetBtn.addEventListener('click', () => {
+        gameBoard.reset()
+        gameController.reset()
+        updateDisplayMsg("Player 1's turn!")
+        circleTurn = false;
+        winningMsgElement.classList.remove('show')
+        startGame()
+    })
+
     function startGame() {
         setBoardHoverClass()
         boardCells.forEach((cell) => {
-            cell.addEventListener('click', handleClick)})
+            cell.classList.remove(X_CLASS)
+            cell.classList.remove(CIRCLE_CLASS)
+            // cell.removeEventListener('click', handleClick)
+            cell.addEventListener('click', handleClick)
+        })
+        
     }
         
     function handleClick(e) {
@@ -66,8 +90,6 @@ const displayController = (() => {
         displayMsg.innerText = msg
     }
 
-
-
     return {
         startGame,
         placeMark,
@@ -80,9 +102,6 @@ const displayController = (() => {
         // 2) show reset button
     //Later: add AI or player 2, select first or second starting position (or X/O)
 })();
-
-displayController.startGame()
-
 
 const gameController = (() => {
     const playerX = Player("x") // calls Player function and assigns X
@@ -108,30 +127,33 @@ const gameController = (() => {
     ];
     
     const playRound = (index) => {
-        
+        const player = currentPlayerCharacter()
         gameBoard.board[index] = currentPlayerCharacter()
         if (checkWinner(currentPlayerCharacter())) {
             gameOver = true;
             // board.classList.remove(currentPlayerCharacter())
             // board.classList.remove(CIRCLE_CLASS)
-            displayController.updateDisplayMsg(``)
             return endGame()
         }
-        if (round === 9) {
+        if (round === 9) { //checking for a draw
             isDraw = true;
             gameOver = true;
-            displayController.updateDisplayMsg(``)
             return endGame()
         }
         round++
-        displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
+        displayController
+            .updateDisplayMsg(
+                `${player === 'circle' ? 
+                    "It's Player 1's turn!" : 
+                    "It's Player 2's turn!"}`
+            )
     }
     
     const currentPlayerCharacter = () => {
         return round % 2 === 1 ? playerX.getCharacter() : playerO.getCharacter();
     }
     
-    displayController.updateDisplayMsg(`It's Player ${currentPlayerCharacter()}'s turn!`)
+    displayController.updateDisplayMsg(`It's Player 1's turn!`)
     
     const checkWinner = (currentPlayerCharacter) => {
         return winScenarios.some(combination => {
@@ -152,36 +174,37 @@ const gameController = (() => {
         */
     }
 
-    // function checkDraw() {
-  
-    // }
-
-    //monitors end of game sequence or draw
     const getIsGameOver = () => {
         return gameOver;
       };
 
     function endGame() {
         const winner = currentPlayerCharacter()
-        // const O = 'O';
 
         if(isDraw) {
-            console.log('we got here / draw');
             winningMsgTextElement.innerText = `It's a draw!`
         } else {
             winningMsgTextElement.innerText = `${winner === 'x' ? "Player 1 wins!" : "Player 2 wins!"}`
         }
+        displayController.updateDisplayMsg(``)
         winningMsgElement.classList.add('show')
     }
 
+    const reset = () => {
+        round = 1;
+        gameOver = false;
+        isDraw = false;
+    }
 
     return {
         getIsGameOver,
         playRound,
         currentPlayerCharacter,
-        checkWinner
+        reset
     }
 })();
+    
+
 
 
 /*
@@ -220,53 +243,3 @@ DOM manipulations
 
 */
 
-//MODULE EXAMPLE//
-    // const calculator = (() => {
-    //     const add = (a, b) => a + b;
-    //     const sub = (a, b) => a - b;
-    //     const mul = (a, b) => a * b;
-    //     const div = (a, b) => a / b;
-    //     return {
-    //       add,
-    //       sub,
-    //       mul,
-    //       div,
-    //     };
-    //   })();
-    
-    //   calculator.add(3,5); // 8
-    //   calculator.sub(6,2); // 4
-    //   calculator.mul(14,5534); // 77476
-  
-/**/
-
-//FACTORY FUN() EXAMPLE//
-    //   const Person = (name) => {
-    //     const sayName = () => console.log(`my name is ${name}`);
-    //     const yellName = () => console.log(`MY NAME IS ${name}`);
-    //     return {sayName, yellName};
-    //   }
-    
-    //   const Nerd = (name) => {
-    //     // simply create a person and pull out the sayName function with destructuring assignment syntax!
-    //     const {sayName, yellName} = Person(name);
-    //     const doSomethingNerdy = () => console.log('nerd stuff');
-    //     return {sayName, yellName, doSomethingNerdy};
-    //   }
-    
-    //   const Nerdy = (name) => {
-    //     const prototype = Person(name);
-    //     const doSomethingNerdy = () => console.log('nerdy stuff');
-    //     return Object.assign({}, prototype, {doSomethingNerdy});
-    //   }
-    
-    //   const jeff = Nerd('jeff');
-    //   const jeffy = Nerdy('jeffy');
-    
-
-    //   jeff.sayName(); //my name is jeff
-    //   jeff.doSomethingNerdy(); // nerd stuff
-    //   jeff.yellName();
-
-    //   jeffy.doSomethingNerdy(); // nerdy stuff
-    //   jeffy.yellName();
