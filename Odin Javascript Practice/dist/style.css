@@ -74,7 +74,14 @@ body {
 .nav-list:hover {
     font-weight: var(--fw-bold);
     cursor: pointer;
-    background-color: var(--clr-accent);
+    background-color: var(--clr-accent-2);
+    color: var(--clr-dark);
+}
+
+.active {
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+    background-color: var(--clr-accent-2);
     color: var(--clr-dark);
 }
 
@@ -92,7 +99,7 @@ body {
 }
 
 .textFill {
-    background-color: var(--clr-accent);
+    background-color: var(--clr-light);
     color: var(--clr-dark);
     display: flex;
     flex-direction: column;
@@ -131,7 +138,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: blue;
-    margin: 0 auto 5em auto;
+    margin: 5em auto;
     width: 1000px;
     background-color: var(--clr-main);
 }
@@ -189,6 +196,22 @@ body {
 .contact-info-extra {
     padding: 1em;
     margin: 0;
+}
+
+.address {
+    display: flex;
+}
+
+.address-title {
+    margin-right: 1em;
+}
+
+.phone {
+    display: flex;
+}
+
+.phone-title {
+    margin-right: 1em;
 }
 
 .contact-info p {
