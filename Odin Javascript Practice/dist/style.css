@@ -1,0 +1,225 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --ff-primary: 'Inter', sans-serif;
+    --ff-secondary: 'Ubuntu Mono', monospace;
+
+    --fw-reg: 300;
+    --fw-bold: 900;
+
+    --clr-light: #f5f5f5;
+    --clr-light-rgb: 255, 255, 255;
+    --clr-main: #365943;
+    --clr-main-rgb: 54, 89, 67;
+    --clr-dark: #303030;
+    --clr-accent: #C1AEC0;
+    --clr-accent-rgb: 193, 174, 192;
+    --clr-accent-2: #EEA144;
+    --clr-accent-2-rgb: 195, 177, 225;
+    
+
+    --fs-h1: 2rem;
+    --fs-h2: 1.5rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0,0.25),
+          0.125em 0.125em 0.25em rgba(0,0,0,0.15);
+}
+
+body {
+    background: rgba(var(--clr-main-rgb), 0.4);
+    color: var(--clr-light);
+    margin: 0;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr-main);
+    margin: 0 auto;
+    padding: 0;
+}
+
+.header-title {
+    padding: 0;
+    margin: 0;
+    margin-top: .5em;
+}
+
+.nav {
+    background-color:var(--clr-main);
+}
+
+.nav-ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 1em;
+    margin: 0;
+}
+
+.nav-list:hover {
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+}
+
+.hero {
+    background-image: url(./img/corndog.jpg);
+    background-size: 1000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5em;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.textFill {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--clr-main);
+}
+
+.hero-title,
+.hero-subtitle { 
+    margin: 0;
+    padding: 1em;
+}
+
+.blurb {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    margin: 0 auto 5em auto;
+    padding: 3em;
+    background-color: var(--clr-main);
+}
+
+.blurb-title {
+    font-size: var(--fs-h2);
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.blurb-content {
+    max-width: 80ch;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: blue;
+    margin: 0 auto 5em auto;
+    width: 1000px;
+    background-color: var(--clr-main);
+}
+
+.menu-item {
+    border: 2px solid var(--clr-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 1em;
+    padding: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 0.75em;
+}
+
+.menu-item img {
+    max-width: 300px;
+}
+
+.menu-title {
+    margin: 0;
+    margin-top: 1em;
+    font-size: 1.3em;
+}
+
+.contact {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-main);
+}
+
+.contact-info {
+    margin: 0;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--clr-accent); */
+    color: var(--clr-light);
+}
+
+.contact-info-title {
+    margin: 0;
+    padding: 0;
+}
+
+.contact-info-extra {
+    padding: 1em;
+    margin: 0;
+}
+
+.contact-info p {
+    padding: 0;
+    margin: 0;
+}
+
+.contact-info .phone {
+    margin-top: 1em;
+}
+
+.contact-info table td:first-child {
+    padding-right: 2em;
+    font-weight: var(--fw-bold);
+}
+
+.contact-map {
+    margin: 2em auto;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-map img {
+    max-width: 600px;
+}
+
+.footer {
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    text-align: center;
+    padding: 0.5em 0;
+}
