@@ -3,15 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     
-    <link rel="shortcut icon" href="#">
+    <script src="https://kit.fontawesome.com/e07d1d767e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css" />
     <script src="main.js" defer></script>
     <title>Tasky</title>
 </head>
 <body>
-    <header class="header">
+    
+    <div class="content" id="content">
         <h1 class="header--title">Tasky</h1>
-    </header>
+
+        <div class="all-tasks">
+            <h2 class="task-list-title">Projects</h2>
+            <ul class="task-list">
+                <li class="active-list list-name">Project 1</li>
+                <li class="list-name">Project 2</li>
+                <li class="list-name">Project 3</li>
+            </ul>
+
+            <form action="">
+                <input 
+                    type="text" 
+                    class="new-input list"
+                    placeholder="new project"
+                    name="" 
+                    id=""
+                    aria-label="new project">
+                <button class="btn create" aria-label="new project">+</button>
+
+            </form>
+
+        </div>
+
+        <div class="main__project-container">
+            <div class="main__project-title-container">
+                <h2 class="main__project--title">Project 1</h2>
+                <p class="main__project--task-count"># tasks remaining</p>
+            </div>
+            <div class="main__project-main-list">
+                <div class="tasks">
+                    <div class="task">
+                        <input type="checkbox" name="" id="task-1">
+                        <label for="task-1">
+                            <span class="custom-checkbox"></span>
+                            task 1
+                        </label>
+                    </div>
+
+                    <div class="task">
+                        <input type="checkbox" name="" id="task-2">
+                        <label for="task-2">
+                            <span class="custom-checkbox"></span>
+                            task 2
+                        </label>
+                    </div>
+
+                    <div class="task">
+                        <input type="checkbox" name="" id="task-3">
+                        <label for="task-3">
+                            <span class="custom-checkbox"></span>
+                            task 3
+                        </label>
+                    </div>
+
+
+                    <div class="create-task">
+                        <form action="">
+                            <input 
+                                type="text" 
+                                class="new-input task"
+                                placeholder="new task"
+                                name="" 
+                                id=""
+                                aria-label="new project">
+                            <button class="btn create" aria-label="new task">+</button>
+            
+                        </form>
+                    </div>
+                    <div class="delete-task">
+                        <button class="btn delete">Clear completed tasks</button>
+                        <button class="btn delete">Delete list</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <footer class="footer">
+        <a href="mailto:connorleavitt@gmail.com" class="footer__link">connorleavitt@gmail.com</a>
+        <ul class="social-list">
+            <li class="social-list__items">
+                <a href="https://linkedin.com/in/connorleavitt/" 
+                class="social-list__link">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            </li>
+            <li class="social-list__items">
+                <a href="https://github.com/connorleavitt" 
+                class="social-list__link">
+                <i class="fa-brands fa-square-github"></i>
+            </a>
+            </li>
+        </ul>
+    </footer>
+    
 </body>
 </html>
