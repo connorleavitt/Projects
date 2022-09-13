@@ -18,17 +18,14 @@
 
         <div class="all-tasks">
             <h2 class="task-list-title">Projects</h2>
-            <ul class="task-list">
-                <li class="active-list list-name">Project 1</li>
-                <li class="list-name">Project 2</li>
-                <li class="list-name">Project 3</li>
-            </ul>
+            <ul class="task-list" data-lists></ul>
 
-            <form action="">
+            <form action="" data-new-list-form>
                 <input 
                     type="text" 
                     class="new-input list"
                     placeholder="new project"
+                    data-new-list-input
                     name="" 
                     id=""
                     aria-label="new project">
@@ -38,56 +35,31 @@
 
         </div>
 
-        <div class="main__project-container">
+        <div class="main__project-container" data-list-display-container>
             <div class="main__project-title-container">
-                <h2 class="main__project--title">Project 1</h2>
-                <p class="main__project--task-count"># tasks remaining</p>
+                <h2 class="main__project--title" data-list-title></h2>
+                <p class="main__project--task-count" data-list-count></p>
             </div>
             <div class="main__project-main-list">
-                <div class="tasks">
-                    <div class="task">
-                        <input type="checkbox" name="" id="task-1">
-                        <label for="task-1">
-                            <span class="custom-checkbox"></span>
-                            task 1
-                        </label>
-                    </div>
-
-                    <div class="task">
-                        <input type="checkbox" name="" id="task-2">
-                        <label for="task-2">
-                            <span class="custom-checkbox"></span>
-                            task 2
-                        </label>
-                    </div>
-
-                    <div class="task">
-                        <input type="checkbox" name="" id="task-3">
-                        <label for="task-3">
-                            <span class="custom-checkbox"></span>
-                            task 3
-                        </label>
-                    </div>
-
-
-                    <div class="create-task">
-                        <form action="">
-                            <input 
-                                type="text" 
-                                class="new-input task"
-                                placeholder="new task"
-                                name="" 
-                                id=""
-                                aria-label="new project">
-                            <button class="btn create" aria-label="new task">+</button>
-            
-                        </form>
-                    </div>
-                    <div class="delete-task">
-                        <button class="btn delete">Clear completed tasks</button>
-                        <button class="btn delete">Delete list</button>
-                    </div>
+                <div class="tasks" data-tasks></div>
+                <div class="create-task">
+                    <form action="" data-new-task-form>
+                        <input 
+                            type="text" 
+                            class="new-input task"
+                            placeholder="new task"
+                            data-new-task-input
+                            name="" 
+                            id=""
+                            aria-label="new project">
+                        <button class="btn create" aria-label="new task">+</button>
+        
+                    </form>
                 </div>
+            </div>
+            <div class="delete-task">
+                <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
+                <button class="btn delete" data-delete-list-button>Delete list</button>
             </div>
         </div>
     </div>
@@ -109,6 +81,14 @@
             </li>
         </ul>
     </footer>
-    
+    <template id="task-template">
+        <div class="task">
+            <input type="checkbox">
+            <label>
+                <span class="custom-checkbox"></span>
+            </label>
+        </div>
+    </template>
+
 </body>
 </html>
