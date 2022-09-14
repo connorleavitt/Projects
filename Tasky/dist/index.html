@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    
-    <script src="https://kit.fontawesome.com/e07d1d767e.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/e07d1d767e.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./style.css" />
     <script src="main.js" defer></script>
     <title>Tasky</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="content" id="content">
-        <h1 class="header--title">Tasky</h1>
+      <h1 class="header--title">Tasky</h1>
 
-        <div class="all-tasks">
-            <h2 class="task-list-title">Projects</h2>
-            <ul class="task-list" data-lists></ul>
+      <div class="all-tasks">
+        <h2 class="task-list-title">Projects</h2>
+        <ul class="task-list" data-lists></ul>
 
-            <form action="" data-new-list-form>
-                <input 
-                    type="text" 
-                    class="new-input list"
-                    placeholder="new project"
-                    data-new-list-input
-                    name="" 
-                    id=""
-                    aria-label="new project">
-                <button class="btn create" aria-label="new project">+</button>
+        <form action="" data-new-list-form>
+          <input
+            type="text"
+            class="new-input list"
+            placeholder="new project"
+            data-new-list-input
+            name=""
+            id=""
+            aria-label="new project"
+          />
+          <button class="btn create" aria-label="new project">+</button>
+        </form>
+      </div>
 
+      <div class="main__project-container" data-list-display-container>
+        <div class="main__project-title-container">
+          <h2 class="main__project--title" data-list-title></h2>
+          <p class="main__project--task-count" data-list-count></p>
+        </div>
+        <div class="main__project-main-list">
+          <div class="tasks" data-tasks></div>
+          <div class="create-task">
+            <form action="" data-new-task-form>
+              <input
+                type="text"
+                class="new-input task"
+                placeholder="new task"
+                data-new-task-input
+                name=""
+                id=""
+                aria-label="new project"
+              />
+              <button class="btn create" aria-label="new task">+</button>
             </form>
-
+          </div>
         </div>
-
-        <div class="main__project-container" data-list-display-container>
-            <div class="main__project-title-container">
-                <h2 class="main__project--title" data-list-title></h2>
-                <p class="main__project--task-count" data-list-count></p>
-            </div>
-            <div class="main__project-main-list">
-                <div class="tasks" data-tasks></div>
-                <div class="create-task">
-                    <form action="" data-new-task-form>
-                        <input 
-                            type="text" 
-                            class="new-input task"
-                            placeholder="new task"
-                            data-new-task-input
-                            name="" 
-                            id=""
-                            aria-label="new project">
-                        <button class="btn create" aria-label="new task">+</button>
-        
-                    </form>
-                </div>
-            </div>
-            <div class="delete-task">
-                <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
-                <button class="btn delete" data-delete-list-button>Delete list</button>
-            </div>
+        <div class="delete-task">
+          <button class="btn delete" data-clear-complete-tasks-button>
+            Clear completed tasks
+          </button>
+          <button class="btn delete" data-delete-list-button>
+            Delete list
+          </button>
         </div>
+      </div>
     </div>
-        
+
     <footer class="footer">
-        <a href="mailto:connorleavitt@gmail.com" class="footer__link">connorleavitt@gmail.com</a>
-        <ul class="social-list">
-            <li class="social-list__items">
-                <a href="https://linkedin.com/in/connorleavitt/" 
-                class="social-list__link">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-            </li>
-            <li class="social-list__items">
-                <a href="https://github.com/connorleavitt" 
-                class="social-list__link">
-                <i class="fa-brands fa-square-github"></i>
-            </a>
-            </li>
-        </ul>
+      <a href="mailto:connorleavitt@gmail.com" class="footer__link"
+        >connorleavitt@gmail.com</a
+      >
+      <ul class="social-list">
+        <li class="social-list__items">
+          <a
+            href="https://linkedin.com/in/connorleavitt/"
+            class="social-list__link"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="social-list__items">
+          <a href="https://github.com/connorleavitt" class="social-list__link">
+            <i class="fa-brands fa-square-github"></i>
+          </a>
+        </li>
+      </ul>
     </footer>
     <template id="task-template">
-        <div class="task">
-            <input type="checkbox">
-            <label>
-                <span class="custom-checkbox"></span>
-            </label>
-        </div>
+      <div class="task">
+        <input type="checkbox" />
+        <label>
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
     </template>
-
-</body>
+  </body>
 </html>

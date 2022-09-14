@@ -1,0 +1,225 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Custom Properties & Variables */
+
+:root {
+  --ff-primary: "Inter", sans-serif;
+  --ff-secondary: "Ubuntu Mono", monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #f5f5f5;
+  --clr-light-rgb: 255, 255, 255;
+  --clr-main: #365943;
+  --clr-main-rgb: 54, 89, 67;
+  --clr-dark: #303030;
+  --clr-accent: #c1aec0;
+  --clr-accent-rgb: 102, 204, 102;
+  --clr-accent-2: #eea144;
+  --clr-accent-2-rgb: 195, 177, 225;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.25rem;
+  }
+}
+
+/* General */
+
+body {
+  background: #5a8068;
+  color: var(--clr-light);
+  margin: 0;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.drop-down-menu {
+  margin: 0;
+  padding: 0;
+  /* background-color: #c1aec0; */
+  /* color: var(--clr-dark); */
+}
+
+.drop-down-menu--list {
+  padding: 0.5em;
+  padding-right: 2em;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2em;
+}
+
+.drop-down-menu--list-item {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.drop-down-menu--list-item span::before {
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 5px;
+  background-color: var(--clr-light);
+  position: absolute;
+  transition: transform 200ms ease-in-out;
+  transform: scaleX(0);
+}
+
+.drop-down-menu--list-item span:focus::before,
+.drop-down-menu--list-item span:hover::before {
+  transform: scaleX(1);
+}
+
+.drop-down-menu--list-item.active span::before {
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 5px;
+  background-color: var(--clr-light);
+  position: absolute;
+  transform: scaleX(1);
+}
+
+.individual-menu {
+  background-color: var(--clr-main);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  /* width: auto; */
+  margin-top: 0.5em;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  box-shadow: var(--bs);
+  opacity: 0;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.individual-menu:before {
+  border-bottom: 10px solid var(--clr-main);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: "";
+  left: 9%;
+  position: absolute;
+  top: -10px;
+}
+
+.individual-menu--about {
+  right: 0;
+  border: 2px solid var(--clr-light);
+}
+.individual-menu--about:before {
+  border-bottom: 10px solid var(--clr-light);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: "";
+  left: 94%;
+  position: absolute;
+  top: -10px;
+}
+
+.individual-menu--login {
+  border: 2px solid var(--clr-light);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.individual-menu--login:before {
+  border-bottom: 10px solid var(--clr-light);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: "";
+  left: 85%;
+  position: absolute;
+  top: -10px;
+}
+
+.drop-down-menu--list-item.active > span + .individual-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.individual-menu--list {
+  padding: 0;
+  margin: 0.5em 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: fit-content;
+}
+
+.individual-menu--list-item {
+  padding: 0.25em;
+  padding-right: 1em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.individual-menu--list-item:hover {
+  background-color: rgba(var(--clr-light-rgb), 0.2);
+}
+
+.individual-menu--list-item i {
+  margin: 0 0.5em;
+}
+
+.individual-menu--list p {
+  font-size: 1.3rem;
+  font-weight: var(--fw-bold);
+  padding: 0;
+  margin: 0;
+  margin-left: 0.6em;
+  cursor: default;
+}
+
+.individual-menu--login p.login,
+.individual-menu--login > .individual-menu--list > .individual-menu--list-item {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0 1em;
+}
+
+button {
+  font-size: 1rem;
+  width: 80px;
+  height: 2rem;
+  margin: 0 0 0.5em 8em;
+}
+
+.content {
+  margin: 1em;
+  margin-top: 5em;
+}
