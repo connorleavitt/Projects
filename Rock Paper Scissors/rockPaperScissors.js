@@ -56,60 +56,60 @@ let roundInfo;
 let winningMessage;
 
 options.forEach((option) => {
-    option.addEventListener("click", function () {
-        const playerSelection = this.textContent;
-    
-        const computerOptions = ["Rock", "Paper", "Scissors"];
-        let computerSelection = computerOptions[Math.floor(Math.random() * 3)];
-        
-        playRound(playerSelection, computerSelection);
-        updateScore();
-        checkWinner();
-    });
+  option.addEventListener("click", function () {
+    const playerSelection = this.textContent;
+
+    const computerOptions = ["Rock", "Paper", "Scissors"];
+    let computerSelection = computerOptions[Math.floor(Math.random() * 3)];
+
+    playRound(playerSelection, computerSelection);
+    updateScore();
+    checkWinner();
+  });
 });
 
-
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        roundInfo = `Last round: You both chose ${playerSelection}, so it's a draw!`;
-    } else if ((playerSelection === "Rock" && computerSelection === "Paper") 
-            || (playerSelection === "Paper" && computerSelection === "Scissors")
-            || (playerSelection === "Scissors" && computerSelection === "Rock")) {
-        roundInfo = `Last round: Ah! ${computerSelection} beats ${playerSelection}!`;
-        computerScore++;
-    } else if ((playerSelection === "Rock" && computerSelection === "Scissors") 
-            || (playerSelection === "Paper" && computerSelection === "Rock")
-            || (playerSelection === "Scissors" && computerSelection === "Paper")) {
-        roundInfo = `Last round: Nice! ${playerSelection} beats ${computerSelection}!`;
-        playerScore++;
-    }
-    gameRound++;
+  if (playerSelection === computerSelection) {
+    roundInfo = `Last round: You both chose ${playerSelection}, so it's a draw!`;
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Paper") ||
+    (playerSelection === "Paper" && computerSelection === "Scissors") ||
+    (playerSelection === "Scissors" && computerSelection === "Rock")
+  ) {
+    roundInfo = `Last round: Ah! ${computerSelection} beats ${playerSelection}!`;
+    computerScore++;
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper")
+  ) {
+    roundInfo = `Last round: Nice! ${playerSelection} beats ${computerSelection}!`;
+    playerScore++;
+  }
+  gameRound++;
 }
 
 function updateScore() {
-    document.getElementById("playerScore").textContent = playerScore;
-    document.getElementById("computerScore").textContent = computerScore;
-    document.getElementById("gameRound").textContent = gameRound;
-    document.getElementById("roundInfo").textContent = roundInfo;
+  document.getElementById("playerScore").textContent = playerScore;
+  document.getElementById("computerScore").textContent = computerScore;
+  document.getElementById("gameRound").textContent = gameRound;
+  document.getElementById("roundInfo").textContent = roundInfo;
 }
 
 function checkWinner() {
-    if (playerScore === 5 || computerScore === 5) {
-        const playerWins = `After ${gameRound} rounds, you won!`;
-        const compWins = `After ${gameRound} rounds, you lost!`;
-        const winningMessage = document.getElementById('winningMessage');
-        const winner = 
-            playerScore === 5 
-            ? playerWins
-            : compWins;
-        winningMessage.textContent = winner;
-        if (winner == compWins) {
-            winningMessage.style.color = 'red';
-        }
-        document.getElementById("rockButton").disabled = true; 
-        document.getElementById("paperButton").disabled = true; 
-        document.getElementById("scissorsButton").disabled = true; 
-        return true;
+  if (playerScore === 5 || computerScore === 5) {
+    const playerWins = `After ${gameRound} rounds, you won!`;
+    const compWins = `After ${gameRound} rounds, you lost!`;
+    const winningMessage = document.getElementById("winningMessage");
+    const winner = playerScore === 5 ? playerWins : compWins;
+    winningMessage.textContent = winner;
+    if (winner == compWins) {
+      winningMessage.style.color = "white";
     }
-    return false;
+    document.getElementById("rockButton").disabled = true;
+    document.getElementById("paperButton").disabled = true;
+    document.getElementById("scissorsButton").disabled = true;
+    return true;
+  }
+  return false;
 }

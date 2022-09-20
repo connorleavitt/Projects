@@ -1,34 +1,77 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
-    text-align: center;
+  font-family: monospace;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background-color: aliceblue;
+}
+
+.header {
+  margin: 1em;
+  padding: 0;
+  border-radius: 20px;
+  background-color: rgb(255, 01, 140);
+}
+
+h1,
+h2 {
+  margin: 0;
+  padding: 0.2em 0;
+  font-weight: 200;
+}
+
+.main {
+  border-radius: 20px;
+  margin: 1em;
+  padding: 0;
+  /* min-height: 50vh; */
+  background-color: rgb(255, 01, 140);
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-    width: 100px;
-    height: 100px;
-    margin: 15px;
-    color: blue;
-    font-size: 20px;
+  width: 100px;
+  height: 50px;
+  margin: 15px;
+  color: white;
+  font-size: 20px;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #roundText {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 #scoreLine {
-    font: 20px red;
+  padding: 1em;
+  background-color: white;
+  border: 2px solid black;
 }
-
-
 
 p > span#playerScore {
-    color: blue;
+  color: blue;
 }
 p > span#computerScore {
-    color: red;
+  color: red;
 }
 
 #winningMessage {
-    color: green;
-    font-size: 50px;
+  color: white;
+  font-size: 50px;
 }
