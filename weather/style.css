@@ -99,7 +99,7 @@ main {
   background-color: var(--clr-main);
   padding: 1em;
   min-width: 250px;
-  color: var(--clr-light);
+  color: rgba(var(--clr-light-rgb), 0.8);
 }
 
 .city-name {
@@ -110,5 +110,32 @@ main {
 
 .location-weather-card span {
   padding-left: 1em;
-  text-decoration: underline;
+  color: var(--clr-light);
+}
+
+.cardTempInfo {
+  display: grid;
+  grid-template-areas:
+    "main main"
+    "min max";
+}
+
+.currentTemp {
+  grid-area: main;
+}
+
+.currentTemp-span {
+  font-size: 1.25rem;
+}
+
+.minTemp {
+  grid-area: min;
+}
+
+.maxTemp {
+  grid-area: max;
+}
+
+hr {
+  border: 1px solid rgba(var(--clr-light-rgb), 0.35);
 }
