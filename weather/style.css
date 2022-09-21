@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Custom Properties & Variables */
+
+:root {
+  --ff-primary: "Inter", sans-serif;
+  --ff-secondary: "Ubuntu Mono", monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #f5f5f5;
+  --clr-light-rgb: 255, 255, 255;
+  --clr-main: #365943;
+  --clr-main-rgb: 54, 89, 67;
+  --clr-main-light: #8bac97;
+  --clr-dark: #303030;
+  --clr-accent: #c1aec0;
+  --clr-accent-rgb: 102, 204, 102;
+  --clr-accent-2: #eea144;
+  --clr-accent-2-rgb: 195, 177, 225;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--clr-main-light);
+  font-family: monospace;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: var(--clr-main);
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--clr-light);
+}
+
+.header-title {
+  font-size: 2rem;
+}
+
+.tempature-button {
+  padding: 0.2em 0.75em;
+  font-size: var(--fs-h3);
+  border: 2px solid rgba(var(--clr-light-rgb), 0.65);
+  border-radius: 5px;
+  background-color: transparent;
+  color: rgba(var(--clr-light-rgb), 0.65);
+  cursor: pointer;
+}
+
+.tempature-button:hover,
+.tempature-button:focus {
+  background-color: var(--clr-main-light);
+}
+
+.tempature-button.active {
+  border: 4px solid var(--clr-light);
+  background-color: var(--clr-main);
+  color: var(--clr-light);
+  font-weight: var(--fw-bold);
+}
+
+main {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search {
+  margin: 2em 0;
+}
+
+.location-weather-card {
+  border: 2px solid var(--clr-light);
+  box-shadow: var(--bs);
+  background-color: var(--clr-main);
+  padding: 1em;
+  min-width: 250px;
+  color: var(--clr-light);
+}
+
+.city-name {
+  text-align: center;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.location-weather-card span {
+  padding-left: 1em;
+  text-decoration: underline;
+}

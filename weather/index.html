@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/e07d1d767e.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header-title">Weather App</h1>
+      <div class="tempButtonContainer">
+        <button class="tempature-button celcius">°C</button>
+        <button class="tempature-button fahrenheit active">°F</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="search">
+        <label for="searchbar"></label>
+        <input
+          id="searchbar"
+          placeholder="Enter a city"
+          type="text"
+          class="searchbar-input"
+        />
+        <button class="searchbar-button">Search</button>
+      </div>
+      <div class="location-weather-card">
+        <h3 class="city-name">City</h3>
+        <p class="overall">Overall: <span class="overall-span"></span></p>
+        <p class="description">
+          Description:<span class="description-span"></span>
+        </p>
+        <p class="currentTemp">
+          Current Temp:<span class="currentTemp-span"></span>
+        </p>
+        <p class="minTemp">Min:<span class="minTemp-span"></span></p>
+        <p class="maxTemp">Max:<span class="maxTemp-span"></span></p>
+        <p class="humidity">Humidity:<span class="humidity-span"></span></p>
+      </div>
+    </main>
+  </body>
+</html>
