@@ -11,8 +11,32 @@
   <body>
     <header class="header">
       <h1 class="header--title">Snake!</h1>
+      <button class="reload">Reload</button>
     </header>
     <main class="main">
+      <div class="game-info">
+        <div class="upper-game-info">
+          <h2 class="game-info--title">Game Setup</h2>
+          <button class="game-info--start">Start</button>
+        </div>
+        <div class="game-info--speed">
+          <h3 class="game-info--speed-title">Speed</h3>
+          <span class="current-speed"></span>
+          <input
+            data-speed
+            type="range"
+            name="speed"
+            id="speed"
+            min="1"
+            max="10"
+          />
+        </div>
+        <div class="game-info--difficulty">
+          <h3 class="game-info--difficulty-title">Difficulty</h3>
+          <button class="difficulty-button">Easy</button>
+          <button class="difficulty-button">Hard</button>
+        </div>
+      </div>
       <section class="gameboard" id="gameboard"></section>
     </main>
   </body>

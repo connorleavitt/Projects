@@ -49,3 +49,7 @@ function draw() {
 function checkDeath() {
   gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
 }
+
+// add UI (3 radio btns; slow, med, fast) for snake speed selection
+// add UI for snake expansion rate (easy v hard || small vs big) selection
+// add UI for adjusting grid size

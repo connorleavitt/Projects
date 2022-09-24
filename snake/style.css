@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: lightblue;
+  min-width: 500px;
 }
 
 button {
@@ -23,13 +24,22 @@ button {
 }
 
 header {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 100px;
   background-color: lightcoral;
+  text-align: center;
 }
 
 .header--title {
   margin: 0;
   padding: 0.5em 0;
+}
+
+.reload {
+  align-self: center;
+  justify-self: center;
+  height: 25px;
+  width: 70px;
 }
 
 main {
@@ -43,12 +53,102 @@ main {
   background-color: bisque;
   max-width: 500px;
   margin: 1em;
-  padding: 1em;
+  padding: 0;
+  border-radius: 5px;
+  display: grid;
+  justify-items: center;
+  grid-template-areas:
+    "title title"
+    "speed diff";
+}
+
+.upper-game-info {
+  width: 100%;
+  grid-area: title;
+  display: flex;
+  justify-content: space-around;
 }
 
 .game-info--title {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.game-info--start {
   margin: 0;
   padding: 0;
+  width: 50px;
+  height: 25px;
+  align-self: center;
+}
+
+.game-info--speed {
+  grid-area: speed;
+  display: grid;
+  grid-template-areas:
+    "title title span"
+    "slider slider slider";
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin: 0;
+  padding: 1em;
+  /* border: 5px solid lightgoldenrodyellow; */
+}
+
+.game-info--speed-title {
+  grid-area: title;
+  padding: 0;
+  text-align: center;
+}
+
+.current-speed {
+  grid-area: span;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#speed {
+  -webkit-appearance: none;
+  cursor: pointer;
+  grid-area: slider;
+  outline: none;
+  margin-top: 1rem;
+  /* padding: 0.4em; */
+  border-radius: 20px;
+  height: 15px;
+  /* width: 100%; */
+  background-color: lightcoral;
+  opacity: 0.7;
+  transition: opacity 200ms;
+}
+
+#speed::-webkit-slider-thumb,
+#speed::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid lightcoral;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: azure;
+  cursor: pointer;
+}
+
+#speed:hover {
+  opacity: 1;
+}
+
+.game-info--difficulty {
+  grid-area: diff;
+  margin: 0;
+  padding: 1em;
+  /* border: 5px solid lightgoldenrodyellow; */
+}
+
+.game-info--difficulty-title {
+  padding: 0;
+  padding-bottom: 1em;
+  text-align: center;
 }
 
 .gameboard {
@@ -62,17 +162,13 @@ main {
   border: 4px solid lightcoral;
 }
 
-.cell {
-  background-color: azure;
-  border: 1em solid black;
-}
-
 .snake {
-  background-color: blue;
-  /* border: 0.25vmin solid black; */
+  background-color: lightseagreen;
+  border: 0.25vmin solid aliceblue;
 }
 
 .food {
   /* border: 0.25vmin solid black; */
-  background-color: yellow;
+  background-color: lightcoral;
+  border-radius: 50%;
 }
