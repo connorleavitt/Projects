@@ -7,11 +7,7 @@ export default function Subsection({ type }) {
     return (
       <div className={mainClassName}>
         <h2 className={titleClassName}>{type}</h2>
-        <div className={contentClassName}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae,
-          dicta nobis excepturi asperiores corporis vel molestias porro autem
-          error eum ad facere et ex fuga rerum quibusdam itaque commodi quam.
-        </div>
+        <div className={contentClassName}></div>
       </div>
     );
   }
@@ -63,11 +59,7 @@ export default function Subsection({ type }) {
   return (
     <div className={mainClassName}>
       <h2 className={titleClassName}>{type}</h2>
-      <div className={contentClassName}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae,
-        dicta nobis excepturi asperiores corporis vel molestias porro autem
-        error eum ad facere et ex fuga rerum quibusdam itaque commodi quam.
-      </div>
+      <div className={contentClassName}></div>
     </div>
   );
 }

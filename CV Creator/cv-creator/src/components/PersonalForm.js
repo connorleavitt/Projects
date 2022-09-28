@@ -1,10 +1,10 @@
 import Textarea from "./Textarea";
 import Input from "./Input";
 
-export default function PersonalForm({ header }) {
+export default function PersonalForm({ blank }) {
   return (
     <div className="form-subcontainer--section">
-      <h2 className="form-title">{header}</h2>
+      <h2 className="form-title">Personal Information</h2>
       <Input type={"text"} placeholder={"First Name"} />
       <Input type={"text"} placeholder={"Last Name"} />
       <Input type={"text"} placeholder={"Title"} />
