@@ -1,6 +1,6 @@
 import Subsection from "./Subsection";
 
-export default function Section({ type, personalInfo }) {
+export default function Section({ type, personalInfo, educationInfo }) {
   const className = `cv-subcontainer--${type}`;
   const personalInfoObject = { ...personalInfo };
   const firstName = personalInfoObject.firstName;
@@ -10,7 +10,7 @@ export default function Section({ type, personalInfo }) {
     return (
       <div className={className}>
         <Subsection {...{ type: "description" }} personalInfo={personalInfo} />
-        <Subsection {...{ type: "education" }} />
+        <Subsection {...{ type: "education" }} educationInfo={educationInfo} />
         <Subsection {...{ type: "experience" }} />
       </div>
     );

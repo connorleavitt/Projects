@@ -13,6 +13,14 @@ export default function Main() {
       email: "",
       description: "",
     },
+    educationInfo: {
+      universityName: "",
+      location: "",
+      degree: "",
+      subject: "",
+      startDate: "",
+      endDate: "",
+    },
   };
   const [cv, setCv] = useState(exampleCV);
 
@@ -27,12 +35,27 @@ export default function Main() {
       },
     }));
   };
-  // const componentRef = useRef();
+
+  const handleChangeEducation = (e) => {
+    const { name, value, type } = e.target;
+
+    setCv((prevState) => ({
+      ...prevState,
+      educationInfo: {
+        ...prevState.educationInfo,
+        [name]: value,
+      },
+    }));
+  };
 
   return (
     <div className="container">
       <div className="form-container">
-        <MainForm cv={cv} onChangePersonal={handleChangePersonal} />
+        <MainForm
+          cv={cv}
+          onChangePersonal={handleChangePersonal}
+          onChangeEducation={handleChangeEducation}
+        />
       </div>
       <div className="cv-container">
         <CV cv={cv} />
