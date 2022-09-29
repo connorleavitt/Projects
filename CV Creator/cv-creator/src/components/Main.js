@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import MainForm from "./MainForm";
 import CV from "./CV";
 
@@ -27,7 +27,7 @@ export default function Main() {
       },
     }));
   };
-  const componentRef = useRef();
+  // const componentRef = useRef();
 
   return (
     <div className="container">
@@ -35,7 +35,7 @@ export default function Main() {
         <MainForm cv={cv} onChangePersonal={handleChangePersonal} />
       </div>
       <div className="cv-container">
-        <CV cv={cv} ref={componentRef} />
+        <CV cv={cv} />
       </div>
     </div>
   );

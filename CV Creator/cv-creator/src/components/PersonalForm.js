@@ -14,12 +14,47 @@ export default function PersonalForm({ personalInfo, onChange }) {
         placeholder="First name"
         value={personalInfo.firstName}
       />
-      <Input type={"text"} placeholder={"Last Name"} />
-      <Input type={"text"} placeholder={"Title"} />
-      <Input type={"text"} placeholder={"Address"} />
-      <Input type={"tel"} placeholder={"Phone Number"} />
-      <Input type={"text"} placeholder={"Email"} />
-      <Textarea placeholder={"Description"} />
+      <Input
+        onChange={(e) => onChange(e)}
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        value={personalInfo.lastName}
+      />
+      <Input
+        onChange={(e) => onChange(e)}
+        type="text"
+        name="title"
+        placeholder="Title"
+        value={personalInfo.title}
+      />
+      <Input
+        onChange={(e) => onChange(e)}
+        type="text"
+        name="address"
+        placeholder="Address"
+        value={personalInfo.address}
+      />
+      <Input
+        onChange={(e) => onChange(e)}
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        value={personalInfo.phone}
+      />
+      <Input
+        onChange={(e) => onChange(e)}
+        type="text"
+        name="email"
+        placeholder="Email"
+        value={personalInfo.email}
+      />
+      <Textarea
+        onChange={(e) => onChange(e)}
+        name="description"
+        placeholder="Description"
+        value={personalInfo.description}
+      />
     </div>
   );
 }

@@ -3,15 +3,18 @@ export default function Subsection({ type, personalInfo }) {
   const titleClassName = `cv-subcontainer-section--${type}-title`;
   const contentClassName = `cv-subcontainer-section--${type}-content`;
 
-  const obj = { ...personalInfo };
-  const firstName = obj.firstName;
-  console.log(firstName);
+  const personalInfoObject = { ...personalInfo };
+  const title = personalInfoObject.title;
+  const address = personalInfoObject.address;
+  const phone = personalInfoObject.phone;
+  const email = personalInfoObject.email;
+  const description = personalInfoObject.description;
 
   if (type === "description") {
     return (
       <div className={mainClassName}>
-        <h2 className={titleClassName}>{type}</h2>
-        <div className={contentClassName}></div>
+        <h2 className={titleClassName}>Description</h2>
+        <div className={contentClassName}>{description}</div>
       </div>
     );
   }
@@ -19,7 +22,7 @@ export default function Subsection({ type, personalInfo }) {
   if (type === "education") {
     return (
       <div className={mainClassName}>
-        <h2 className={titleClassName}>{type}</h2>
+        <h2 className={titleClassName}>Education</h2>
         <div className={contentClassName}>
           {/* <div>University:</div>
           <div>Location:</div>
@@ -34,7 +37,7 @@ export default function Subsection({ type, personalInfo }) {
   if (type === "experience") {
     return (
       <div className={mainClassName}>
-        <h2 className={titleClassName}>{type}</h2>
+        <h2 className={titleClassName}>Experience</h2>
         <div className={contentClassName}>
           {/* <div>position:</div>
           <div>company:</div>
@@ -49,12 +52,12 @@ export default function Subsection({ type, personalInfo }) {
   if (type === "personal") {
     return (
       <div className={mainClassName}>
-        <h2 className={titleClassName}>{type}</h2>
+        <h2 className={titleClassName}>Personal</h2>
         <div className={contentClassName}>
-          <div>Title: {firstName}</div>
-          <div>address:</div>
-          <div>phone</div>
-          <div>email:</div>
+          <div>Title: {title}</div>
+          <div>Address: {address}</div>
+          <div>Phone: {phone}</div>
+          <div>Email: {email}</div>
         </div>
       </div>
     );

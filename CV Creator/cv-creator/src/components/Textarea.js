@@ -1,3 +1,11 @@
-export default function Textarea({ placeholder }) {
-  return <textarea className="form-textarea" placeholder={placeholder} />;
+export default function Textarea({ name, placeholder, onChange, value }) {
+  return (
+    <textarea
+      onChange={onChange}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      className="form-textarea"
+    />
+  );
 }
