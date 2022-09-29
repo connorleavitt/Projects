@@ -1,10 +1,14 @@
-export default function Subsection({ type, personalInfo, educationInfo }) {
+export default function Subsection({
+  type,
+  personalInfo,
+  educationInfo,
+  experienceInfo,
+}) {
   const mainClassName = `cv-subcontainer-section--${type}`;
   const titleClassName = `cv-subcontainer-section--${type}-title`;
   const contentClassName = `cv-subcontainer-section--${type}-content`;
 
   const personalInfoObject = { ...personalInfo };
-  const title = personalInfoObject.title;
   const address = personalInfoObject.address;
   const phone = personalInfoObject.phone;
   const email = personalInfoObject.email;
@@ -12,11 +16,18 @@ export default function Subsection({ type, personalInfo, educationInfo }) {
 
   const educationInfoObject = { ...educationInfo };
   const universityName = educationInfoObject.universityName;
-  const location = educationInfoObject.location;
+  const educationLocation = educationInfoObject.educationLocation;
   const degree = educationInfoObject.degree;
   const subject = educationInfoObject.subject;
-  const startDate = educationInfoObject.startDate;
-  const endDate = educationInfoObject.endDate;
+  const educationStartDate = educationInfoObject.educationStartDate;
+  const educationEndDate = educationInfoObject.educationEndDate;
+
+  const experienceInfoObject = { ...experienceInfo };
+  const position = experienceInfoObject.position;
+  const company = experienceInfoObject.company;
+  const experienceLocation = experienceInfoObject.experienceLocation;
+  const experienceStartDate = experienceInfoObject.experienceStartDate;
+  const experienceEndDate = experienceInfoObject.experienceEndDate;
 
   if (type === "description") {
     return (
@@ -33,12 +44,12 @@ export default function Subsection({ type, personalInfo, educationInfo }) {
         <h2 className={titleClassName}>Education</h2>
         <div className={contentClassName}>
           <div className="education-university">{universityName}</div>
-          <div className="education-location">{location}</div>
+          <div className="education-location">{educationLocation}</div>
           <div className="education-degree">
             {degree}, {subject}
           </div>
           <div className="education-date">
-            {startDate} - {endDate}
+            {educationStartDate} - {educationEndDate}
           </div>
         </div>
       </div>
@@ -50,11 +61,13 @@ export default function Subsection({ type, personalInfo, educationInfo }) {
       <div className={mainClassName}>
         <h2 className={titleClassName}>Experience</h2>
         <div className={contentClassName}>
-          {/* <div>position:</div>
-          <div>company:</div>
-          <div>Location</div>
-          <div>From:</div>
-          <div>To:</div> */}
+          <div className="experience-information">
+            {position} at {company}
+          </div>
+          <div className="experience-location">{experienceLocation}</div>
+          <div className="experience-date">
+            {experienceStartDate} - {experienceEndDate}
+          </div>
         </div>
       </div>
     );
@@ -65,10 +78,18 @@ export default function Subsection({ type, personalInfo, educationInfo }) {
       <div className={mainClassName}>
         <h2 className={titleClassName}>Personal</h2>
         <div className={contentClassName}>
-          <div>Title: {title}</div>
-          <div>Address: {address}</div>
-          <div>Phone: {phone}</div>
-          <div>Email: {email}</div>
+          <div className="personal-address">
+            <h3>Address</h3>
+            {address}
+          </div>
+          <div className="personal-phone">
+            <h3>Phone Number</h3>
+            {phone}
+          </div>
+          <div className="personal-email">
+            <h3>Email Address</h3>
+            {email}
+          </div>
         </div>
       </div>
     );

@@ -11,7 +11,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
         onChange={(e) => onChange(e)}
         type="text"
         name="firstName"
-        placeholder="First name"
+        placeholder="First Name"
         value={personalInfo.firstName}
       />
       <Input

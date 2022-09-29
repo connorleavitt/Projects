@@ -15,17 +15,24 @@ export default function Main() {
     },
     educationInfo: {
       universityName: "",
-      location: "",
+      educationLocation: "",
       degree: "",
       subject: "",
-      startDate: "",
-      endDate: "",
+      educationStartDate: "",
+      educationEndDate: "",
+    },
+    experienceInfo: {
+      position: "",
+      company: "",
+      experienceLocation: "",
+      experienceStartDate: "",
+      experienceEndDate: "",
     },
   };
   const [cv, setCv] = useState(exampleCV);
 
   const handleChangePersonal = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
 
     setCv((prevState) => ({
       ...prevState,
@@ -37,12 +44,24 @@ export default function Main() {
   };
 
   const handleChangeEducation = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
 
     setCv((prevState) => ({
       ...prevState,
       educationInfo: {
         ...prevState.educationInfo,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleChangeExperience = (e) => {
+    const { name, value } = e.target;
+
+    setCv((prevState) => ({
+      ...prevState,
+      experienceInfo: {
+        ...prevState.experienceInfo,
         [name]: value,
       },
     }));
@@ -55,6 +74,7 @@ export default function Main() {
           cv={cv}
           onChangePersonal={handleChangePersonal}
           onChangeEducation={handleChangeEducation}
+          onChangeExperience={handleChangeExperience}
         />
       </div>
       <div className="cv-container">

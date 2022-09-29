@@ -1,6 +1,6 @@
 import Section from "./Section";
 
-export default function CV({ cv, componentRef }) {
+export default function CV({ cv }) {
   // const personalInfo = {
   //   ...cv,
   //   firstName: "",
@@ -14,6 +14,7 @@ export default function CV({ cv, componentRef }) {
         {...{ type: "main" }}
         personalInfo={cv.personalInfo}
         educationInfo={cv.educationInfo}
+        experienceInfo={cv.experienceInfo}
       />
       <Section {...{ type: "personal" }} personalInfo={cv.personalInfo} />
     </div>

@@ -15,9 +15,9 @@ export default function EducationItem({ onChange, educationInfo }) {
       <Input
         onChange={(e) => onChange(e)}
         type="text"
-        name="location"
+        name="educationLocation"
         placeholder="City, State"
-        value={educationInfo.locationName}
+        value={educationInfo.educationLocation}
       />
       <Input
         onChange={(e) => onChange(e)}
@@ -36,17 +36,21 @@ export default function EducationItem({ onChange, educationInfo }) {
       <Input
         onChange={(e) => onChange(e)}
         type="text"
-        name="startDate"
-        value={educationInfo.startDate}
+        name="educationStartDate"
+        placeholder="Start Date"
+        value={educationInfo.educationStartDate}
       />
       <Input
         onChange={(e) => onChange(e)}
         type="text"
-        name="endDate"
-        value={educationInfo.endDate}
+        name="educationEndDate"
+        placeholder="End Date"
+        value={educationInfo.educationEndDate}
       />
-      <Button className="form-delete-btn" content="Delete" />
-      <Button className="form-add-btn" content="Add" />
+      <div className="form-btn-update">
+        <Button className="form-add-btn" content="Add" />
+        <Button className="form-delete-btn" content="Delete" />
+      </div>
     </div>
   );
 }
