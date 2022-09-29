@@ -1,7 +1,11 @@
-export default function Subsection({ type }) {
+export default function Subsection({ type, personalInfo }) {
   const mainClassName = `cv-subcontainer-section--${type}`;
   const titleClassName = `cv-subcontainer-section--${type}-title`;
   const contentClassName = `cv-subcontainer-section--${type}-content`;
+
+  const obj = { ...personalInfo };
+  const firstName = obj.firstName;
+  console.log(firstName);
 
   if (type === "description") {
     return (
@@ -47,10 +51,10 @@ export default function Subsection({ type }) {
       <div className={mainClassName}>
         <h2 className={titleClassName}>{type}</h2>
         <div className={contentClassName}>
-          {/* <div>Title:</div>
+          <div>Title: {firstName}</div>
           <div>address:</div>
           <div>phone</div>
-          <div>email:</div> */}
+          <div>email:</div>
         </div>
       </div>
     );

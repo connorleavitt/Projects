@@ -1,10 +1,10 @@
 import Input from "./Input";
 import Button from "./ActionButtons";
 
-export default function EducationForm({ header }) {
+export default function ExperienceForm() {
   return (
     <div className="form-subcontainer--section">
-      <h2 className="form-title">{header}</h2>
+      <h2 className="form-title">Experience</h2>
       <Input type={"text"} placeholder={"Position"} />
       <Input type={"text"} placeholder={"Company"} />
       <Input type={"text"} placeholder={"Location"} />
