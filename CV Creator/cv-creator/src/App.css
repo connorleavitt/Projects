@@ -204,13 +204,13 @@ button {
   grid-template-areas:
     "header header"
     "main personal";
-  grid-template-columns: minmax(300px, 350px) minmax(200px, 250px);
+  grid-template-columns: minmax(300px, 1fr) 250px;
 }
 
 .cv-subcontainer--header {
   background-color: var(--clr-accent-2);
-  padding: 1em 0.6em;
-  font-size: 1.5rem;
+  padding: 0.75em 0.6em;
+  font-size: 2rem;
   font-weight: 800;
   grid-area: header;
 }
@@ -286,5 +286,9 @@ footer {
       "header header"
       "main personal";
     grid-template-columns: 2fr 1fr;
+    font-size: 0.8em;
+  }
+  .cv-subcontainer--header {
+    font-size: 1.5rem;
   }
 }
