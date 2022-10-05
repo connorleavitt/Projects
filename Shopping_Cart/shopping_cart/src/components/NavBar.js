@@ -1,30 +1,32 @@
 import React from "react";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
+
 // import Cart from "./Cart";
 
 export default function NavBar() {
   return (
     <nav className="nav">
-      <a className="store-title" href="/home">
+      <Link className="store-title" to="/">
         Plant Store
-      </a>
+      </Link>
       <ul>
-        <CustomLink href="/home">Home</CustomLink>
-        <CustomLink href="/products">Products</CustomLink>
-        <CustomLink href="/contact">Contact</CustomLink>
+        <CustomLink to="/home">Home</CustomLink>
+        <CustomLink to="/products">Products</CustomLink>
+        <CustomLink to="/contact">Contact</CustomLink>
       </ul>
       {/* <Cart /> */}
     </nav>
   );
 }
 
-function CustomLink({ href, children, ...props }) {
-  const path = window.location.pathname;
-  if (path)
-    return (
-      <li className={path === href ? "active" : ""}>
-        <a href={href} {...props}>
-          {children}
-        </a>
-      </li>
-    );
+function CustomLink({ to, children, ...props }) {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+  return (
+    <li className={isActive ? "active" : ""}>
+      <Link to={to} {...props}>
+        {children}
+      </Link>
+    </li>
+  );
 }

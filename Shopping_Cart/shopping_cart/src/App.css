@@ -47,8 +47,7 @@ body {
   background-color: aquamarine;
 }
 
-.nav a:hover,
-.nav a:focus {
+.nav a:hover {
   background-color: aqua;
 }
 

@@ -6,27 +6,17 @@ import Products from "./pages/Products";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  let component;
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/home":
-      component = <Home />;
-      break;
-    case "/products":
-      component = <Products />;
-      break;
-    case "/contact":
-      component = <Contact />;
-      break;
-    default:
-      return;
-  }
   return (
     <div className="App">
       <Header />
-      <div className="page-container">{component}</div>
+      <div className="page-container">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+        </Routes>
+      </div>
     </div>
   );
 }
