@@ -9,10 +9,6 @@ body {
   margin: 0;
 }
 
-.header {
-  background-color: lightcoral;
-}
-
 .nav {
   background-color: lightblue;
   display: flex;
@@ -52,11 +48,84 @@ body {
 }
 
 .page-container {
-  margin: 1rem 0;
-  background-color: bisque;
-  text-align: center;
+  margin: 0 auto;
 }
 
 .page-container h1 {
   margin: 0;
+}
+
+.main--home {
+  margin: 1em;
+  text-align: center;
+}
+
+.main--home-subtitle {
+  font-weight: 500;
+}
+
+.main--home-shop-now {
+  border: 2px solid darkgreen;
+  border-radius: 20px;
+  /* width: 100px; */
+  padding: 1em;
+  margin: 0;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 250ms ease-in-out;
+  transition: transform 150ms ease-in-out;
+}
+
+.main--home-shop-now:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.main--home-img {
+  margin-top: 1em;
+  max-width: 90vw;
+}
+
+@media (min-width: 1000px) {
+  .main--home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title img"
+      "subtitle img"
+      "button img";
+    margin: 1rem 2rem;
+    gap: 1rem;
+  }
+
+  .main--home-title {
+    grid-area: title;
+    align-self: center;
+  }
+
+  .main--home-subtitle {
+    align-self: center;
+    /* text-align: center; */
+    justify-self: center;
+    grid-area: subtitle;
+    max-width: 30ch;
+    margin: 0;
+  }
+
+  .main--home-img {
+    grid-area: img;
+    align-self: center;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  .main--home-shop-now {
+    grid-area: button;
+
+    align-self: center;
+    justify-self: center;
+  }
 }
