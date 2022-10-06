@@ -1,4 +1,4 @@
-import storeImg from "../assets/joshua-case-gIXwJz10A9Q-unsplash.jpg";
+import storeImg from "../assets/store.jpg";
 
 export default function Home() {
   return (
