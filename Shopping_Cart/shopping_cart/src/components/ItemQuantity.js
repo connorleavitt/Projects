@@ -6,8 +6,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
-export default function ItemQuantity() {
-  const [quantity, setQuantity] = useState(1);
+export default function ItemQuantity(qty) {
+  const { currentQty } = qty;
+  const [quantity, setQuantity] = useState(currentQty);
 
   const handleDecrement = () => {
     if (quantity > 1) {

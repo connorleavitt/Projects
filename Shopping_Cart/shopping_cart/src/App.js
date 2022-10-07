@@ -13,7 +13,7 @@ function App() {
   const handleClick = (product) => {
     const exist = cart.find((x) => x.id === product.id);
     if (exist) {
-      console.log("exists", exist);
+      if (exist.qty === 10) return;
       const updatedCartItem = cart.map((x) =>
         x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
       );
@@ -21,7 +21,6 @@ function App() {
     }
     const newCartItems = [...cart, { ...product, qty: 1 }];
     setCart(newCartItems);
-    console.log("cart", cart);
   };
 
   // useEffect(() => {

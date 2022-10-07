@@ -10,7 +10,7 @@ export default function Cart(props) {
           <img className="cart-box--img" src={product.img} alt={product.img} />
           <div>{product.plantName}</div>
           <div>{product.price}</div>
-          <ItemQuantity />
+          <ItemQuantity currentQty={product.qty} />
         </div>
       ))}
 
