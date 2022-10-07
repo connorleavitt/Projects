@@ -1,23 +1,34 @@
+import { useState } from "react";
 import Category from "../components/Category";
 import ProductCard from "../components/ProductCard";
+import { storePrices } from "../data/constants";
 
-export default function Products() {
+export default function Products(props) {
+  const { handleClick } = props;
+
   return (
     <div className="main--products">
       <Category />
       <section className="products-display--container">
-        <ProductCard product="aglaonema" />
-        <ProductCard product="aloe" />
-        <ProductCard product="asplenium" />
-        <ProductCard product="cactus" />
-        <ProductCard product="calathea" />
-        <ProductCard product="ficusTineke" />
-        <ProductCard product="monstera" />
-        <ProductCard product="philodendron" />
-        <ProductCard product="pilea" />
-        <ProductCard product="rubberTree" />
-        <ProductCard product="sansevieria" />
-        <ProductCard product="zzPlant" />
+        {storePrices.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            handleClick={handleClick}
+          />
+        ))}
+        {/* <ProductCard product="aglaonema" handleClick={handleClick} />
+        <ProductCard product="aloe" handleClick={handleClick} />
+        <ProductCard product="asplenium" handleClick={handleClick} />
+        <ProductCard product="cactus" handleClick={handleClick} />
+        <ProductCard product="calathea" handleClick={handleClick} />
+        <ProductCard product="ficusTineke" handleClick={handleClick} />
+        <ProductCard product="monstera" handleClick={handleClick} />
+        <ProductCard product="philodendron" handleClick={handleClick} />
+        <ProductCard product="pilea" handleClick={handleClick} />
+        <ProductCard product="rubberTree" handleClick={handleClick} />
+        <ProductCard product="sansevieria" handleClick={handleClick} />
+        <ProductCard product="zzPlant" handleClick={handleClick} /> */}
       </section>
     </div>
   );
