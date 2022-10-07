@@ -6,7 +6,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
-export default function ItemQuantity(qty) {
+export default function ItemQuantity({ setSubtotal, qty }) {
   const { currentQty } = qty;
   const [quantity, setQuantity] = useState(currentQty);
 
@@ -25,14 +25,21 @@ export default function ItemQuantity(qty) {
 
   return (
     <div className="product-card--quantity-container">
-      <button onClick={handleDecrement}>
-        <FontAwesomeIcon icon={["fas", "minus"]} />
-      </button>
-      <div className="product-card--quantity-container-value">{quantity}</div>
-      <button onClick={handleIncrement}>
-        {" "}
-        <FontAwesomeIcon icon={["fas", "plus"]} />
-      </button>
+      <div
+        className="product-card--quantity-container-value"
+        onChange={() => qty.setSubtotal(quantity)}
+      >
+        {quantity}
+      </div>
+      <div className="product-card--quantity-container-buttons">
+        <button onClick={handleDecrement}>
+          <FontAwesomeIcon icon={["fas", "minus"]} />
+        </button>
+        <button onClick={handleIncrement}>
+          {" "}
+          <FontAwesomeIcon icon={["fas", "plus"]} />
+        </button>
+      </div>
     </div>
   );
 }
