@@ -4,7 +4,7 @@ import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cart from "./pages/Cart";
 
 function App() {
@@ -13,13 +13,15 @@ function App() {
   const handleClick = (product) => {
     const exist = cart.find((x) => x.id === product.id);
     if (exist) {
+      console.log("exists", exist);
       const updatedCartItem = cart.map((x) =>
         x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
       );
-      setCart(updatedCartItem);
+      return setCart(updatedCartItem);
     }
     const newCartItems = [...cart, { ...product, qty: 1 }];
     setCart(newCartItems);
+    console.log("cart", cart);
   };
 
   // useEffect(() => {

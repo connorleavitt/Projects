@@ -1,6 +1,6 @@
 // import { storePrices } from "../data/constants";
 // import { useState } from "react";
-import ItemQuantity from "./ItemQuantity";
+// import ItemQuantity from "./ItemQuantity";
 
 // function getName(product) {
 //   let plant = getStoreInfo(product);
