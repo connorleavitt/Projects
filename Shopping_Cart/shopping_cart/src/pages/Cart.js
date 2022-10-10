@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartItems from "../components/CartItems";
 
 export default function Cart(props) {
-  const { cart } = props;
+  const { cart, setCart } = props;
 
   return (
     <div className="cart--container">
@@ -10,7 +10,7 @@ export default function Cart(props) {
         <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
         <h2 className="cart--title">My Cart</h2>
       </div>
-      <CartItems cart={cart} />
+      <CartItems cart={cart} setCart={setCart} />
     </div>
   );
 }

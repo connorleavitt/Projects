@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Category from "../components/Category";
 import ProductCard from "../components/ProductCard";
 import { storePrices } from "../data/constants";
 
 export default function Products(props) {
-  const { handleClick } = props;
+  const { addToCart } = props;
 
   return (
     <div className="main--products">
@@ -14,7 +14,7 @@ export default function Products(props) {
           <ProductCard
             key={product.id}
             product={product}
-            handleClick={handleClick}
+            addToCart={addToCart}
           />
         ))}
         {/* <ProductCard product="aglaonema" handleClick={handleClick} />

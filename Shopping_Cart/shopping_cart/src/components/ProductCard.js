@@ -1,51 +1,4 @@
-// import { storePrices } from "../data/constants";
-// import { useState } from "react";
-// import ItemQuantity from "./ItemQuantity";
-
-// function getName(product) {
-//   let plant = getStoreInfo(product);
-//   let initialName = "";
-//   for (const prop in plant) {
-//     if (prop === "plantName") {
-//       initialName = plant[prop];
-//       let plantName =
-//         initialName.charAt(0).toUpperCase() + initialName.slice(1);
-//       return plantName;
-//     }
-//   }
-// }
-
-// function getPrice(product) {
-//   let plant = getStoreInfo(product);
-//   let plantPrice = "";
-//   for (const prop in plant) {
-//     if (prop === "price") {
-//       plantPrice = plant[prop];
-//       return plantPrice;
-//     }
-//   }
-// }
-
-// function getImage(product) {
-//   let plant = getStoreInfo(product);
-//   let plantImage = "";
-//   for (const prop in plant) {
-//     if (prop === "img") {
-//       plantImage = plant[prop];
-//       return plantImage;
-//     }
-//   }
-// }
-
-// function getStoreInfo(input) {
-//   let storeInfo = [...storePrices];
-//   let plantObj = storeInfo.find((obj) => {
-//     return obj.plantName === input;
-//   });
-//   return plantObj;
-// }
-
-export default function ProductCard({ product, handleClick }) {
+export default function ProductCard({ product, addToCart }) {
   let currentPlantName =
     product.plantName.charAt(0).toUpperCase() + product.plantName.slice(1);
 
@@ -60,7 +13,7 @@ export default function ProductCard({ product, handleClick }) {
         {/* <ItemQuantity /> */}
         <button
           className="product-card-add-to-cart-btn"
-          onClick={() => handleClick(product)}
+          onClick={() => addToCart(product)}
         >
           Add to Cart
         </button>

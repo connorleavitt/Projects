@@ -1,35 +1,50 @@
-import { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
-export default function ItemQuantity({ setSubtotal, qty }) {
-  const { currentQty } = qty;
-  const [quantity, setQuantity] = useState(currentQty);
+export default function ItemQuantity({ id, cart, setCart }) {
+  const productId = id;
+  let displayQty = () => {
+    const exist = cart.find((x) => x.id === productId);
+    if (exist) {
+      console.log(`id:${productId}, qty: ${exist.qty}`);
+      return exist.qty;
+    }
+  };
 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      return setQuantity((prevCount) => prevCount - 1);
+    console.log("decrement");
+    const exist = cart.find((x) => x.id === productId);
+    if (exist) {
+      if (exist.qty === 1) return;
+      const updatedCartQty = cart.map((x) =>
+        x.id === productId ? { ...exist, qty: exist.qty - 1 } : x
+      );
+      console.log(updatedCartQty);
+      return setCart(updatedCartQty);
     }
-    return;
   };
 
   const handleIncrement = () => {
-    if (quantity < 10) {
-      return setQuantity((prevCount) => prevCount + 1);
+    console.log("increment");
+    const exist = cart.find((x) => x.id === productId);
+    if (exist) {
+      if (exist.qty === 10) return;
+
+      const updatedCartQty = cart.map((x) =>
+        x.id === productId ? { ...exist, qty: exist.qty + 1 } : x
+      );
+      console.log(updatedCartQty);
+      return setCart(updatedCartQty);
     }
   };
 
   return (
     <div className="product-card--quantity-container">
-      <div
-        className="product-card--quantity-container-value"
-        onChange={() => qty.setSubtotal(quantity)}
-      >
-        {quantity}
+      <div className="product-card--quantity-container-value">
+        {displayQty(productId)}
       </div>
       <div className="product-card--quantity-container-buttons">
         <button onClick={handleDecrement}>
