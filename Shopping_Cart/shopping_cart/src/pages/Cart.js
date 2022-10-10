@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartItems from "../components/CartItems";
+import Checkout from "../components/Checkout";
 
 export default function Cart(props) {
   const { cart, setCart } = props;
@@ -23,6 +24,7 @@ export default function Cart(props) {
         setCart={setCart}
         removeCartItem={removeCartItem}
       />
+      <Checkout cart={cart} />
     </div>
   );
 }

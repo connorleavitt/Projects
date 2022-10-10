@@ -11,12 +11,6 @@ export default function CartItems(props) {
       {cart.map((product) => (
         <div className="cart-box--container" key={product.id}>
           <hr></hr>
-          <button
-            className="cart-box-remove-button"
-            onClick={() => removeCartItem(product)}
-          >
-            Remove
-          </button>
           <div className="cart-box--subcontainer">
             <img
               className="cart-box--img"
@@ -51,6 +45,12 @@ export default function CartItems(props) {
                 <Subtotal id={product.id} cart={cart} />
               </div>
             </div>
+            <button
+              className="cart-box-remove-button"
+              onClick={() => removeCartItem(product)}
+            >
+              Remove
+            </button>
           </div>
           <hr></hr>
         </div>

@@ -7,7 +7,7 @@ export default function ProductCard({ product, addToCart }) {
       <img className="product-card--img" src={product.img} alt={product.img} />
       <div className="product-card--top-info">
         <h3 className="product-card--title">{currentPlantName}</h3>
-        <div className="product-card--price">{product.price}</div>
+        <div className="product-card--price">${product.price}</div>
       </div>
       <div className="product-card--item-actions">
         {/* <ItemQuantity /> */}
