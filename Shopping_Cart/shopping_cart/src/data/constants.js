@@ -11,7 +11,7 @@ import philodendron from "../assets/philodendron.jpg";
 import pilea from "../assets/pilea.jpg";
 import rubberTree from "../assets/rubber-tree.jpg";
 import sansevieria from "../assets/sansevieria.jpg";
-import zzPlant from "../assets/monstera.jpg";
+import zzPlant from "../assets/zz-plant.jpg";
 
 export const storePrices = [
   {

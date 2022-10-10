@@ -9,26 +9,23 @@ export default function ItemQuantity({ id, cart, setCart }) {
   let displayQty = () => {
     const exist = cart.find((x) => x.id === productId);
     if (exist) {
-      console.log(`id:${productId}, qty: ${exist.qty}`);
+      // console.log(`id:${productId}, qty: ${exist.qty}`);
       return exist.qty;
     }
   };
 
   const handleDecrement = () => {
-    console.log("decrement");
     const exist = cart.find((x) => x.id === productId);
     if (exist) {
       if (exist.qty === 1) return;
       const updatedCartQty = cart.map((x) =>
         x.id === productId ? { ...exist, qty: exist.qty - 1 } : x
       );
-      console.log(updatedCartQty);
       return setCart(updatedCartQty);
     }
   };
 
   const handleIncrement = () => {
-    console.log("increment");
     const exist = cart.find((x) => x.id === productId);
     if (exist) {
       if (exist.qty === 10) return;
@@ -36,7 +33,6 @@ export default function ItemQuantity({ id, cart, setCart }) {
       const updatedCartQty = cart.map((x) =>
         x.id === productId ? { ...exist, qty: exist.qty + 1 } : x
       );
-      console.log(updatedCartQty);
       return setCart(updatedCartQty);
     }
   };
