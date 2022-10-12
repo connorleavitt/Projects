@@ -9,7 +9,7 @@ export default function Checkout(props) {
 
   return (
     <div className="product-card--checkout-container">
-      <h3 className="product-card--checkout-title">Cost Summary</h3>
+      <h3 className="product-card--checkout-title">COST SUMMARY</h3>
       <div className="checkout--price-total">Total: ${displayTotal()}</div>
       <button className="fake-checkout-btn">CHECK OUT</button>
     </div>

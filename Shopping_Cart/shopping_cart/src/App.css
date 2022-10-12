@@ -70,6 +70,8 @@ body {
     justify-content: space-between;
     gap: 2rem;
     padding: 1rem;
+    position: sticky;
+    top: 0;
   }
 
   .store-title {
@@ -156,7 +158,7 @@ body {
       "title img"
       "subtitle img"
       "button img";
-    margin: 1rem 2rem;
+    margin: 0.2rem 2rem;
     gap: 1rem;
   }
 
@@ -391,6 +393,7 @@ body {
 }
 
 .cart-box--subcontainer {
+  position: relative;
   background-color: rgb(210, 235, 243);
   width: 100%;
   display: grid;
@@ -497,4 +500,83 @@ hr {
   /* align-self: stretch; */
   justify-content: center;
   font-size: 1.2rem;
+}
+
+.cart-box-remove-button {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: red;
+}
+
+.cart-box-remove-button:hover {
+  background-color: rgba(173, 216, 230, 0.8);
+}
+
+.product-card--checkout-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(173, 216, 230, 0.2);
+  border: 2px solid lightgray;
+  margin: 1rem 2rem;
+}
+
+.product-card--checkout-title {
+  margin: 0;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.checkout--price-total {
+  align-self: flex-end;
+  padding: 0 1rem;
+}
+
+.fake-checkout-btn {
+  width: calc(100% - 2rem);
+  border: 2px solid rgb(222, 171, 77);
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: rgb(222, 171, 77);
+  align-self: flex-end;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.fake-checkout-btn:hover {
+  border: 2px solid black;
+}
+
+.contact {
+  display: flex;
+  background-color: cadetblue;
+  height: calc(100vh - 5rem);
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .cart--container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "title title"
+      "items checkout";
+    margin-bottom: 2rem;
+  }
+  .cart--title-container {
+    grid-area: title;
+  }
+
+  .cart-boxes-container {
+    grid-area: items;
+  }
+
+  .product-card--checkout-container {
+    grid-area: checkout;
+  }
 }

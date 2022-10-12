@@ -7,7 +7,7 @@ export default function CartItems(props) {
   const { cart, setCart, removeCartItem } = props;
 
   return (
-    <div>
+    <div className="cart-boxes-container">
       {cart.map((product) => (
         <div className="cart-box--container" key={product.id}>
           <hr></hr>
