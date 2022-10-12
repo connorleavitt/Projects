@@ -1,25 +1,32 @@
 import React, { useState } from "react";
 import data from "../data/data";
 import ItemCard from "./ItemCard";
+import NotFound from "./NotFound";
 import Searchbar from "./Searchbar";
 
 export default function Search() {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState({
+    userInput: "",
+    isSubmitted: false,
+  });
   const [result, setResult] = useState({});
 
-  const findSearchInput = (input) => {
-    // console.log(input);
-    setSearchInput(input);
+  function findSearchInput(input) {
+    setSearchInput({
+      userInput: input,
+      isSubmitted: true,
+    });
     searchDataset(input);
-  };
+  }
 
   function searchDataset(input) {
-    // console.log(result);
     if (input === null || input === "") return;
     else {
       const findItem = data.find((object) => input === object.item);
-      //   console.log(findItem);
-      return setResult({
+      if (findItem === undefined) {
+        return setResult(false);
+      }
+      setResult({
         id: findItem.id,
         item: findItem.item,
         type: findItem.type,
@@ -30,16 +37,12 @@ export default function Search() {
     }
   }
 
-  console.log(result);
-
-  //   const setSearchResult = (input) => {
-  //   };
-
   return (
     <div className="search-wrapper">
       <Searchbar findSearchInput={findSearchInput} />
       <div className="search-result-container">
-        <ItemCard result={result} />
+        {searchInput.isSubmitted && <ItemCard result={result} />}
+        {!result && <NotFound />}
       </div>
     </div>
   );
