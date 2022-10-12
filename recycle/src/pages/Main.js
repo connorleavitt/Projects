@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import Search from "../components/Search";
 
 export default function Main() {
   return (
@@ -8,6 +8,7 @@ export default function Main() {
       <p className="main-body-content">
         Find out how to properly dispose of your items below.
       </p>
+      <Search />
     </main>
   );
 }
