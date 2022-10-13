@@ -22,11 +22,39 @@ body {
   padding: 1rem;
 }
 
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .searchbar-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1em;
+  margin: 0;
+  padding: 0.3em;
+  width: min-content;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+.searchbar-btn {
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.searchbar-btn:hover {
+  font-weight: bold;
+}
+
+#search {
+  border: 0;
+  outline: none;
 }
 
 .item-card--container {
@@ -34,6 +62,8 @@ body {
   padding: 0.25rem;
   display: grid;
   grid-template-columns: 1fr 5fr;
+  border: 2px solid black;
+  border-radius: 5px 50px 50px 5px;
 }
 
 .item-card--container[data="compost"] {
@@ -62,7 +92,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   text-align: start;
-  padding-left: 2rem;
+  padding: 0 2rem;
 }
 
 .item-card--title {

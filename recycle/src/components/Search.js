@@ -20,7 +20,7 @@ export default function Search() {
   }
 
   function searchDataset(input) {
-    if (input === null || input === "") return;
+    if (input === null || input === "") return setResult({ notfound: true });
     else {
       const findItem = data.find((object) => input === object.item);
       if (findItem === undefined) {
