@@ -12,25 +12,25 @@ export default function ItemCard({ result }) {
   let TypeCheck = (input) => {
     if (input === "compost") {
       return (
-        <p>
+        <p className="item-card--type">
           {"Yay! Please "}
-          <span className="item-card-type-compost">{input}</span>
+          <span className="item-card--type-compost">{input}</span>
           {" this item!"}
         </p>
       );
     } else if (input === "recycle") {
       return (
-        <p>
+        <p className="item-card--type">
           {"Yay! Please "}
-          <span className="item-card-type-recycle">{input}</span>
+          <span className="item-card--type-recycle">{input}</span>
           {" this item!"}
         </p>
       );
     } else if (input === "landfill") {
       return (
-        <p>
+        <p className="item-card--type">
           {"Ah! Unfortunately this item needs to be put into the "}
-          <span className="item-card-type-landfill">
+          <span className="item-card--type-landfill">
             {"trash (black bin)!"}
           </span>
         </p>
@@ -39,16 +39,30 @@ export default function ItemCard({ result }) {
   };
 
   let GetTagList = (tags) => {
-    return <p className="item-card--tags-list">Related: {[tags.join(", ")]}</p>;
+    return (
+      <p className="item-card--tags-list">
+        <strong>Related: </strong>
+        {[tags.join(", ")]}
+      </p>
+    );
   };
 
   return (
-    <div className="item-card--container" key={id}>
-      <h3 className="item-card--title">{Capitalize(item)}</h3>
-      {TypeCheck(type)}
-      <p className="item-card--category">Category: {Capitalize(category)}</p>
-      <p className="item-card--description">Description: {description}</p>
-      {GetTagList(tags)}
+    <div className="item-card--container" data={type} key={id}>
+      <div className="item-card--fake-img">IMGAGE HERE</div>
+      <div className="item-card--overview">
+        <h3 className="item-card--title">{Capitalize(item)}</h3>
+        {TypeCheck(type)}
+        <p className="item-card--category">
+          <strong>Category: </strong>
+          {Capitalize(category)}
+        </p>
+        <p className="item-card--description">
+          <strong>Description: </strong>
+          {description}
+        </p>
+        {GetTagList(tags)}
+      </div>
     </div>
   );
 }
