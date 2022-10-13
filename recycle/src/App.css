@@ -21,3 +21,14 @@ body {
   font-size: 1.5rem;
   padding: 1rem;
 }
+
+.searchbar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.item-card-type-landfill {
+  font-weight: bold;
+}

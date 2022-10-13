@@ -10,13 +10,13 @@ export default function Searchbar({ findSearchInput }) {
 
   const handleClick = () => {
     const form = searchForm.current;
-    findSearchInput(form[0].value);
+    findSearchInput(form[0].value.toLowerCase());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = searchForm.current;
-    findSearchInput(form[0].value);
+    findSearchInput(form[0].value.toLowerCase());
   };
 
   return (
