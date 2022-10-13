@@ -24,7 +24,7 @@ export default function Search() {
     else {
       const findItem = data.find((object) => input === object.item);
       if (findItem === undefined) {
-        return setResult(false);
+        return setResult({ notfound: true });
       }
       setResult({
         id: findItem.id,
@@ -41,8 +41,10 @@ export default function Search() {
     <div className="search-wrapper">
       <Searchbar findSearchInput={findSearchInput} />
       <div className="search-result-container">
-        {searchInput.isSubmitted && <ItemCard result={result} />}
-        {!result && <NotFound />}
+        {searchInput.isSubmitted && !result.notfound && (
+          <ItemCard result={result} />
+        )}
+        {result.notfound && <NotFound />}
       </div>
     </div>
   );

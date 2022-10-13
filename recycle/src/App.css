@@ -29,6 +29,16 @@ body {
   gap: 1em;
 }
 
+.item-card-type-compost {
+  color: green;
+  font-weight: bold;
+}
+
+.item-card-type-recycle {
+  color: blue;
+  font-weight: bold;
+}
+
 .item-card-type-landfill {
   font-weight: bold;
 }
