@@ -23,9 +23,24 @@ export default function Search() {
     if (input === null || input === "") return setResult({ notfound: true });
     else {
       const findItem = data.find((object) => input === object.item);
+      // console.log(findItem);
       if (findItem === undefined) {
-        return setResult({ notfound: true });
+        // aka search for tag match, if null then return notFound
+        const output = data.find((y) => y.tags.includes(input));
+        if (output !== undefined) {
+          return setResult({
+            id: output.id,
+            item: output.item,
+            type: output.type,
+            category: output.category,
+            description: output.description,
+            tags: [...output.tags],
+          });
+        } else {
+          return setResult({ notfound: true });
+        }
       }
+
       setResult({
         id: findItem.id,
         item: findItem.item,

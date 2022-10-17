@@ -25,7 +25,9 @@ export default function Searchbar({ findSearchInput }) {
         <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
       </button>
       <form ref={searchForm} onSubmit={handleSubmit}>
-        <input type="search" id="search" placeholder="Enter Item" />
+        <label>
+          <input type="search" id="search" placeholder="Enter Item" />
+        </label>
       </form>
     </div>
   );
