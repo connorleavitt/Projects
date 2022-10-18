@@ -19,8 +19,12 @@ export default function Searchbar({ findSearchInput }) {
     findSearchInput(query.current.value.toLowerCase());
   };
 
+  function focus() {
+    query.current.focus();
+  }
+
   return (
-    <div className="searchbar-wrapper">
+    <div onClick={focus} className="searchbar-wrapper">
       <button className="searchbar-btn" onClick={handleClick}>
         <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
       </button>
