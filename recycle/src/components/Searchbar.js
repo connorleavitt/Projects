@@ -6,17 +6,17 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(fas);
 
 export default function Searchbar({ findSearchInput }) {
-  const searchForm = useRef(null);
+  const query = useRef();
 
   const handleClick = () => {
-    const form = searchForm.current;
-    findSearchInput(form[0].value.toLowerCase());
+    console.log(query.current.value);
+    findSearchInput(query.current.value.toLowerCase());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = searchForm.current;
-    findSearchInput(form[0].value.toLowerCase());
+    console.log(query.current.value);
+    findSearchInput(query.current.value.toLowerCase());
   };
 
   return (
@@ -24,9 +24,14 @@ export default function Searchbar({ findSearchInput }) {
       <button className="searchbar-btn" onClick={handleClick}>
         <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
       </button>
-      <form ref={searchForm} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
-          <input type="search" id="search" placeholder="Enter Item" />
+          <input
+            ref={query}
+            type="search"
+            id="search"
+            placeholder="Enter Item"
+          />
         </label>
       </form>
     </div>
