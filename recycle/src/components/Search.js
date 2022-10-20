@@ -26,7 +26,7 @@ export default function Search() {
       // console.log(findItem);
       if (findItem === undefined) {
         // aka search for tag match, if null then return notFound
-        const output = data.find((y) => y.tags.includes(input));
+        const output = data.find((obj) => obj.tags.includes(input));
         if (output !== undefined) {
           return setResult({
             id: output.id,

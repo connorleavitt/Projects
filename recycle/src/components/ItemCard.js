@@ -49,7 +49,7 @@ export default function ItemCard({ result }) {
 
   return (
     <div className="item-card--container" data={type} key={id}>
-      <div className="item-card--fake-img">IMGAGE HERE</div>
+      <div className="item-card--fake-img">IMAGE HERE</div>
       <div className="item-card--overview">
         <h3 className="item-card--title">{Capitalize(item)}</h3>
         {TypeCheck(type)}
