@@ -8,10 +8,15 @@
   </head>
   <body>
     <h1>NEW USERS</h1>
+    <form action="/users" method="post">
+      <input type="text" name="firstName" value="<%= locals.firstName %>" />
+      <button type="submit">Submit</button>
+    </form>
     <a href="../home">Home</a>
     <a href="../about">About</a>
     <a href="../contact">Contact</a>
     <a href="../users">Users</a>
     <a href="../404">404</a>
+    <a href="../404.html">404 html</a>
   </body>
 </html>
