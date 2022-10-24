@@ -1,36 +1,27 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = 8000;
+
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  // res.send("Hello World!");
-
-  let path = "./pages/";
-
-  switch (req.url) {
-    case "/":
-      path += "index.html";
-      res.statusCode = 200;
-      break;
-    case "/home":
-      path += "index.html";
-      res.statusCode = 200;
-      break;
-    case "/about":
-      path += "about.html";
-      res.statusCode = 200;
-      break;
-    case "/contact-me":
-      path += "contact-me.html";
-      res.statusCode = 200;
-      break;
-    default:
-      path += "404.html";
-      res.statusCode = 404;
-      break;
-  }
+  res.render("index", { text: "WORLD" });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
+app.get("/home", (req, res) => {
+  res.render("index", { text: "WORLD" });
 });
+
+app.get("/about", (req, res) => {
+  res.render("about", { text: "WORLD" });
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact-me", { text: "WORLD" });
+});
+
+app.get("/404", (req, res) => {
+  res.render("404", { text: "WORLD" });
+});
+
+app.listen(port);
