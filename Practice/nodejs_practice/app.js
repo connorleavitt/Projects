@@ -13,15 +13,19 @@ app.get("/home", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { text: "WORLD" });
+  res.render("about");
 });
 
 app.get("/contact", (req, res) => {
-  res.render("contact-me", { text: "WORLD" });
+  res.render("contact-me");
 });
 
 app.get("/404", (req, res) => {
-  res.render("404", { text: "WORLD" });
+  res.render("404");
 });
+
+const userRouter = require("./routes/users");
+
+app.use("/users", userRouter);
 
 app.listen(port);
