@@ -6,12 +6,15 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
     <% for (let i = 0; i < messages.length; i++) { %>
-    <div>
-      <%= messages[i].user %> said <%= messages[i].text %> on <%=
-      messages[i].added %>
+    <div class="message-container">
+      <div class="message">
+        <%= messages[i].user %> said "<%= messages[i].text %>"
+      </div>
+      <div class="date-added"><%=messages[i].added %></div>
     </div>
     <% } %>
+    <a href="/">HOME</a>
+    <a href="/new">NEW FORM</a>
   </body>
 </html>

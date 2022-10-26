@@ -4,5 +4,17 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  background-color: lavender;
+  width: fit-content;
+  margin: 2rem;
+}
+
+.message {
+  margin-bottom: 1rem;
 }

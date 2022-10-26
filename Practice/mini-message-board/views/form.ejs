@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>New Form</h2>
+    <form method="POST" action="/new">
+      <label for="user">
+        User
+        <input type="text" name="user" id="user" value="<%= locals.user %>" />
+      </label>
+      <label for="messageText">
+        Message
+        <input
+          type="text"
+          name="messageText"
+          id="messageText"
+          value="<%= locals.messageText %>"
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/">HOME</a>
+    <a href="/new">NEW FORM</a>
+  </body>
+</html>
