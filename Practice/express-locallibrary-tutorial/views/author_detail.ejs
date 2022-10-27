@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1>Author: <%= author.name %></h1>
+      <p>Age? <%=author.date_of_birth - author.date_of_death%></p>
+      <div>
+        <h3>Books</h3>
+        <dl>
+          <% for (const book in author_books) { %> <% if (author_books.length
+          === 0) {%>
+          <p>This author has no books.</p>
+          <%} else {%>
+          <dt>
+            <a href="<%=author_books[book].url%>">
+              <%=author_books[book].title%>
+            </a>
+          </dt>
+          <dd><%= author_books[book].summary %></dd>
+          <%}%><%}%>
+        </dl>
+      </div>
+    </main>
+  </body>
+</html>

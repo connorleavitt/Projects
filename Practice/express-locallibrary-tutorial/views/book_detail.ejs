@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1>Title: <%= title %></h1>
+
+      <p>
+        <strong>Author: </strong
+        ><a href="<%=book.author.url%>"><%= book.author.name %></a>
+      </p>
+      <p><strong>Summary: </strong> <%= book.summary%></p>
+      <p><strong>ISBN: </strong> <%= book.isbn %></p>
+      <p>
+        <strong>Genre: </strong>
+        <% for (const val in book.genre) { %>
+        <a href="<%=book.genre[val].url%>"><%=book.genre[val].name%></a>
+        
+        <%}%>
+      </p>
+      <div class="book_list_details">
+        <h3>Copies</h4>
+          <% for (const val in book_instances) { %>
+            <% if (book_instances[val].length == 0) { %>
+              <p>There are no copies of this book in the library.</p>
+            <%}%>
+
+            <hr>
+            <% if (book_instances[val].status == 'Available') { %>
+            <p class="text-success"><%=book_instances[val].status%></p>
+            <%} else if (book_instances[val].status == 'Maintenance') {%>
+            <p class="text-danger"><%=book_instances[val].status%></p>
+            <%} else {%>
+            <p class="text-warning"><%=book_instances[val].status%></p>
+            <%}%>
+          <p><strong>Imprint: </strong><%=book_instances[val].imprint%></p>
+          <% if (book_instances[val].status != 'Available') { %>
+              <p><strong>Due back: </strong> <%=book_instances[val].due_back%></p>
+            <%}%>
+          <p><strong>Id: </strong><a href="<%=book_instances[val].url%>"><%=book_instances[val]._id%></a></p>
+        <%}%>
+      </div>
+    </main>
+  </body>
+</html>
