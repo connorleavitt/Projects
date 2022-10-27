@@ -3,6 +3,10 @@ body {
   grid-template-columns: 300px 1fr;
 }
 
+a {
+  text-decoration: none;
+}
+
 .row {
   width: fit-content;
   background-color: aliceblue;
@@ -22,4 +26,16 @@ hr {
 
 .sidebar-nav li {
   padding: 0.2rem;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: rgb(169, 169, 0);
 }
