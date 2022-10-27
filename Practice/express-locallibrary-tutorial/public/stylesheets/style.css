@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: grid;
+  grid-template-columns: 300px 1fr;
 }
 
-a {
-  color: #00B7FF;
+.row {
+  width: fit-content;
+  background-color: aliceblue;
+}
+
+hr {
+  background-color: black;
+  height: 2px;
+  border: none;
+}
+
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  padding: 0.2rem;
 }
