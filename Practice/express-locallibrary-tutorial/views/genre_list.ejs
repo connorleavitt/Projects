@@ -7,13 +7,12 @@
       <h1><%= title %></h1>
 
       <ul>
-        <% for (let i = 0; i < book_list.length; i++) { %> <% if
-        (book_list.length === 0) {%>
-        <li>There are no books.</li>
+        <% for (let i = 0; i < genre_list.length; i++) { %> <% if
+        (genre_list.length === 0) {%>
+        <li>There are no genres.</li>
         <%} else {%>
         <li>
-          <a href="<%=book_list[i].url%>"><%= book_list[i].title %></a>
-          (<%=book_list[i].author.name%>) <%console.log(book_list[i].url)%>
+          <a href="<%=genre_list[i].url%>"> <%=genre_list[i].name%> </a>
         </li>
         <%}%> <%}%>
       </ul>

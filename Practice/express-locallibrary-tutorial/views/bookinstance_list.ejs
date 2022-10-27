@@ -12,7 +12,7 @@
         <li>There are no book copies in this library.</li>
         <%} else {%>
         <li>
-          <a href="<%bookinstance_list[book]%>.url"
+          <a href="<%=bookinstance_list[book].url%>"
             ><%=bookinstance_list[book].book.title%> :
             <%=bookinstance_list[book].imprint%> -
           </a>

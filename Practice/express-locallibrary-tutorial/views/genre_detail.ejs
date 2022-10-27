@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1>Genre: <%= genre.name %></h1>
+
+      <h4>Books</h4>
+      <dl>
+        <% for (const book in genre_books) { %> <% if (genre_books.length === 0)
+        {%>
+        <p>There are no genres.</p>
+        <%} else {%>
+        <dt>
+          <a href="<%=genre_books[book].url%>">
+            <%=genre_books[book].title%>
+          </a>
+        </dt>
+        <dd><%= genre_books[book].summary %></dd>
+        <%}%> <%console.log(genre_books[book].title)}%>
+      </dl>
+    </main>
+  </body>
+</html>

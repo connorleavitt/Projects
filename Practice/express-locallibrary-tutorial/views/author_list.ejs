@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1><%= title %></h1>
+
+      <ul>
+        <% for (let i = 0; i < author_list.length; i++) { %> <% if
+        (author_list.length === 0) {%>
+        <li>There are no authors.</li>
+        <%} else {%>
+        <li>
+          <a href="<%=author_list[i].url%>"><%=author_list[i].name%> </a>
+          <%=author_list[i].date_of_birth%> - <% if
+          (author_list[i].date_of_death == null) { %> n/a <% } else { %>
+          <%=author_list[i].date_of_death%> <%}%>
+        </li>
+        <%}%> <%}%>
+      </ul>
+    </main>
+  </body>
+</html>
