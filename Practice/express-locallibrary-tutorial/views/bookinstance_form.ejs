@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1><%= title %></h1>
+      <form method="POST" action="">        
+        <div class="form-group">
+
+<!-- book -->
+          <div class="form-group">
+            <label for="book">Book: </label>
+            <select class="form-control" id="book" type="select"
+            placeholder="Select book" name="book" required: true >
+              <% book_list.sort(function(a,b) {%>
+                <% let textA = a.title.toUpperCase();%>
+                <% let textB = b.title.toUpperCase();%>
+                <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}) %>
+                
+              <% for (const book in locals.book_list) {%>
+                    <option 
+                      value="<%=locals.book_list[book]._id%>" 
+                      <%= locals.selected_book
+                      === locals.book_list[book]._id.toString()
+                      ? 'selected'
+                      : false%>><%=locals.book_list[book].title%></option>
+            <%}%>
+            </select>
+          </div>
+                    
+<!-- imprint -->
+          <div class="form-group">
+            <label for="imprint">Imprint: </label>
+            <input class="form-control" id="imprint" type="text" required: true
+            name="imprint" placeholder='Publisher and date information' 
+            value="<%=locals.bookinstance
+            === undefined ? "" : locals.bookinstance.imprint %>" >
+          </div>
+
+<!-- due_back -->
+          <div class="form-group">
+            <label for="due_back">Date when book available: </label>
+            <input class="form-control" id="due_back" type="date" required: true
+            name="due_back"
+            value="<%=locals.bookinstance
+            === undefined ? "" : locals.bookinstance.due_back %>" >
+          </div>
+          
+<!-- status -->
+          <div class="form-group">
+            <label for="status">Status: </label>
+            <select class="form-control" id="status" type="select"
+            placeholder="Select status" name="status" required: true >
+              <option value="Maintenance">Maintenance</option>
+              <option value="Available">Available</option>
+              <option value="Loaned">Loaned</option>
+              <option value="Reserved">Reserved</option>
+            </select>
+          </div>
+
+
+<!-- submit btn -->
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <% if(locals.errors !== undefined) { %>
+      <ul>
+        <% for (const error in locals.errors) {%>
+        <li><%=locals.errors[error].msg%></li>
+        <%}%>
+      </ul>
+      <%}%>
+    </main>
+  </body>
+</html>
