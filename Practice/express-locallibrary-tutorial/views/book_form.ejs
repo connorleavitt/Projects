@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1><%= title %></h1>
+      <form method="POST" action="">        
+        <div class="form-group">
+<!-- title -->
+          <div class="form-group">
+            <label for="title">Title: </label>
+            <input class="form-control" id="title" type="text" name="title"
+            required: true value="<%=locals.book === undefined ? "" :
+            locals.book.title %>" placeholder="Name of Book">
+          </div>
+
+<!-- author -->
+          <div class="form-group">
+            <label for="author">Author: </label>
+            <select class="form-control" id="author" type="select"
+            placeholder="Select author" name="author" required: true >
+              <% authors.sort(function(a,b) {%>
+                <% let textA = a.family_name.toUpperCase();%>
+                <% let textB = b.family_name.toUpperCase();%>
+                <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}) %>
+                
+              <% for (const author in locals.authors) {%>
+                <% if(locals.book != undefined) { %>
+                  <% if(locals.book.author._id.toString() != undefined) { %>
+                    <option 
+                      value="<%=locals.authors[author]._id%>" 
+                      <%=locals.authors[author]._id.toString() 
+                      === locals.book.author._id.toString() 
+                      ? 'selected'
+                      : false%>><%=locals.authors[author].name%></option>
+                  <%}} else {%>
+                    <option value="<%=locals.authors[author]._id%>"><%=locals.authors[author].name%></option>
+            <%}}%>
+            </select>
+          </div>
+                    
+<!-- summary -->
+          <div class="form-group">
+            <label for="summary">Summary: </label>
+            <textarea class="form-control" id="summary" type="textarea"
+            placeholder="Summary" name="summary" required: true
+            value="<%=locals.book === undefined ? "" : locals.book.summary %>"
+            > <%= locals.book === undefined ? "" : locals.book.summary %></textarea> 
+          </div>
+
+<!-- ISBN -->
+          <div class="form-group">
+            <label for="isbn">ISBN: </label>
+            <input class="form-control" id="isbn" type="text" required: true
+            name="isbn" placeholder='ISBN13' 
+            value="<%=locals.book
+            === undefined ? "" : locals.book.isbn %>" >
+          </div>
+
+<!-- genre -->
+          <div class="form-group">
+            <label for="genre">Genre: </label>
+            <div>
+              <%for (const genre in locals.genres) { %>
+                <div>
+                  <input class="checkbox-input" id="<%= locals.genres[genre]._id%>" 
+                  checked="<%= locals.genres[genre].checked%>" type="checkbox"
+                  name="genre" value="<%= locals.genres[genre]._id%>" >
+                  <label for="<%= locals.genres[genre]._id%>"><%= genres[genre].name%></label>
+                </div>
+              <%}%>
+            </div>
+          </div>
+
+
+<!-- submit btn -->
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <% if(locals.errors !== undefined) { %>
+      <ul>
+        <% for (const error in locals.errors) {%>
+        <li><%=locals.errors[error].msg%></li>
+        <%}%>
+      </ul>
+      <%}%>
+    </main>
+  </body>
+</html>
