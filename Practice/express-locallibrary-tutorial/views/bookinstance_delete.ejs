@@ -4,14 +4,13 @@
   <body>
     <%- include('./partials/sidebar.ejs') %>
     <main>
-      <h1>ID: <%= bookinstance._id %></h1>
+      <h1>Delete: <%=title%> with id <%= bookinstance._id %></h1>
 
       <p>
         <strong>Title: </strong
         ><a href="<%=bookinstance.book.url%>"><%=bookinstance.book.title%></a>
       </p>
-      <p><strong>Imprint: </strong><%=bookinstance.imprint%></p>
-
+      <h4>ID: <%= bookinstance._id %></h4>
       <p>
         <strong>Status: </strong>
         <% if (bookinstance.status == 'Available') {%>
@@ -24,10 +23,21 @@
       </p>
       <% if (bookinstance.status != 'Available') { %>
       <p><strong>Due back: </strong> <%=bookinstance.due_back%></p>
-      <%}%> <%console.log(bookinstance);%>
+      <%}%>
       <hr />
-      <p><a href="<%=bookinstance.url+"/delete"%>">Delete Book Instance</a>
-        </p>
+      <form method="POST" , action="">
+        <div class="form-group">
+          <input
+            id="bookinstanceid"
+            class="form-control"
+            type="hidden"
+            name="bookinstanceid"
+            required
+            value="<%=bookinstance._id%>"
+          />
+          <button type="submit">Delete</button>
+        </div>
+      </form>
     </main>
   </body>
 </html>
