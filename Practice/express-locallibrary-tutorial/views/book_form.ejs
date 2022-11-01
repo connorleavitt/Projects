@@ -28,13 +28,11 @@
               <% for (const author in locals.authors) {%>
                 <% if(locals.book != undefined) { %>
                   <% if(locals.book.author._id.toString() != undefined) { %>
+                    <%console.log(locals.book.author._id);%>
                     <option 
                       value="<%=locals.authors[author]._id%>" 
                       <%=locals.authors[author]._id.toString() 
-                      === locals.book.author._id
-                      ||
-                      locals.authors[author]._id.toString() 
-                      === locals.book.author
+                      === locals.book.author._id.toString()                     
                       ? 'selected'
                       : false%>><%=locals.authors[author].name%></option>
                   <%}} else {%>
@@ -42,6 +40,7 @@
             <%}}%>
             </select>
           </div>
+
                     
 <!-- summary -->
           <div class="form-group">
