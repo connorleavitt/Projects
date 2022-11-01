@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/sidebar.ejs') %>
+    <main>
+      <h1><%= title %>: <%= genre.name %></h1>
+      <div>
+        <% if (genre_books.length > 0) { %>
+        <p>
+          <strong
+            >Delete the following books before attempting to delete this
+            genre.</strong
+          >
+        </p>
+        <h4>Books</h4>
+        <dl>
+          <% for (const book in genre_books) { %>
+          <dt>
+            <a href="<%=genre_books[book].url%>">
+              <%=genre_books[book].title%>
+            </a>
+          </dt>
+          <dd><%= genre_books[book].summary %></dd>
+          <%}%>
+        </dl>
+        <%} else { %>
+        <p>
+          <strong>Do you really want to delete this genre?</strong>
+        </p>
+        <form method="POST" , action="">
+          <div class="form-group">
+            <input
+              id="genreid"
+              class="form-control"
+              type="hidden"
+              name="genreid"
+              required
+              value="<%=genre.id%>"
+            />
+            <button type="submit">Delete</button>
+          </div>
+        </form>
+
+        <%}%>
+      </div>
+    </main>
+  </body>
+</html>
