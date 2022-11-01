@@ -31,7 +31,10 @@
                     <option 
                       value="<%=locals.authors[author]._id%>" 
                       <%=locals.authors[author]._id.toString() 
-                      === locals.book.author._id.toString() 
+                      === locals.book.author._id
+                      ||
+                      locals.authors[author]._id.toString() 
+                      === locals.book.author
                       ? 'selected'
                       : false%>><%=locals.authors[author].name%></option>
                   <%}} else {%>
