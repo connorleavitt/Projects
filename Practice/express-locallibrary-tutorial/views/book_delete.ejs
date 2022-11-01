@@ -4,7 +4,7 @@
   <body>
     <%- include('./partials/sidebar.ejs') %>
     <main>
-      <h1>Title: <%= title %></h1>
+      <h1><%= title %>: <%=book.title%></h1>
 
       <p>
         <strong>Author: </strong
@@ -15,12 +15,20 @@
       <p>
         <strong>Genre: </strong>
         <% for (const val in book.genre) { %>
-        <a href="<%=book.genre[val].url%>"><%=book.genre[val].name%></a>
+        <a href="<%=book.genre[val].url%>"><%=book.genre[val].name%>, </a>
         
         <%}%>
+            <hr>
+
       </p>
-      <div class="book_list_details">
-        <h3>Copies</h4>
+<div>
+        <% if (book_instances.length > 0) { %>
+        <p>
+          <strong
+            >Delete the following book instances before attempting to delete this book.</strong
+          >
+        </p>
+        <h4>Book Instances</h4>
           <% for (const val in book_instances) { %>
             <% if (book_instances[val].length == 0) { %>
               <p>There are no copies of this book in the library.</p>
@@ -40,10 +48,28 @@
             <%}%>
           <p><strong>Id: </strong><a href="<%=book_instances[val].url%>"><%=book_instances[val]._id%></a></p>
         <%}%>
-      </div>
-      <hr />
-      <p><a href="<%=book.url+"/delete"%>">Delete Book</a>
+        <%} else { %>
+        <p>
+          <strong>Do you really want to delete this Book?</strong>
         </p>
+        <form method="POST" , action="">
+          <div class="form-group">
+            <input
+              id="bookid"
+              class="form-control"
+              type="hidden"
+              name="bookid"
+              required
+              value="<%=book.id%>"
+            />
+            <button type="submit">Delete</button>
+          </div>
+        </form>
+
+        <%}%>
+      </div>
+
+      </div>
     </main>
   </body>
 </html>
