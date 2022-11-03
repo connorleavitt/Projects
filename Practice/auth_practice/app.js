@@ -7,6 +7,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs");
 
 const mongoDB =
   "mongodb+srv://tutorial:gCzQFmLuxMU3PyKV@cluster0.rh41oeb.mongodb.net/?retryWrites=true&w=majority";
@@ -35,10 +36,15 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user);
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          // passwords match! log user in
+          return done(null, user);
+        } else {
+          // passwords do not match!
+          return done(null, false, { message: "Incorrect password" });
+        }
+      });
     });
   })
 );
@@ -72,16 +78,20 @@ app.get("/log-out", (req, res, next) => {
   });
 });
 
-app.post("/sign-up", (req, res, next) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  }).save((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
+app.post("/sign-up", async (req, res) => {
+  const body = req.body;
+
+  if (!(body.username && body.password)) {
+    return res.status(400).send({ error: "Data not formatted properly" });
+  }
+
+  // creating a new mongoose doc from user data
+  const user = new User(body);
+  // generate salt to hash password
+  const salt = await bcrypt.genSalt(10);
+  // now we set user password to hashed password
+  user.password = await bcrypt.hash(user.password, salt);
+  user.save().then((doc) => res.status(201).redirect("/"));
 });
 
 app.post(
