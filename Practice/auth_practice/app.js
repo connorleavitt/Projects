@@ -8,6 +8,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
+const async = require("async");
+const jwt = require("jsonwebtoken");
 
 const mongoDB =
   "mongodb+srv://tutorial:gCzQFmLuxMU3PyKV@cluster0.rh41oeb.mongodb.net/?retryWrites=true&w=majority";
@@ -20,6 +22,14 @@ const User = mongoose.model(
   new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
+  })
+);
+
+const Post = mongoose.model(
+  "Post",
+  new Schema({
+    title: { type: String, required: true },
+    message: { type: String, required: true },
   })
 );
 
@@ -62,6 +72,7 @@ passport.deserializeUser(function (id, done) {
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
@@ -75,6 +86,19 @@ app.get("/log-out", (req, res, next) => {
   req.logout(function (err) {
     if (err) return next(err);
     res.redirect("/");
+  });
+});
+app.get("/new-post", (req, res) => res.render("post-form"));
+app.get("/posts", (req, res, next) => {
+  Post.find({}).exec(function (err, list_posts) {
+    if (err) {
+      return next(err);
+    }
+    // Successful, so render
+    res.render("posts", {
+      title: "Post List",
+      post_list: list_posts,
+    });
   });
 });
 
@@ -101,5 +125,15 @@ app.post(
     failureRedirect: "/",
   })
 );
+
+app.post("/new-post", (req, res, next) => {
+  const post = new Post({
+    title: req.body.title,
+    message: req.body.message,
+  }).save((err) => {
+    if (err) next(err);
+    res.redirect("/posts");
+  });
+});
 
 app.listen(3000, () => console.log("app listening on port 3000!"));

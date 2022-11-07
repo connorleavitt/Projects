@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <h2>Posts</h2>
+    <%console.log(post_list[0].title)%>
+    <ul>
+      <% for (let i = 0; i < post_list.length; i++) { %> <% if (post_list.length
+      === 0) {%>
+      <li>There are no post_list.</li>
+      <%} else {%>
+      <li><%= post_list[i].title %> (<%=post_list[i].message%>)</li>
+      <%}%> <%}%>
+    </ul>
+    <a href="/">Home</a>
+    <a href="/new-post">New Post</a>
+    <a href="/posts">Posts</a>
+  </body>
+</html>
