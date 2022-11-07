@@ -1,5 +1,5 @@
 /////// app.js
-
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -29,6 +29,7 @@ const Post = mongoose.model(
   "Post",
   new Schema({
     title: { type: String, required: true },
+    username: { type: String, required: true },
     message: { type: String, required: true },
   })
 );
@@ -89,18 +90,56 @@ app.get("/log-out", (req, res, next) => {
   });
 });
 app.get("/new-post", (req, res) => res.render("post-form"));
-app.get("/posts", (req, res, next) => {
-  Post.find({}).exec(function (err, list_posts) {
-    if (err) {
-      return next(err);
+app.get("/posts", authenticateToken, (req, res, next) => {
+  async.parallel(
+    {
+      user(callback) {
+        User.find({ user: req.params.id }).exec(callback);
+      },
+      post(callback) {
+        Post.find({ post: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      // Successful, so render
+      res.render("posts", {
+        title: "Post List",
+        post: results.post,
+        user: results.user,
+      });
     }
-    // Successful, so render
-    res.render("posts", {
-      title: "Post List",
-      post_list: list_posts,
-    });
-  });
+  );
 });
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/",
+  }),
+  async (req, res) => {
+    const username = req.body.username;
+    const user = { name: username };
+
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    res.json({ accessToken: accessToken });
+  }
+);
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
 
 app.post("/sign-up", async (req, res) => {
   const body = req.body;
@@ -118,17 +157,18 @@ app.post("/sign-up", async (req, res) => {
   user.save().then((doc) => res.status(201).redirect("/"));
 });
 
-app.post(
-  "/log-in",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-  })
-);
+// app.post(
+//   "/log-in",
+//   passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/",
+//   })
+// );
 
 app.post("/new-post", (req, res, next) => {
   const post = new Post({
     title: req.body.title,
+    username: req.body.username,
     message: req.body.message,
   }).save((err) => {
     if (err) next(err);
