@@ -9,15 +9,36 @@
   </head>
   <body>
     <header class="header">
-      <h1>The Rock Paper Scissors Game</h1>
-      <h2>Win five (5) points to be the victor!</h2>
+      <h1 class="header-title">The Rock Paper Scissors Game</h1>
+      <button class="info-open-btn">?</button>
     </header>
     <section class="main">
       <div class="game">
-        <div class="buttons">
-          <button class="options" id="rockButton">Rock</button>
-          <button class="options" id="paperButton">Paper</button>
-          <button class="options" id="scissorsButton">Scissors</button>
+        <div class="user">
+          <p class="user-title">User Selection</p>
+          <div class="buttons">
+            <button class="options" id="rockButton">Rock</button>
+            <button class="options" id="paperButton">Paper</button>
+            <button class="options" id="scissorsButton">Scissors</button>
+          </div>
+        </div>
+        <div class="computer">
+          <p class="computer-title">Computer Selection</p>
+          <div class="buttons">
+            <button disabled class="options-computer" id="computerRockButton">
+              Rock
+            </button>
+            <button disabled class="options-computer" id="computerPaperButton">
+              Paper
+            </button>
+            <button
+              disabled
+              class="options-computer"
+              id="computerScissorsButton"
+            >
+              Scissors
+            </button>
+          </div>
         </div>
         <p id="roundText">Round: <span id="gameRound">0</span></p>
         <p id="scoreLine">
@@ -26,6 +47,23 @@
         </p>
         <p><span id="roundInfo"></span></p>
         <p><span id="winningMessage"></span></p>
+      </div>
+    </section>
+    <section class="info">
+      <div class="info-container">
+        <h2 class="info-title">How To Play</h2>
+        <h3 class="info-subtitle">Win five (5) rounds to be the victor!</h3>
+        <h4 class="info-scenarios-title">Scenarios</h4>
+        <ul class="info-scenarios-content-list">
+          <li class="info-scenarios-content-list-item">
+            1. Rock beats Scissors
+          </li>
+          <li class="info-scenarios-content-list-item">
+            2. Scissors beats Paper
+          </li>
+          <li class="info-scenarios-content-list-item">3. Paper beats Rock</li>
+        </ul>
+        <button class="info-close-btn">X</button>
       </div>
     </section>
   </body>

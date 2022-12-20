@@ -9,13 +9,17 @@ body {
   text-align: center;
   padding: 0;
   margin: 0;
-  background-color: aliceblue;
+  background-color: rgba(255, 01, 140, 1);
 }
 
 .header {
-  margin: 1em;
-  padding: 0;
-  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 1rem;
+  /* border-radius: 5px; */
   background-color: rgb(255, 01, 140);
 }
 
@@ -27,11 +31,13 @@ h2 {
 }
 
 .main {
-  border-radius: 20px;
-  margin: 1em;
+  /* border-radius: 20px; */
+  margin: 0;
   padding: 0;
   /* min-height: 50vh; */
-  background-color: rgb(255, 01, 140);
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 01, 140, 1);
 }
 
 .game {
@@ -39,6 +45,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 900px;
 }
 
 button {
@@ -51,6 +58,51 @@ button {
   border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.info-open-btn {
+  position: absolute;
+  right: 1rem;
+  background-color: transparent;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.info-open-btn:hover {
+  background-color: black;
+}
+
+.user,
+.computer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.user-title,
+.computer {
+  font-size: 2rem;
+}
+
+.options:hover {
+  background-color: white;
+  color: black;
+}
+
+.buttons {
+  /* width: 500px; */
+  display: flex;
+}
+
+.options-computer {
+  cursor: default;
+}
+
+.options-computer.active {
+  background-color: white;
+  border-color: red;
 }
 
 #roundText {
@@ -74,4 +126,55 @@ p > span#computerScore {
 #winningMessage {
   color: white;
   font-size: 50px;
+}
+
+section.info {
+  display: none;
+}
+
+section.info.active {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  right: 10px;
+  top: 10px;
+}
+.info-container {
+  border: 4px solid black;
+  width: 250px;
+  padding: 1rem;
+}
+
+.info-scenarios-title {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.info-scenarios-content-list {
+  list-style-type: none;
+  padding: 0;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.info-scenarios-content-list-item {
+  margin: 1rem 0;
+}
+
+.info-close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  margin: 0.5em;
+  background-color: lightgray;
+  color: black;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.info-close-btn:hover {
+  color: white;
+  background-color: black;
 }

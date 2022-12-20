@@ -49,6 +49,9 @@ return overall winner or loser
 */
 
 const options = document.querySelectorAll(".options");
+const info = document.querySelector(".info");
+const infoOpen = document.querySelector(".info-open-btn");
+const infoClose = document.querySelector(".info-close-btn");
 let playerScore = 0;
 let computerScore = 0;
 let gameRound = 0;
@@ -113,3 +116,11 @@ function checkWinner() {
   }
   return false;
 }
+
+infoOpen.addEventListener("click", () => {
+  info.classList.add("active");
+});
+
+infoClose.addEventListener("click", () => {
+  info.classList.remove("active");
+});
