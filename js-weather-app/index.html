@@ -7,6 +7,51 @@
     <title>JS Weather App</title>
   </head>
   <body>
+    <header class="header">
+      <div class="header-left">
+        <img
+          class="weather-icon large"
+          src="icons/sun.svg"
+          alt="weather-icon large"
+          data-current-icon
+        />
+        <div class="header-current-temp">
+          <span data-current-temp>71</span>&deg;
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="info-group">
+          <div class="label">High</div>
+          <div><span data-current-high>75</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">FL High</div>
+          <div><span data-current-fl-high>78</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">Wind</div>
+          <div>
+            <span data-current-wind>12</span
+            ><span class="value-sub-info">mph</span>
+          </div>
+        </div>
+        <div class="info-group">
+          <div class="label">Low</div>
+          <div><span data-current-low>60</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">FL Low</div>
+          <div><span data-current-fl-low>25</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">Precip</div>
+          <div>
+            <span data-current-precip>0.28</span
+            ><span class="value-sub-info">in</span>
+          </div>
+        </div>
+      </div>
+    </header>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
