@@ -19,5 +19,13 @@
       <input type="text" id="new-task-title" />
       <button type="submit">Add</button>
     </form>
+    <script>
+      //google flights crawling?
+      console.log(
+        fetch('http://connorleavitt.com')
+          .then((response) => response.json())
+          .then((data) => console.log(data)),
+      );
+    </script>
   </body>
 </html>
