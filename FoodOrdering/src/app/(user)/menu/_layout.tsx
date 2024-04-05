@@ -8,7 +8,7 @@ export default function MenuStack() {
     <Stack
       screenOptions={{
         headerRight: () => (
-          <Link href="/cart" asChild>
+          <Link href={"/cart"} asChild>
             <Pressable>
               {({ pressed }) => (
                 <FontAwesome

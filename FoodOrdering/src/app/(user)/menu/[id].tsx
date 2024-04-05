@@ -21,7 +21,7 @@ const ProductDetialsScreen = () => {
     console.warn("Add to cart", product, selectedSize);
     if (!product) return;
     addItemToCart(product, selectedSize);
-    router.push("/cart");
+    router.push(`/cart`);
   };
 
   if (!product) {
@@ -35,7 +35,7 @@ const ProductDetialsScreen = () => {
         source={{ uri: product.image || defaultPizzaImage }}
         style={styles.image}
       />
-      <Text> Select Size</Text>
+      <Text>Select Size</Text>
       <View style={styles.sizes}>
         {sizes.map((size) => (
           <Pressable
