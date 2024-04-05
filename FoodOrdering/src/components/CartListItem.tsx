@@ -20,7 +20,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
         style={styles.image}
         resizeMode="contain"
       />
-      <View style={{ width: "50%" }}>
+      <View style={{ flex: 1 }}>
         <Text style={styles.title}>{cartItem.product.name}</Text>
         <View style={styles.subtitleContainer}>
           <Text style={styles.price}>${cartItem.product.price.toFixed(2)}</Text>

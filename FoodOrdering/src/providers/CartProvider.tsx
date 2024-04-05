@@ -8,6 +8,7 @@ type CartType = {
   updateItemQuantity: (itemId: string, amount: -1 | 1) => void;
   //   removeItemFromCart: () => void;
   //   clearCart: () => void;
+  total: number;
 };
 
 const CartContext = createContext<CartType>({
@@ -16,6 +17,7 @@ const CartContext = createContext<CartType>({
   updateItemQuantity: () => {},
   //   removeItemFromCart: () => {},
   //   clearCart: () => {},
+  total: 0,
 });
 
 const CartProvider = ({ children }: PropsWithChildren) => {
@@ -51,7 +53,10 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   };
   const removeItemFromCart = () => {};
   const clearCart = () => {};
-
+  const total = items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
   return (
     <CartContext.Provider
       value={{
@@ -60,6 +65,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
         updateItemQuantity,
         // removeItem: removeItemFromCart,
         // clearCart,
+        total,
       }}
     >
       {children}
