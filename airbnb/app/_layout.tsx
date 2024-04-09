@@ -1,3 +1,5 @@
+import ModalTextHeader from "@/components/ModalTextHeader";
+import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
@@ -75,10 +77,22 @@ function RootLayoutNav() {
           name="(modals)/booking"
           options={{
             presentation: "transparentModal",
+            headerTransparent: true,
+            headerTitle: () => <ModalTextHeader />,
             animation: "fade",
             headerLeft: () => (
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="close-outline" size={28} />
+              <TouchableOpacity
+                onPress={() => router.back()}
+                style={{
+                  padding: 8,
+                  backgroundColor: "#fff",
+                  borderColor: Colors.grey,
+                  borderWidth: 1,
+
+                  borderRadius: 20,
+                }}
+              >
+                <Ionicons name="close-outline" size={20} />
               </TouchableOpacity>
             ),
           }}

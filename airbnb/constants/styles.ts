@@ -30,6 +30,7 @@ export const defaultStyles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
   },
   btnText: {
     color: "#fff",
