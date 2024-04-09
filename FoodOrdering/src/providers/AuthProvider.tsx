@@ -8,6 +8,15 @@ import {
 import { supabase } from "@/src/lib/supabase";
 import { Session } from "@supabase/supabase-js";
 
+type Profile = {
+  id: string;
+  user_id: string;
+  username: string;
+  group: string;
+  created_at: string;
+  updated_at: string;
+};
+
 type AuthData = {
   session: Session | null;
   profile: any;
@@ -24,7 +33,7 @@ const AuthContext = createContext<AuthData>({
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [session, setSession] = useState<Session | null>(null);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

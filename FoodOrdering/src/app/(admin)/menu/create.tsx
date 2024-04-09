@@ -4,6 +4,7 @@ import Button from "@/src/components/Button";
 import { defaultPizzaImage } from "@/src/components/ProductListItem";
 import * as ImagePicker from "expo-image-picker";
 import { Stack, useLocalSearchParams } from "expo-router";
+import { useInsertProduct } from "@/src/api/products";
 
 export default function CreateProductScreen() {
   const [name, setName] = useState("");
@@ -12,6 +13,8 @@ export default function CreateProductScreen() {
 
   const { id } = useLocalSearchParams();
   const isUpdating = !!id;
+
+  const { mutate: insertProduct } = useInsertProduct();
 
   const resetFields = () => {
     setName("");
@@ -48,8 +51,12 @@ export default function CreateProductScreen() {
   //add real validation with zustand or similar library
 
   const onCreate = () => {
+    // if (!validateInput()) {
+    //   return
+    // }
     console.warn("Create product", name, "with price: $", price);
     // save in db
+    insertProduct({ name, price: parseFloat(price), image });
     resetFields();
   };
 
