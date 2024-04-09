@@ -1,0 +1,260 @@
+{
+  "food_and_drink": [
+    {
+      "name": "The French Laundry",
+      "rating": 4.9,
+      "price_level": 4,
+      "address": "6640 Washington St, Yountville, CA 94599",
+      "category": "Restaurant"
+    },
+    {
+      "name": "Gary Danko",
+      "rating": 4.8,
+      "price_level": 4,
+      "address": "800 North Point St, San Francisco, CA 94109",
+      "category": "Restaurant"
+    },
+    {
+      "name": "Benu",
+      "rating": 4.8,
+      "price_level": 4,
+      "address": "22 Hawthorne St, San Francisco, CA 94105",
+      "category": "Restaurant"
+    },
+    {
+      "name": "Saison",
+      "rating": 4.8,
+      "price_level": 4,
+      "address": "178 Townsend St, San Francisco, CA 94107",
+      "category": "Restaurant"
+    },
+    {
+      "name": "Tartine Bakery",
+      "rating": 4.7,
+      "price_level": 2,
+      "address": "600 Guerrero St, San Francisco, CA 94110",
+      "category": "Bakery"
+    },
+    {
+      "name": "Bi-Rite Creamery",
+      "rating": 4.7,
+      "price_level": 2,
+      "address": "3692 18th St, San Francisco, CA 94110",
+      "category": "Ice Cream Shop"
+    },
+    {
+      "name": "Swan Oyster Depot",
+      "rating": 4.7,
+      "price_level": 2,
+      "address": "1517 Polk St, San Francisco, CA 94109",
+      "category": "Seafood Restaurant"
+    },
+    {
+      "name": "Zuni Cafe",
+      "rating": 4.6,
+      "price_level": 3,
+      "address": "1658 Market St, San Francisco, CA 94102",
+      "category": "Restaurant"
+    },
+    {
+      "name": "The Slanted Door",
+      "rating": 4.6,
+      "price_level": 3,
+      "address": "1 Ferry Building #3, San Francisco, CA 94111",
+      "category": "Vietnamese Restaurant"
+    },
+    {
+      "name": "Tony's Coal Fired Pizza",
+      "rating": 4.6,
+      "price_level": 2,
+      "address": "1556 Stockton St, San Francisco, CA 94133",
+      "category": "Pizza Place"
+    }
+  ],
+  "entertainment": [
+    {
+      "name": "Golden Gate Park",
+      "rating": 4.8,
+      "address": "San Francisco, CA 94122",
+      "category": "Park"
+    },
+    {
+      "name": "San Francisco Museum of Modern Art (SFMOMA)",
+      "rating": 4.7,
+      "address": "151 3rd St, San Francisco, CA 94103",
+      "category": "Art Museum"
+    },
+    {
+      "name": "Exploratorium",
+      "rating": 4.6,
+      "address": "Pier 15, San Francisco, CA 94111",
+      "category": "Science Museum"
+    },
+    {
+      "name": "California Academy of Sciences",
+      "rating": 4.6,
+      "address": "55 Music Concourse Dr, San Francisco, CA 94118",
+      "category": "Science Museum"
+    },
+    {
+      "name": "Palace of Fine Arts",
+      "rating": 4.6,
+      "address": "3301 Lyon St, San Francisco, CA 94123",
+      "category": "Architectural Building"
+    },
+    {
+      "name": "Alcatraz Island",
+      "rating": 4.6,
+      "address": "San Francisco, CA 94133",
+      "category": "Island"
+    },
+    {
+      "name": "San Francisco Symphony",
+      "rating": 4.6,
+      "address": "201 Van Ness Ave, San Francisco, CA 94102",
+      "category": "Symphony"
+    },
+    {
+      "name": "The Castro Theatre",
+      "rating": 4.6,
+      "address": "429 Castro St, San Francisco, CA 94114",
+      "category": "Movie Theater"
+    },
+    {
+      "name": "The Fillmore",
+      "rating": 4.5,
+      "address": "1805 Geary Blvd, San Francisco, CA 94115",
+      "category": "Concert Hall"
+    },
+    {
+      "name": "San Francisco Ballet",
+      "rating": 4.5,
+      "address": "455 Franklin St, San Francisco, CA 94102",
+      "category": "Ballet Company"
+    }
+  ],
+  "nature_and_outdoors": [
+    {
+      "name": "Muir Woods National Monument",
+      "rating": 4.8,
+      "address": "Mill Valley, CA 94941",
+      "category": "National Park"
+    },
+    {
+      "name": "Lands End Trail",
+      "rating": 4.8,
+      "address": "San Francisco, CA 94121",
+      "category": "Hiking Trail"
+    },
+    {
+      "name": "Japanese Tea Garden",
+      "rating": 4.7,
+      "address": "7 Hagiwara Tea Garden Dr, San Francisco, CA 94118",
+      "category": "Garden"
+    },
+    {
+      "name": "Presidio of San Francisco",
+      "rating": 4.7,
+      "address": "San Francisco, CA 94129",
+      "category": "Park"
+    },
+    {
+      "name": "Strawberry Hill",
+      "rating": 4.7,
+      "address": "Stow Lake Dr, San Francisco, CA 94118",
+      "category": "Scenic Viewpoint"
+    },
+    {
+      "name": "Crissy Field",
+      "rating": 4.7,
+      "address": "San Francisco, CA 94129",
+      "category": "Park"
+    },
+    {
+      "name": "Baker Beach",
+      "rating": 4.7,
+      "address": "San Francisco, CA 94123",
+      "category": "Beach"
+    },
+    {
+      "name": "Sutro Baths",
+      "rating": 4.6,
+      "address": "1004 Point Lobos Ave, San Francisco, CA 94121",
+      "category": "Historic Site"
+    },
+    {
+      "name": "Glen Canyon Park",
+      "rating": 4.6,
+      "address": "San Francisco, CA 94131",
+      "category": "Park"
+    },
+    {
+      "name": "Bernal Heights Park",
+      "rating": 4.6,
+      "address": "Bernal Heights Blvd, San Francisco, CA 94110",
+      "category": "Park"
+    }
+  ],
+  "workspaces": [
+    {
+      "name": "Covo",
+      "rating": 4.9,
+      "address": "981 Mission St, San Francisco, CA 94103",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "Workspace @ Makeshift Society",
+      "rating": 4.9,
+      "address": "322 Ritch St, San Francisco, CA 94107",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Village",
+      "rating": 4.8,
+      "address": "1554 Mission St, San Francisco, CA 94103",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "WeWork",
+      "rating": 4.7,
+      "address": "535 Mission St, San Francisco CA 94105",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Laundry",
+      "rating": 4.7,
+      "address": "3359 26th St, San Francisco, CA 94110",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Hivery",
+      "rating": 4.6,
+      "address": "2 A St, San Rafael, CA 94901",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "Impact Hub",
+      "rating": 4.6,
+      "address": "1885 Mission St, San Francisco, CA 94103",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Archery",
+      "rating": 4.6,
+      "address": "470 Alabama St, San Francisco, CA 94110",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Working Capitol",
+      "rating": 4.5,
+      "address": "1 Keong Saik Rd, Singapore 089109",
+      "category": "Coworking Space"
+    },
+    {
+      "name": "The Wing",
+      "rating": 4.5,
+      "address": "52 Mercer St, New York, NY 10013",
+      "category": "Coworking Space"
+    }
+  ]
+}
