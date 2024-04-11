@@ -1,19 +1,27 @@
-import { View, Text, StyleSheet, TextInput, Image, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import Button from "@/src/components/Button";
 import { defaultPizzaImage } from "@/src/components/ProductListItem";
 import * as ImagePicker from "expo-image-picker";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, router, useLocalSearchParams, useRouter } from "expo-router";
 import { useInsertProduct } from "@/src/api/products";
 
 export default function CreateProductScreen() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState<string | null>(null);
-
+  const [loading, setLoading] = useState(false);
   const { id } = useLocalSearchParams();
   const isUpdating = !!id;
-
+  const router = useRouter();
   const { mutate: insertProduct } = useInsertProduct();
 
   const resetFields = () => {
@@ -54,14 +62,24 @@ export default function CreateProductScreen() {
     // if (!validateInput()) {
     //   return
     // }
-    console.warn("Create product", name, "with price: $", price);
+    // console.warn("Create product", name, "with price: $", price);
     // save in db
-    insertProduct({ name, price: parseFloat(price), image });
-    resetFields();
+    setLoading(true);
+
+    insertProduct(
+      { name, price: parseFloat(price), image },
+      {
+        onSuccess: () => {
+          resetFields();
+          setLoading(false);
+          router.back();
+        },
+      }
+    );
   };
 
   const onUpdate = () => {
-    console.warn("Update product", id, name, "with price: $", price);
+    // console.warn("Update product", id, name, "with price: $", price);
     // update in db
     resetFields();
   };
@@ -91,37 +109,43 @@ export default function CreateProductScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Stack.Screen
-        options={{ title: isUpdating ? "Edit Pizza" : "Create Pizza" }}
-      />
-      <Image
-        source={{ uri: image || defaultPizzaImage }}
-        style={styles.image}
-      />
-      <Text onPress={pickImage} style={styles.textButton}>
-        Select Image
-      </Text>
-      <Text style={styles.label}>Name</Text>
-      <TextInput
-        placeholder="Name"
-        onChangeText={setName}
-        style={styles.input}
-      />
-      <Text style={styles.label}>Price ($)</Text>
-      <TextInput
-        placeholder="$9.99"
-        style={styles.input}
-        keyboardType="numeric"
-        onChangeText={setPrice}
-      />
-      <Button text={isUpdating ? "Update" : "Create"} onPress={onSubmit} />
-      {isUpdating && (
-        <Text style={styles.textButton} onPress={confirmDelete}>
-          Delete
-        </Text>
+    <>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <View style={styles.container}>
+          <Stack.Screen
+            options={{ title: isUpdating ? "Edit Pizza" : "Create Pizza" }}
+          />
+          <Image
+            source={{ uri: image || defaultPizzaImage }}
+            style={styles.image}
+          />
+          <Text onPress={pickImage} style={styles.textButton}>
+            Select Image
+          </Text>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            placeholder="Name"
+            onChangeText={setName}
+            style={styles.input}
+          />
+          <Text style={styles.label}>Price ($)</Text>
+          <TextInput
+            placeholder="$9.99"
+            style={styles.input}
+            keyboardType="numeric"
+            onChangeText={setPrice}
+          />
+          <Button text={isUpdating ? "Update" : "Create"} onPress={onSubmit} />
+          {isUpdating && (
+            <Text style={styles.textButton} onPress={confirmDelete}>
+              Delete
+            </Text>
+          )}
+        </View>
       )}
-    </View>
+    </>
   );
 }
 
