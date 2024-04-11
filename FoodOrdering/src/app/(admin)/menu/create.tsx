@@ -7,22 +7,41 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/src/components/Button";
 import { defaultPizzaImage } from "@/src/components/ProductListItem";
 import * as ImagePicker from "expo-image-picker";
 import { Stack, router, useLocalSearchParams, useRouter } from "expo-router";
-import { useInsertProduct } from "@/src/api/products";
+import {
+  useDeleteProduct,
+  useInsertProduct,
+  useProduct,
+  useUpdateProduct,
+} from "@/src/api/products";
 
 export default function CreateProductScreen() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const { id } = useLocalSearchParams();
-  const isUpdating = !!id;
+  const { id: idString } = useLocalSearchParams();
+  const id = parseFloat(
+    typeof idString === "string" ? idString : idString?.[0]
+  );
+  const isUpdating = !!idString;
   const router = useRouter();
   const { mutate: insertProduct } = useInsertProduct();
+  const { mutate: updateProduct } = useUpdateProduct();
+  const { data: updatingProduct } = useProduct(id);
+  const { mutate: deleteProduct } = useDeleteProduct();
+
+  useEffect(() => {
+    if (updatingProduct) {
+      setName(updatingProduct.name);
+      setPrice(updatingProduct.price.toString());
+      setImage(updatingProduct.image);
+    }
+  }, [updatingProduct]);
 
   const resetFields = () => {
     setName("");
@@ -30,9 +49,12 @@ export default function CreateProductScreen() {
   };
 
   const onDelete = () => {
-    console.warn("Delete product", id);
-    // delete in db
-    resetFields();
+    deleteProduct(id, {
+      onSuccess: () => {
+        resetFields();
+        router.replace("/(admin)");
+      },
+    });
   };
 
   const confirmDelete = () => {
@@ -81,7 +103,18 @@ export default function CreateProductScreen() {
   const onUpdate = () => {
     // console.warn("Update product", id, name, "with price: $", price);
     // update in db
-    resetFields();
+    setLoading(true);
+
+    updateProduct(
+      { id, name, price: parseFloat(price), image },
+      {
+        onSuccess: () => {
+          resetFields();
+          setLoading(false);
+          router.back();
+        },
+      }
+    );
   };
 
   const onSubmit = () => {
@@ -100,8 +133,6 @@ export default function CreateProductScreen() {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -126,16 +157,19 @@ export default function CreateProductScreen() {
           </Text>
           <Text style={styles.label}>Name</Text>
           <TextInput
-            placeholder="Name"
+            value={name}
             onChangeText={setName}
+            placeholder="Name"
             style={styles.input}
           />
+
           <Text style={styles.label}>Price ($)</Text>
           <TextInput
-            placeholder="$9.99"
+            value={price}
+            onChangeText={setPrice}
+            placeholder="9.99"
             style={styles.input}
             keyboardType="numeric"
-            onChangeText={setPrice}
           />
           <Button text={isUpdating ? "Update" : "Create"} onPress={onSubmit} />
           {isUpdating && (
