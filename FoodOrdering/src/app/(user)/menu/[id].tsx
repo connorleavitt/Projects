@@ -8,12 +8,12 @@ import {
   ActivityIndicator,
 } from "react-native";
 // import products from "@/assets/data/products";
-import { defaultPizzaImage } from "@/src/components/ProductListItem";
+import { defaultPizzaImage } from "@/components/ProductListItem";
 import { useState } from "react";
-import Button from "@/src/components/Button";
-import { useCart } from "@/src/providers/CartProvider";
-import { PizzaSize } from "@/src/types";
-import { useProduct } from "@/src/api/products";
+import Button from "@/components/Button";
+import { useCart } from "@/providers/CartProvider";
+import { PizzaSize } from "@/types";
+import { useProduct } from "@/api/products";
 
 const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
@@ -35,7 +35,7 @@ const ProductDetialsScreen = () => {
     router.push(`/cart`);
   };
 
-  if (isLoading) {
+  if (isLoading || !product) {
     return <ActivityIndicator />;
   }
 

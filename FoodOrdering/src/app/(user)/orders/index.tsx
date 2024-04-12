@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
-import orders from "@/assets/data/orders";
+import orders from "assets/data/orders";
 import { FlashList } from "@shopify/flash-list";
-import OrderItemListItem from "@/src/components/OrderListItem";
+import OrderItemListItem from "components/OrderListItem";
 
 export default function OrdersScreen() {
   return (

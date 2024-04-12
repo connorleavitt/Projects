@@ -1,3 +1,6 @@
+import { supabase } from "@/lib/supabase";
+import { Profile } from "@/types";
+import { Session } from "@supabase/supabase-js";
 import {
   PropsWithChildren,
   createContext,
@@ -5,17 +8,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { supabase } from "@/src/lib/supabase";
-import { Session } from "@supabase/supabase-js";
-
-type Profile = {
-  id: string;
-  user_id: string;
-  username: string;
-  group: string;
-  created_at: string;
-  updated_at: string;
-};
 
 type AuthData = {
   session: Session | null;
@@ -26,8 +18,8 @@ type AuthData = {
 
 const AuthContext = createContext<AuthData>({
   session: null,
-  profile: null,
   loading: true,
+  profile: null,
   isAdmin: false,
 });
 
@@ -40,9 +32,8 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     const fetchSession = async () => {
       const {
         data: { session },
-        error,
       } = await supabase.auth.getSession();
-      //   console.log(data, error, "session data and error");
+
       setSession(session);
 
       if (session) {
@@ -54,8 +45,10 @@ export default function AuthProvider({ children }: PropsWithChildren) {
           .single();
         setProfile(data || null);
       }
+
       setLoading(false);
     };
+
     fetchSession();
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);

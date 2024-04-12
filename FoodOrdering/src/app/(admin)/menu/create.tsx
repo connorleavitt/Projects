@@ -8,8 +8,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import Button from "@/src/components/Button";
-import { defaultPizzaImage } from "@/src/components/ProductListItem";
+import Button from "@/components/Button";
+import { defaultPizzaImage } from "@/components/ProductListItem";
 import * as ImagePicker from "expo-image-picker";
 import { Stack, router, useLocalSearchParams, useRouter } from "expo-router";
 import {
@@ -17,7 +17,7 @@ import {
   useInsertProduct,
   useProduct,
   useUpdateProduct,
-} from "@/src/api/products";
+} from "@/api/products";
 
 export default function CreateProductScreen() {
   const [name, setName] = useState("");
@@ -49,9 +49,12 @@ export default function CreateProductScreen() {
   };
 
   const onDelete = () => {
+    setLoading(true);
+
     deleteProduct(id, {
       onSuccess: () => {
-        resetFields();
+        // resetFields();
+        setLoading(false);
         router.replace("/(admin)");
       },
     });

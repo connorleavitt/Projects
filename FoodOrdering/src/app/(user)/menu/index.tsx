@@ -1,7 +1,7 @@
 import { View, ActivityIndicator } from "react-native";
-import ProductListItem from "@/src/components/ProductListItem";
+import ProductListItem from "@/components/ProductListItem";
 import { FlashList } from "@shopify/flash-list";
-import { useProductList } from "@/src/api/products";
+import { useProductList } from "@/api/products";
 
 export default function MenuScreen() {
   const { data: products, error, isLoading } = useProductList();

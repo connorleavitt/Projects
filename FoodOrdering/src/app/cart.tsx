@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useCart } from "@/src/providers/CartProvider";
+import { useCart } from "@/providers/CartProvider";
 import { FlashList } from "@shopify/flash-list";
 import CartListItem from "../components/CartListItem";
 import Button from "../components/Button";

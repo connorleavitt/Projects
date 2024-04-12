@@ -1,5 +1,5 @@
-import { useProductList } from "@/src/api/products";
-import ProductListItem from "@/src/components/ProductListItem";
+import { useProductList } from "@/api/products";
+import ProductListItem from "components/ProductListItem";
 import { FlashList } from "@shopify/flash-list";
 import { ActivityIndicator, Text, View } from "react-native";
 
