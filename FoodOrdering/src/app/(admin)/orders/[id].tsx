@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import orders from "assets/data/orders";
 import OrderListItem from "components/OrderListItem";
@@ -6,14 +13,28 @@ import OrderItemListItem from "@/components/OrderItemListItem";
 import { FlashList } from "@shopify/flash-list";
 import Colors from "@/constants/Colors";
 import { OrderStatusList } from "@/types";
+import { useOrderDetails } from "@/api/orders";
 
 const OrderDetailScreen = () => {
-  const { id } = useLocalSearchParams();
+  const { id: idString } = useLocalSearchParams();
+  const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
+  // const order = orders.find((o) => o.id.toString() === id);
+  const { data: order, isLoading, error } = useOrderDetails(id);
 
-  const order = orders.find((o) => o.id.toString() === id);
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      />
+    );
+  }
 
-  if (!order) {
-    return <Text>Order not found!</Text>;
+  if (error) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Failed {error.message}</Text>
+      </View>
+    );
   }
 
   return (
