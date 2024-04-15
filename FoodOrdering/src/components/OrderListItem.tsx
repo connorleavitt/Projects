@@ -4,7 +4,7 @@ import { Order } from "../types";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import { Href, Link, useSegments } from "expo-router";
-import { Tables } from "@/database.types";
+import { Tables } from "../types";
 
 dayjs.extend(relativeTime);
 

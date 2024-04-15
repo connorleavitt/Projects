@@ -21,6 +21,13 @@ const OrderDetailScreen = () => {
   // const order = orders.find((o) => o.id.toString() === id);
   const { data: order, isLoading, error } = useOrderDetails(id);
 
+  if (!order) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Order not found</Text>
+      </View>
+    );
+  }
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -36,6 +43,7 @@ const OrderDetailScreen = () => {
       </View>
     );
   }
+  console.log(order);
 
   return (
     <View style={styles.container}>

@@ -16,7 +16,13 @@ const OrderDetailScreen = () => {
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
   // const order = orders.find((o) => o.id.toString() === id);
   const { data: order, isLoading, error } = useOrderDetails(id);
-
+  if (!order) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Order not found</Text>
+      </View>
+    );
+  }
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -34,6 +40,8 @@ const OrderDetailScreen = () => {
   }
   return (
     <View style={styles.container}>
+      {/* //add back Button */}
+
       <Stack.Screen options={{ title: `Order #${order.id}` }} />
       {/* <OrderListItem order={order} /> */}
       <FlashList

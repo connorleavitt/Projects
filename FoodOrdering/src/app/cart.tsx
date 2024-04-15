@@ -14,7 +14,7 @@ import CartListItem from "../components/CartListItem";
 import Button from "../components/Button";
 
 export default function CartScreen() {
-  const { items, total } = useCart();
+  const { items, total, checkout } = useCart();
   return (
     <View style={{ padding: 10 }}>
       <FlatList
@@ -25,7 +25,7 @@ export default function CartScreen() {
       <Text style={{ textAlign: "right", fontSize: 20, marginVertical: 10 }}>
         Total: ${total.toFixed(2)}
       </Text>
-      <Button text="Checkout" onPress={() => console.warn("Checkout")} />
+      <Button text="Checkout" onPress={checkout} />
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
