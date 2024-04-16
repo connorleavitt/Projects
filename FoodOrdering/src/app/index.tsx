@@ -13,7 +13,6 @@ const index = () => {
   if (!session) {
     return <Redirect href={"/sign-in"} />;
   }
-
   if (!isAdmin) {
     return <Redirect href={"/(user)"} />;
   }

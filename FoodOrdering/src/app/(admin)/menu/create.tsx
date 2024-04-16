@@ -107,13 +107,13 @@ export default function CreateProductScreen() {
     );
   };
 
-  const onUpdate = () => {
+  const onUpdate = async () => {
     // console.warn("Update product", id, name, "with price: $", price);
     // update in db
     setLoading(true);
-
+    const imagePath = await uploadImage();
     updateProduct(
-      { id, name, price: parseFloat(price), image },
+      { id, name, price: parseFloat(price), image: imagePath },
       {
         onSuccess: () => {
           resetFields();
