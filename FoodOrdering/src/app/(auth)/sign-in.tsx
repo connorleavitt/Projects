@@ -12,7 +12,7 @@ const SignInScreen = () => {
 
   async function signInWithEmail() {
     setLoading(true);
-    // console.warn("Sign up with email and password not implemented");
+    console.warn("Sign up with email and password not implemented");
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,

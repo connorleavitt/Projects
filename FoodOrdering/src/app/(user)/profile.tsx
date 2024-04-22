@@ -6,8 +6,9 @@ import { router } from "expo-router";
 
 const ProfileScreen = () => {
   const handleSignOut = async () => {
+    console.log("signing out", supabase.auth.getUser());
     await supabase.auth.signOut();
-    router.push("/sign-in");
+    router.push("/");
   };
 
   return (
