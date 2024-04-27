@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 
-const polls = [1, 2, 3, 4, 5];
+const polls = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
 export default function HomeScreen() {
   return (
@@ -21,9 +21,11 @@ export default function HomeScreen() {
         contentContainerStyle={styles.container}
         estimatedItemSize={50}
         renderItem={({ item }) => (
-          <View style={styles.pollContainer}>
-            <Text style={styles.pollTitle}>Placeholder poll question</Text>
-          </View>
+          <Link href={`/polls/${item.id}`} style={styles.pollContainer}>
+            <Text style={styles.pollTitle}>
+              Placeholder poll question {item.id}
+            </Text>
+          </Link>
         )}
       />
     </>
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: "lightblue",
     padding: 10,
     borderRadius: 10,
+    marginBottom: 10,
   },
   pollTitle: {
     fontSize: 20,
