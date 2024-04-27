@@ -12,7 +12,6 @@ const SignUpScreen = () => {
 
   async function signUpWithEmail() {
     setLoading(true);
-    console.log(email, password);
     console.warn("Sign up with email and password attempting");
     const { error, data } = await supabase.auth.signUp({ email, password });
     if (error) {

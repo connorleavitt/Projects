@@ -6,12 +6,11 @@ import { router } from "expo-router";
 import dayjs from "dayjs";
 
 const ProfileScreen = () => {
-  console.log(
-    supabase.auth.getUser(),
-    dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss")
-  );
+  // console.log(
+  //   supabase.auth.getUser(),
+  //   dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+  // );
   const handleSignOut = async () => {
-    console.log("signing out", supabase.auth.getUser());
     await supabase.auth.signOut();
     router.push("/sign-in");
   };

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Pressable,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 // import products from "@/assets/data/products";
 import { defaultPizzaImage } from "@/components/ProductListItem";
@@ -45,7 +46,7 @@ const ProductDetialsScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Stack.Screen options={{ title: product.name }} />
       <RemoteImage
         path={product.image}
@@ -85,7 +86,7 @@ const ProductDetialsScreen = () => {
           addToCart();
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 

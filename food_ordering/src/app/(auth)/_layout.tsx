@@ -3,7 +3,7 @@ import { Redirect, Stack } from "expo-router";
 
 export default function AuthLayout() {
   const { session, loading } = useAuth();
-  console.log("got here", session);
+  console.log("auth layout", session?.user);
   if (loading) {
     return null;
   }
