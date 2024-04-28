@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, router } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 
 const polls = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
@@ -20,6 +20,15 @@ export default function HomeScreen() {
               <AntDesign name="pluscircleo" size={22} color="grey" />
             </Link>
           ),
+          // headerRight: () => (
+          //   <AntDesign
+          //     onPress={() => router.push("/polls/new")}
+          //     name="pluscircleo"
+          //     size={22}
+          //     color="grey"
+          //   />
+          // ),
+
           headerTintColor: "black",
           headerTitleStyle: { fontWeight: "bold" },
         }}

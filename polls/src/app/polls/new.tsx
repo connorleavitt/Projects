@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import React, { useState } from "react";
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function NewPoll() {
@@ -19,7 +19,26 @@ export default function NewPoll() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: "Create Poll" }} />
+      <Stack.Screen
+        options={{
+          title: "Create Poll",
+          headerStyle: {
+            backgroundColor: "lightgrey",
+          },
+          headerTintColor: "black",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerLeft: () => (
+            <Link href="/">
+              <FontAwesome
+                name="angle-left"
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </Link>
+          ),
+        }}
+      />
       <Text style={styles.label}>Title</Text>
       <TextInput
         value={question}
@@ -29,7 +48,7 @@ export default function NewPoll() {
       />
       <Text style={styles.label}>Options</Text>
       {options.map((option, index) => (
-        <View style={{ justifyContent: "center" }}>
+        <View key={index} style={{ justifyContent: "center" }}>
           <TextInput
             value={option}
             onChangeText={(text) => {
@@ -37,7 +56,6 @@ export default function NewPoll() {
               newOptions[index] = text;
               setOptions(newOptions);
             }}
-            key={index}
             style={styles.input}
             placeholder={`Option ${index + 1}`}
           />
@@ -47,6 +65,11 @@ export default function NewPoll() {
             color="black"
             style={{ position: "absolute", right: 10 }}
             onPress={() => setOptions(options.filter((_, i) => i !== index))}
+            // onPress={() => {
+            //   const update = [...options];
+            //   delete update[index];
+            //   setOptions(update);
+            // }}
           />
         </View>
       ))}
@@ -58,7 +81,7 @@ export default function NewPoll() {
         />
       )}
 
-      <Button title="Submit new poll" onPress={() => submitPoll()} />
+      {/* <Button title="Submit new poll" onPress={() => submitPoll()} /> */}
       <Button title="Submit new poll" onPress={submitPoll} />
     </View>
   );
