@@ -12,7 +12,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchPolls = async () => {
-      console.log("Fetching...");
+      // console.log("Fetching...");
 
       let { data, error } = await supabase.from("polls").select("*");
       if (error) {
@@ -30,11 +30,17 @@ export default function HomeScreen() {
           headerStyle: {
             backgroundColor: "lightgrey",
           },
+          headerLeft: () => (
+            <Link href="/(protected)/profile">
+              <AntDesign name="user" size={22} color="grey" />
+            </Link>
+          ),
           headerRight: () => (
             <Link href="/polls/new">
               <AntDesign name="pluscircleo" size={22} color="grey" />
             </Link>
           ),
+
           // headerRight: () => (
           //   <AntDesign
           //     onPress={() => router.push("/polls/new")}
@@ -55,7 +61,7 @@ export default function HomeScreen() {
         renderItem={({ item }) => (
           <Link href={`/polls/${item.id}`} style={styles.pollContainer}>
             <Text style={styles.pollTitle}>
-              Placeholder poll question {item.id}
+              {polls.indexOf(item) + 1}. {item.question}
             </Text>
           </Link>
         )}
