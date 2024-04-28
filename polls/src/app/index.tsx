@@ -5,7 +5,7 @@ import { Link, Stack, router } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Poll } from "../types/db";
+import { Poll } from "@/types/db";
 
 export default function HomeScreen() {
   const [polls, setPolls] = useState<Poll[]>([]);
@@ -22,6 +22,7 @@ export default function HomeScreen() {
     };
     fetchPolls();
   }, []);
+
   return (
     <>
       <Stack.Screen

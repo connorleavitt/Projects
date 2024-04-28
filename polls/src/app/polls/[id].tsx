@@ -1,24 +1,50 @@
-import { View, Text, StyleSheet, Pressable, Button } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Button,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
-
-const poll = {
-  question: "This or That?",
-  options: [
-    { id: 1, text: "This" },
-    { id: 2, text: "That" },
-  ],
-};
+import { Poll } from "@/types/db";
+import { supabase } from "@/lib/supabase";
 
 export default function PollDetails() {
   const { id } = useLocalSearchParams();
-
+  const [poll, setPoll] = useState<Poll | null>(null);
   const [selectedOption, setSelectedOption] = useState("");
+
+  useEffect(() => {
+    const fetchPolls = async () => {
+      let { data, error } = await supabase
+        .from("polls")
+        .select("*")
+        .eq("id", Number.parseInt(id as string))
+        .single();
+      if (error) {
+        Alert.alert("Error fetching data");
+      }
+      setPoll(data as Poll);
+    };
+    fetchPolls();
+  }, []);
 
   const vote = () => {
     console.warn("Voted", selectedOption);
   };
+  if (!poll) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="black"
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      />
+    );
+  }
 
   return (
     <View>
@@ -27,18 +53,16 @@ export default function PollDetails() {
       <View style={{ gap: 10 }}>
         {poll.options.map((option) => (
           <Pressable
-            onPress={() => setSelectedOption(option.text)}
-            key={option.id}
+            onPress={() => setSelectedOption(option)}
+            key={option}
             style={styles.optionContainer}
           >
             <AntDesign
-              name={
-                option.text === selectedOption ? "checkcircle" : "checkcircleo"
-              }
+              name={option === selectedOption ? "checkcircle" : "checkcircleo"}
               size={24}
-              color={option.text === selectedOption ? "green" : "grey"}
+              color={option === selectedOption ? "green" : "grey"}
             />
-            <Text style={{ marginLeft: 10 }}>{option.text}</Text>
+            <Text style={{ marginLeft: 10 }}>{option}</Text>
           </Pressable>
         ))}
       </View>
