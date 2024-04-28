@@ -1,12 +1,27 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { Link, Stack, router } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
-
-const polls = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { Poll } from "../types/db";
 
 export default function HomeScreen() {
+  const [polls, setPolls] = useState<Poll[]>([]);
+
+  useEffect(() => {
+    const fetchPolls = async () => {
+      console.log("Fetching...");
+
+      let { data, error } = await supabase.from("polls").select("*");
+      if (error) {
+        Alert.alert("Error fetching data");
+      }
+      setPolls(data as Poll[]);
+    };
+    fetchPolls();
+  }, []);
   return (
     <>
       <Stack.Screen
