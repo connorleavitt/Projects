@@ -7,7 +7,8 @@ const RootLayout = () => {
   return (
     <AuthProvider>
       <Stack>
-        <Stack.Screen name="(auth)" options={{ title: "Login" }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(protected)" options={{ headerShown: false }} />
       </Stack>
     </AuthProvider>
   );

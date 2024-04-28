@@ -4,8 +4,8 @@ import { StyleSheet, View, Alert } from "react-native";
 import { Button, Input, Text } from "react-native-elements";
 import { Session } from "@supabase/supabase-js";
 import { useAuth } from "@/providers/AuthProvider";
-import { Redirect, router } from "expo-router";
-
+import { Link, Redirect, Stack, router } from "expo-router";
+import { FontAwesome } from "@expo/vector-icons";
 export default function ProfileScreen() {
   const { session, user } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -18,11 +18,28 @@ export default function ProfileScreen() {
   }
 
   return (
-    <View style={{ padding: 10 }}>
-      <Text>User id: {user?.id}</Text>
-
-      <Button title="Sign out" onPress={() => signOut()} />
-    </View>
+    <>
+      <Stack.Screen
+        options={{
+          title: "Profile",
+          headerStyle: {
+            backgroundColor: "lightgrey",
+          },
+          headerTintColor: "black",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerLeft: () => (
+            <Link href="/">
+              <FontAwesome name="chevron-left" size={24} color="black" />
+            </Link>
+          ),
+        }}
+      />
+      <View style={{ padding: 10 }}>
+        <Text>User id: {user?.id}</Text>
+        <Text>User id: {user?.email}</Text>
+        <Button title="Sign out" onPress={() => signOut()} />
+      </View>
+    </>
   );
 }
 

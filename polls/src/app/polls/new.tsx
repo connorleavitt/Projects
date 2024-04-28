@@ -1,11 +1,13 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import React, { useState } from "react";
-import { Link, Stack } from "expo-router";
+import { Link, Redirect, Stack } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function NewPoll() {
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState(["432", "123", "08767", "000"]);
+  const { user } = useAuth();
 
   const submitPoll = () => {
     if (!question) {
@@ -17,6 +19,9 @@ export default function NewPoll() {
     }
   };
 
+  if (!user) {
+    return <Redirect href="/login" />;
+  }
   return (
     <View style={styles.container}>
       <Stack.Screen
