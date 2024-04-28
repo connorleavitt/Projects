@@ -1,22 +1,43 @@
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import React, { useState } from "react";
-import { Link, Redirect, Stack } from "expo-router";
+import { Link, Redirect, Stack, router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { useAuth } from "@/providers/AuthProvider";
+import { supabase } from "@/lib/supabase";
 
 export default function NewPoll() {
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState(["432", "123", "08767", "000"]);
   const { user } = useAuth();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const submitPoll = () => {
+  const submitPoll = async () => {
+    setError("");
+
     if (!question) {
-      console.warn("Question is required");
+      setError("Question is required");
       return;
     }
-    if (options) {
-      console.warn("Create Poll", question, options);
+    const validOptions = options.filter((o) => !!o);
+    if (validOptions.length < 2) {
+      setError("At least 2 options are required");
+      return;
     }
+
+    console.warn("Create Poll", question, options, validOptions);
+
+    const { data, error } = await supabase
+      .from("polls")
+      .insert([{ question, options: validOptions }])
+      .select();
+    if (error) {
+      Alert.alert("Failed to creat poll");
+      console.log(error.message);
+      return;
+    }
+    setSuccess("Poll created successfully");
+    router.back();
   };
 
   if (!user) {
@@ -79,15 +100,17 @@ export default function NewPoll() {
         </View>
       ))}
       <Button title="Add Option" onPress={() => setOptions([...options, ""])} />
-      {options.length > 2 && (
+      {/* {options.length > 2 && (
         <Button
           title="Remove Option"
           onPress={() => setOptions(options.slice(0, -1))}
         />
-      )}
+      )} */}
 
       {/* <Button title="Submit new poll" onPress={() => submitPoll()} /> */}
       <Button title="Submit new poll" onPress={submitPoll} />
+      <Text style={{ color: "red" }}>{error}</Text>
+      <Text style={{ color: "green" }}>{success}</Text>
     </View>
   );
 }
