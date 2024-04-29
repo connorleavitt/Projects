@@ -8,15 +8,22 @@ import {
   Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Redirect, Stack, useLocalSearchParams } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { Poll } from "@/types/db";
 import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/providers/AuthProvider";
 
 export default function PollDetails() {
   const { id } = useLocalSearchParams();
   const [poll, setPoll] = useState<Poll | null>(null);
   const [selectedOption, setSelectedOption] = useState("");
+
+  const { user } = useAuth();
+
+  // if (!user) {
+  //   return <Redirect href="/login" />;
+  // }
 
   useEffect(() => {
     const fetchPolls = async () => {
@@ -33,8 +40,13 @@ export default function PollDetails() {
     fetchPolls();
   }, []);
 
-  const vote = () => {
+  const vote = async () => {
     console.warn("Voted", selectedOption);
+
+    const { data, error } = await supabase
+      .from("votes")
+      .insert([{ option: selectedOption, poll_id: poll.id, user_id: user.id }])
+      .select();
   };
   if (!poll) {
     return (
