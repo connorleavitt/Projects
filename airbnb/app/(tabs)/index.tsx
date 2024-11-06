@@ -9,6 +9,7 @@ import listingDataGeo from "@/assets/data/airbnb-listings.geo.json";
 import ListingBottomSheet from "@/components/ListingBottomSheet";
 
 const Page = () => {
+  //comment
   const [category, setCategory] = useState("Trending");
 
   const items = useMemo(() => listingData as any, []);
@@ -28,6 +29,7 @@ const Page = () => {
         }}
       />
       {/* <Listings listings={items} category={category} /> */}
+
       <ListingsMap listings={listingDataGeo} />
       <ListingBottomSheet listings={items} category={category} />
     </View>
